@@ -96,6 +96,15 @@ return packer.startup(function(use)
   use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
 
+  use "chrisbra/csv.vim"
+  use "dhruvasagar/vim-table-mode"  -- An awesome automatic table creator & formatter allowing one to create neat tables as you type.
+
+  use "vim-scripts/timestamp.vim"  -- When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
+
+
+
+  use "pchaos/fcitx5-status" -- fix fcitx chinese input status
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
