@@ -1,4 +1,5 @@
 -- 用户自定义
+vim.opt.encoding = "utf-8"
 vim.opt.relativenumber = true
 vim.opt.showcmd = true
 vim.opt.wrap = true                             -- line wrap 
