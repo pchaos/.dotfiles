@@ -1,0 +1,170 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # 启动函数
+    bootstrap_before = "myspacevim#before"
+    bootstrap_after  = "myspacevim#after"
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "gruvbox"
+    colorscheme_bg = "dark"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "arrow"
+    statusline_inactive_separator = "arrow"
+    # 设置顶部标签列表序号类型，有以下五种类型，分别是 0 - 4
+    # 0: 1 ➛ ➊
+    # 1: 1 ➛ ➀
+    # 2: 1 ➛ ⓵
+    # 3: 1 ➛ ¹
+    # 4: 1 ➛ 1
+    buffer_index_type = 2
+    enable_tabline_filetype_icon = true
+    # 是否在状态栏上显示当前模式，默认情况下，不显示 Normal/Insert 等
+    # 字样，只以颜色区分当前模式
+    enable_statusline_mode = false
+    vim_help_language = "cn"
+    encoding= "utf-8"
+    filemanager = "nerdtree"
+    # filemanager = "defx"
+
+# Enable autocomplete layer
+[[layers]]
+name = 'autocomplete'
+auto-completion-return-key-behavior = "complete"
+auto-completion-tab-key-behavior = "smart"
+
+[[layers]]
+name = 'shell'
+# default_position = 'top'
+default_position = 'bottom'
+default_height = 32
+
+[[layers]]
+name = "denite"
+#enable=false
+
+[[layers]]
+name = "github"
+
+[[layers]]
+  name = "git"
+
+[[layers]]
+  name = "sudo"
+
+[[layers]]
+name = "lang#autohotkey"
+enable=false
+
+[[layers]]
+name="lang#sh"
+
+[[layers]]
+  name="lang#python"
+  python_file_head = [
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+
+[[layers]]
+  name = "lang#ipynb"
+   
+[[layers]]
+name="lang#markdown"
+# enable=false
+
+[[layers]]
+name="tools"
+
+[[layers]]
+  name = "chinese"
+
+[[layers]]
+name="lang#go"
+enable=false
+
+[[layers]]
+  # need pip install notedown
+  name="lang#ipynb"
+
+[[layers]]
+name="lang#html"
+
+[[layers]]
+name="lang#latex"
+
+[[layers]]
+name="lang#toml"
+
+[[layers]]
+name="test"
+
+[[layers]]
+name="default"
+
+[[layers]]
+  name = "format"
+
+[[layers]]
+  name="debug"
+
+[[layers]]
+  name = "incsearch"
+
+[[layers]]
+  name="vim-snippets"
+  enable=true
+
+# [[layers]]
+# name = "neosnippte"
+# enable=false
+
+# 添加自定义插件
+# [[custom_plugins]]
+    # Vim sugar for the UNIX shell commands that need it the most. Features include:
+
+    #:Delete: Delete a buffer and the file on disk simultaneously.
+    # :Unlink: Like :Delete, but keeps the now empty buffer.
+    # :Move: Rename a buffer and the file on disk simultaneously.
+    # :Rename: Like :Move, but relative to the current file's containing directory.
+    # :Chmod: Change the permissions of the current file.
+    # :Mkdir: Create a directory, defaulting to the parent of the current file.
+    # :Cfind: Run find and load the results into the quickfix list.
+    # :Clocate: Run locate and load the results into the quickfix list.
+    # :Lfind/:Llocate: Like above, but use the location list.
+    # :Wall: Write every open window. Handy for kicking off tools like guard.
+    # :SudoWrite: Write a privileged file with sudo.
+    # :SudoEdit: Edit a privileged file with sudo.
+    # File type detection for sudo -e is based on original file name.
+    # New files created with a shebang line are automatically made executable.
+    # repo = "tpope/vim-eunuch"
+    # merged = 0
+
+[[custom_plugins]]
+# snippte
+  name="SirVer/ultisnips"
+  merged=0
+
+# # [[layers]]
+# [[custom_plugins]]
+# #name="vimwiki/wimwiki"
+# name="https://gitee.com/pchaos/vimwiki.git"
+# merged=0
+# enable=false
+
+[[layers]]
+  name="vimwiki/wimwiki"
+# enable=false

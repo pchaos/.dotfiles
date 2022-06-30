@@ -1,0 +1,73 @@
+# global !p
+
+snippet at "Assert True" b
+self.assertTrue(${1:${VISUAL:expression}}, f"!p
+snip.rv = t[1]")
+endsnippet
+
+snippet close "ClOSE" b
+CLOSE
+endsnippet
+
+snippet forid "for i, d in enmu" b
+for i, d in enumerate(self.datas):
+{tab}${0}
+endsnippet
+
+snippet high "HIGH" b
+HIGH
+endsnippet
+
+snippet low "LOW" b
+LOW
+endsnippet
+
+snippet ifn "funcat" b
+from funcat
+endsnippet
+
+snippet impbt "import backtrador" b
+from datetime import datetime
+import backtrader as bt
+from funcat import  CLOSE, HIGH, LOW, OPEN
+endsnippet
+
+snippet impfunctest "import for funcat2" b
+import unittest
+import numpy as np
+import backtrader as bt
+from funcat.api import *
+from funcat.conditional_selection import *
+from funcat.utils import FuncatTestCase
+
+__updated__ = "`!v strftime("%Y-%m-%d")`"
+
+class Test${1:${VISUAL}}(FuncatTestCase):
+    @classmethod
+    def setUp(cls) -> None:
+        T("20210101")
+        S("000001.XSHG")
+    def test_{2:${VISUAL}(self):
+        pass
+
+if __name__ == '__main__':
+    unittest.main()
+    
+endsnippet
+
+snippet upda "refresh __updated__" b
+__updated__ = "`!v strftime("%Y-%m-%d")`"
+endsnippet
+
+snippet printf "print(f'your keyword')"  b
+print(f"${1:}")${0}
+endsnippet
+
+snippet hdr "General file header" b
+# file: `!v expand('%:t')`
+# vim:fileencoding=utf-8:ft=`!v &filetype`
+# ${1}
+#
+# Author: ${2:J. pchaos} ${3:<drifthua@gmail.com>}
+# Created: `!v strftime("%F %T %z")`
+endsnippet
