@@ -1,2 +1,2 @@
-demo/** filter=git-crypt diff=git-crypt
-LICENSE filter=git-crypt diff=git-crypt
+bash/** filter=git-crypt diff=git-crypt
+tmux/** filter=git-crypt diff=git-crypt
