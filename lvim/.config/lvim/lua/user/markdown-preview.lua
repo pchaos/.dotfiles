@@ -1,4 +1,4 @@
-local status_ok, _ = pcall(require, 'markdown-preview.')
+local status_ok, _ = pcall(require, 'markdown-preview.nvim')
 if not status_ok then
 	return
 end
