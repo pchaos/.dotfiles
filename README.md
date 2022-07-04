@@ -11,7 +11,9 @@ submodule to get an idea how these work.
 Clone this repository.
 
 ```
-git clone https://github.com/mikebarkmin/.dotfiles.git
+git clone https://github.com/pchaos/.dotfiles.git
+# or 
+git clone git@github.com:pchaos/.dotfiles.git
 ```
 
 You can install three variants of the dotfiles.
