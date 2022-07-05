@@ -1,17 +1,20 @@
 --[[
 lvim is the global options object
 
+Last Modified:TIMESTAM P 
 Linters should be
 filled in as strings with either
 a global executable or a path to
 an executable
 ]]
 
+
 require("user.plugins")
 require("user.user_settings")
-require("user.markdown-preview")
+-- require("user.markdown-preview")
 -- require("user.barbar")
 require("user.bufferline")
+require("user.lualine")
 
 -- general
 lvim.log.level = "warn"
@@ -65,7 +68,8 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
+-- lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
