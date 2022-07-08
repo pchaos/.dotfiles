@@ -1,5 +1,6 @@
-local status_ok, _ = pcall(require, 'markdown-preview.nvim')
+local status_ok, _ = pcall(require, 'markdown-preview')
 if not status_ok then
+	print("markdown-preview not loaded.")
 	return
 end
 
