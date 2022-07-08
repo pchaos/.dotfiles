@@ -1,3 +1,4 @@
 bash/** filter=git-crypt diff=git-crypt
 git/** filter=git-crypt diff=git-crypt
 tmux/** filter=git-crypt diff=git-crypt
+pypi/** filter=git-crypt diff=git-crypt
