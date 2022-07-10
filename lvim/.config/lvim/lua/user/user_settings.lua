@@ -11,7 +11,7 @@ vim.opt.relativenumber = true
 vim.opt.showcmd = true
 vim.opt.numberwidth = 3 -- set number column width to 2 {default 4}
 
-vim.opt.updatetime = 2000 -- faster completion (4000ms default)
+vim.opt.updatetime = 300 -- faster completion (4000ms default)
 vim.opt.wrap = true -- line wrap
 
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds

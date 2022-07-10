@@ -1,5 +1,5 @@
 lvim.plugins = {
-  -- Last modified:    2022-07-07 16:59:57
+  -- Last modified:   2022-07-07 16:59:57
   {
     "felipec/vim-sanegx",
     event = "BufRead",
@@ -13,6 +13,8 @@ lvim.plugins = {
     end,
   },
   { "LunarVim/Colorschemes" },
+  { "mhinz/vim-signify" }, --Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+
   { "folke/tokyonight.nvim" },
   {
     -- Python-mode, a Python IDE for Vim
