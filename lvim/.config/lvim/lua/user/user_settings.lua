@@ -1,24 +1,34 @@
 -- 用户自定义
 -- Last Modified: 2022-07-07 11:32:34
-vim.opt.encoding = "utf-8"
+
+-----------------------------------------------------------
+-- Neovim API aliases
+-----------------------------------------------------------
+local cmd = vim.cmd -- execute Vim commands
+local exec = vim.api.nvim_exec -- execute Vimscript
+local fn = vim.fn -- call Vim functions
+local g = vim.g -- global variables
+local opt = vim.opt -- global/buffer/windows-scoped options
+
+opt.encoding = "utf-8"
 
 -- White characters
-vim.opt.expandtab = true -- expand tab to spaces
-vim.opt.formatoptions = 'qnj1' -- q  - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
+opt.expandtab = true -- expand tab to spaces
+opt.formatoptions = 'qnj1' -- q  - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
 
 -- Sidebar
-vim.opt.relativenumber = true
-vim.opt.showcmd = true
-vim.opt.numberwidth = 3 -- set number column width to 2 {default 4}
+opt.relativenumber = true
+opt.showcmd = true
+opt.numberwidth = 3 -- set number column width to 2 {default 4}
 
-vim.opt.updatetime = 300 -- faster completion (4000ms default)
-vim.opt.wrap = true -- line wrap
+opt.updatetime = 300 -- faster completion (4000ms default)
+opt.wrap = true -- line wrap
 
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds
 -- vim.lsp.buf.format({ timeout_ms = 2000 }) -- nvim 0.8+
 
 -- mapping
-vim.cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
+cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
 
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
