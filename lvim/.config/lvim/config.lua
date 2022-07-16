@@ -1,7 +1,6 @@
 --[[
 lvim is the global options object
-
-Last modified:2022-07-07 02:40:00 
+Last modified:   2022-07-12 16:14:41
 
 Linters should be
 filled in as strings with either
@@ -11,6 +10,7 @@ an executable
 
 
 require("user.plugins")
+require("user.dap")
 require("user.user_settings")
 -- require("user.markdown-preview")
 -- require("user.barbar")
@@ -74,6 +74,7 @@ lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 -- lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.side = "right"
+lvim.builtin.nvimtree.setup.open_on_setup = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
