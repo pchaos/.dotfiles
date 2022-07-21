@@ -27,6 +27,10 @@ opt.wrap = true -- line wrap
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds
 -- vim.lsp.buf.format({ timeout_ms = 2000 }) -- nvim 0.8+
 
+-- opt.pydocstring_doq_path = "~/.local/bin/doq"
+-- lvim.pydocstring_doq_path = "~/.local/bin/doq"
+cmd("let g:pydocstring_doq_path = '~/.local/bin/doq'")
+
 -- mapping
 cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
 

@@ -43,7 +43,12 @@ lvim.plugins = {
     -- m?           Open location list and display markers from current buffer
     -- m<BS>        Remove all markers
   },
-  { "folke/tokyonight.nvim" },
+  {
+    "heavenshell/vim-pydocstring"
+  },
+  {
+    "folke/tokyonight.nvim"
+  },
   {
     -- Python-mode, a Python IDE for Vim
     "python-mode/python-mode",
