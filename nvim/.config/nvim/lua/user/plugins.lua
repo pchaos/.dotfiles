@@ -101,7 +101,9 @@ return packer.startup(function(use)
 
   use "vim-scripts/timestamp.vim"  -- When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
 
+	use "Yohannfra/Nvim-Switch-Buffer"  --  quickly switch between open buffers in neovim
 
+	use "adelarsq/vim-tetris"
 
   use "pchaos/fcitx5-status" -- fix fcitx chinese input status
 

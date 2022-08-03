@@ -8,9 +8,9 @@ vim.opt.formatoptions = 'qnj1' -- q  - comment formatting; n - numbered lists; j
 -- Sidebar
 vim.opt.relativenumber = true
 vim.opt.showcmd = true
-vim.opt.numberwidth = 3                         -- set number column width to 2 {default 4}
+vim.opt.numberwidth = 3 -- set number column width to 2 {default 4}
 
-vim.opt.wrap = true                             -- line wrap
+vim.opt.wrap = true -- line wrap
 
 -- mapping
 vim.cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
@@ -53,3 +53,6 @@ nmap('N', 'Nzzzv')
 tmap('<C-s>', '<C-\\><C-n>')
 tmap('<Esc><Esc>', '<C-\\><C-n>')
 
+-- edit
+nmap('<leader>bd', ":bd<cr>") -- buffer delete
+nmap('<leader>fs', ':w<cr>') -- file save 
