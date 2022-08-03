@@ -47,6 +47,11 @@ lvim.plugins = {
     "heavenshell/vim-pydocstring"
   },
   {
+    "dhruvasagar/vim-table-mode",
+    -- https://github.com/dhruvasagar/vim-table-mode
+
+  },
+  {
     "folke/tokyonight.nvim"
   },
   {

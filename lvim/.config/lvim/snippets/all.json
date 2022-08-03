@@ -1,4 +1,11 @@
 {
+  "createtimestamp": {
+    "prefix": "ctimestamp",
+    "body": [
+      "Created: TIMESTAMP"
+    ],
+    "description": "create timestamp"
+  },
   "timestamp": {
     "prefix": "timestamp",
     "body": [
