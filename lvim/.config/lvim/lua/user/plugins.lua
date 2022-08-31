@@ -60,6 +60,9 @@ lvim.plugins = {
     branch = "develop",
   },
   {
+    "Glench/Vim-Jinja2-Syntax"
+  },
+  {
     "pchaos/timestamp.vim",
     -- branch = "master",
     branch = "dev",
