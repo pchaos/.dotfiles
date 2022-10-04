@@ -2,5 +2,6 @@ bash/** filter=git-crypt diff=git-crypt
 conda/** filter=git-crypt diff=git-crypt
 git/** filter=git-crypt diff=git-crypt
 tmux/** filter=git-crypt diff=git-crypt
+pve/** filter=git-crypt diff=git-crypt
 pypi/** filter=git-crypt diff=git-crypt
 root/** filter=git-crypt diff=git-crypt
