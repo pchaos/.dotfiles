@@ -29,6 +29,8 @@ opt.wrap = true -- line wrap
 
 -- opt.pydocstring_doq_path = "~/.local/bin/doq"
 -- lvim.pydocstring_doq_path = "~/.local/bin/doq"
+
+cmd("let g:python3_host_prog  = expand('~/software/python3rd/anaconda/bin/python')")
 cmd("let g:pydocstring_doq_path = '~/.local/bin/doq'")
 
 -- mapping
@@ -73,5 +75,5 @@ tmap('<Esc><Esc>', '<C-\\><C-n>')
 
 -- edit
 -- nmap('<leader>bd', ":bd<cr>") -- buffer delete
-nmap('<leader>fs', ':w<cr>') -- file save 
+nmap('<leader>fs', ':w<cr>') -- file save
 imap('<Esc>', '<Esc>`^') -- ESC in inser mode ,todo: 行尾的时候不切换到下一行
