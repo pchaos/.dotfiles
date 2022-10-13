@@ -4,3 +4,6 @@
 [submodule "submodule/autossh"]
 	path = submodule/autossh
 	url = https://github.com/FeeiCN/autossh.git
+[submodule "submodule/fish-bash2env"]
+	path = submodule/fish-bash2env
+	url = https://github.com/EHfive/fish-bash2env.git
