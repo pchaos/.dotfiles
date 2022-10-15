@@ -7,3 +7,6 @@
 [submodule "submodule/fish-bash2env"]
 	path = submodule/fish-bash2env
 	url = https://github.com/EHfive/fish-bash2env.git
+[submodule "submodule/pureline"]
+	path = submodule/pureline
+	url = https://github.com/chris-marsh/pureline.git
