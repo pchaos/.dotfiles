@@ -10,3 +10,6 @@
 [submodule "submodule/pureline"]
 	path = submodule/pureline
 	url = https://github.com/chris-marsh/pureline.git
+[submodule "submodule/xdm"]
+	path = submodule/xdm
+	url = https://github.com/subhra74/xdm.git
