@@ -52,3 +52,9 @@ git-crypt export-key dotfiles-git-crypt-key
 进入工程目录，打开Git Base Here，执行 git-crypt unlock dotfiles-git-crypt-key
 
 利用该方式进行文件管理可以保证安全性，只有团队内相关人员才能看到明文内容，解密只需要第一次进行，之后就没什么改变，直接改文件，git push会自动加密，git pull 会自动解密。
+
+```bash
+git remote add origin git@github.com:pchaos/.dotfiles.git
+git branch --set-upstream-to=origin/main main
+git pull
+```
