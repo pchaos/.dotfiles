@@ -2,6 +2,14 @@
 #:che 
 dotfilepath="~/.dotfiles"
 
+cpto ()
+{
+  # 快速拷贝，适合数量较多目录
+  # Ex: cpto source_dir target_dir 
+  tar cf - ${1} | pv | (cd ${2}; tar xf -)
+}
+# tar cf - . | pv | (cd /dst; tar xf -)
+
 rm ~/.bashrc
 rm ~/.bash_profile
 rm ~/.ssh/known_hosts
@@ -10,6 +18,7 @@ rm ~/.ssh/known_hosts
 mkdir -p ~/.local/bin/
 mkdir -p ~/software/
 mkdir -p ~/openwrt/
+mkdir -p ~/install/ ~/.config/autostart
 
 # download obsidian
 cd ~/.local/bin/ && wget https://github.com/obsidianmd/obsidian-releases/releases/download/v0.15.9/Obsidian-0.15.9.AppImage && ln -s Obsidian-0.15.9.AppImage obsidian
@@ -19,14 +28,17 @@ wget -O ~/.dotfiles/bash/.alacritty.bash https://github.com/alacritty/alacritty/
 conda create -n hikyuu python==3.9
 conda create -n pytest python==3.9
 
-dnf install -y fish luarocks ruby cpan julia black ruby-devel nodejs yarnpkg alacritty coreutils
+# https://github.com/LunarVim/LunarVim
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+# bash <(proxychains curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+dnf install -y black fish luarocks ruby cpan julia ruby-devel spawn tree-sitter-cli nodejs yarnpkg alacritty coreutils
 npm install -g tree-sitter
 npm install -g neovim
 npm install -g @fsouza/prettierd
 npm install -g prettier
 LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/usr/lib64/mysql
 gem install neovim
-pip install isort
+pip install isort tree-sitter
 # oh-my-fish
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 # fisher
@@ -45,4 +57,15 @@ cp *.otf ~/.local/share/fonts
 fc-cache -f -v
 
 # 显示器设置黑屏   设置-》显示器 -》内置显示器 -》不勾选
+
+
+#-------------------------------------------------- 
+# XDM Extension got deleted from chrome store
+# https://github.com/subhra74/xdm/issues/895
+# Clone here via git or download as zip:
+
+# https://github.com/subhra74/xdm
+
+# You will find "app" folder. Under it, there is "chrome" folder. You can add it directly to your chrome based browser as "unpacked extension". Don't forget to turn on developer settings in extension part of your chrome based browser.
+
 

@@ -51,9 +51,6 @@ lvim.plugins = {
     -- https://github.com/dhruvasagar/vim-table-mode
   },
   {
-    "folke/tokyonight.nvim"
-  },
-  {
     -- Python-mode, a Python IDE for Vim
     "python-mode/python-mode",
     branch = "develop",
