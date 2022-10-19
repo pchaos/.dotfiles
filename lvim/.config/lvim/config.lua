@@ -81,6 +81,7 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  -- "c++",
   "javascript",
   "json",
   "lua",
@@ -91,6 +92,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  -- "fish",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }

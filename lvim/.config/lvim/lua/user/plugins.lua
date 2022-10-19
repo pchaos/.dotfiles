@@ -49,7 +49,6 @@ lvim.plugins = {
   {
     "dhruvasagar/vim-table-mode",
     -- https://github.com/dhruvasagar/vim-table-mode
-
   },
   {
     "folke/tokyonight.nvim"
