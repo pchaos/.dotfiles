@@ -1,6 +1,6 @@
 local status_ok, _ = pcall(require, 'timestamp.vim.substitute')
 if not status_ok then
-  print("timestamp not loaded")
+  print("timestamp not loaded!", status_ok)
   return
 end
 

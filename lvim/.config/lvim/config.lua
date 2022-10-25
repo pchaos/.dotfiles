@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2022-07-12 16:14:41
+Last modified:   2022-10-18 16:14:41
 
 Linters should be
 filled in as strings with either
@@ -16,7 +16,9 @@ require("user.user_settings")
 -- require("user.barbar")
 require("user.bufferline")
 require("user.lualine")
--- require("user.timestamp")
+require("user.bashls")
+require("user.keymaps")
+require("user.timestamp")
 
 -- general
 lvim.log.level = "warn"
@@ -70,7 +72,6 @@ lvim.keys.normal_mode["<leader>W"] = ":w !sudo tee %<cr>"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 -- lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.side = "right"
@@ -87,12 +88,11 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "typescript",
-  "tsx",
+  -- "tsx",
   "css",
   "rust",
   "java",
   "yaml",
-  -- "fish",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
