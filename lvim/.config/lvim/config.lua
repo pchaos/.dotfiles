@@ -18,7 +18,7 @@ require("user.bufferline")
 require("user.lualine")
 require("user.bashls")
 require("user.keymaps")
-require("user.timestamp")
+require("user.timestamp_vim")
 
 -- general
 lvim.log.level = "warn"

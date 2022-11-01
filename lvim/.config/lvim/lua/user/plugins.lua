@@ -7,15 +7,22 @@ lvim.plugins = {
   {
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = "markdown",
     config = function()
       vim.g.mkdp_auto_start = 0
     end,
   },
-  { "LunarVim/Colorschemes" },
-  { "mhinz/vim-signify" }, --Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+  {
+    "LunarVim/Colorschemes"
+  },
 
-  { "kshenoy/vim-signature",
+  {
+    "mhinz/vim-signify"
+  }, --Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+
+  {
+    "kshenoy/vim-signature",
     --o vim-signature is a plugin to place, toggle and display marks.
     --   mx           Toggle mark 'x' and display it in the leftmost column
     -- dmx          Remove mark 'x' where x is a-zA-Z
@@ -69,7 +76,10 @@ lvim.plugins = {
     --    Modified:      TIMESTAMP
     --    Changed:       TIMESTAMP
   },
-  { "pchaos/fcitx5-status" },
+
+  {
+    "pchaos/fcitx5-status"
+  },
 }
 
 local noused_plugins = {
