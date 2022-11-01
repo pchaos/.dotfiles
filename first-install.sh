@@ -1,14 +1,15 @@
 #!/bin/bash
-#:che 
+#:默认脚本根路径
 dotfilepath="~/.dotfiles"
 
 cpto ()
 {
   # 快速拷贝，适合数量较多目录
   # Ex: cpto source_dir target_dir 
+  # tar cf - ${1} | (cd ${2}; tar xf -)
   tar cf - ${1} | pv | (cd ${2}; tar xf -)
 }
-# tar cf - . | pv | (cd /dst; tar xf -)
+# cpto . /dst
 
 rm ~/.bashrc
 rm ~/.bash_profile
@@ -28,17 +29,43 @@ wget -O ~/.dotfiles/bash/.alacritty.bash https://github.com/alacritty/alacritty/
 conda create -n hikyuu python==3.9
 conda create -n pytest python==3.9
 
+#neovim AppImage
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage --appimage-extract
+./squashfs-root/AppRun --version
+
+# Optional: exposing nvim globally.
+if [ -d "/squashfs-root" ]; then
+  sudo rm -rf /squashfs-root/
+fi
+sudo mv squashfs-root /
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+
+dnf copr enable agriffis/neovim-nightly
+dnf install -y neovim python3-neovim
+
 # https://github.com/LunarVim/LunarVim
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 # bash <(proxychains curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-dnf install -y black fish luarocks ruby cpan julia ruby-devel spawn tree-sitter-cli nodejs yarnpkg alacritty coreutils
+# uninstall lunarvim
+# bash ~/.local/share/lunarvim/lvim/utils/installer/uninstall.sh
+# git submodule add --depth=1 https://github.com/ryanoasis/nerd-fonts.git
+
+
+# bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/uninstall.sh)
+dnf install -y black fish luarocks ruby cpan perl-App-cpanminus julia ruby-devel spawn tree-sitter-cli nodejs yarnpkg alacritty coreutils
+# dnf install -y nodejs-bash-language-server
 npm install -g tree-sitter
 npm install -g neovim
 npm install -g @fsouza/prettierd
 npm install -g prettier
+npm i -g bash-language-server shellcheck
 LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/usr/lib64/mysql
 gem install neovim
-pip install isort tree-sitter
+pip install isort tree-sittero
+pip install --user doq
+sudo cpanm -n Neovim::Ext
 # oh-my-fish
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 # fisher
@@ -68,4 +95,15 @@ fc-cache -f -v
 
 # You will find "app" folder. Under it, there is "chrome" folder. You can add it directly to your chrome based browser as "unpacked extension". Don't forget to turn on developer settings in extension part of your chrome based browser.
 
+
+#qemu
+dnf install qemu-kvm libvirt-daemon-qemu libvirt virt-manager
+sudo usermod -aG libvirt $USER
+sudo usermod -aG kvm $USER
+
+dnf install lm-sensors hddtemp -y
+
+
+# How to add snippets to Lunarvim
+# #https://github.com/sambergo/lunarvim-snippet-examples
 

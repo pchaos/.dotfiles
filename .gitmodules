@@ -16,3 +16,6 @@
 [submodule "submodule/nerd-fonts"]
 	path = submodule/nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts.git
+[submodule "submodule/kvm-install-vm"]
+	path = submodule/kvm-install-vm
+	url = git@github.com:pchaos/kvm-install-vm.git
