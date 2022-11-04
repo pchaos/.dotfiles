@@ -19,3 +19,6 @@
 [submodule "submodule/kvm-install-vm"]
 	path = submodule/kvm-install-vm
 	url = git@github.com:pchaos/kvm-install-vm.git
+[submodule "submodule/bash-git-prompt"]
+	path = submodule/bash-git-prompt
+	url = https://github.com/magicmonty/bash-git-prompt.git

@@ -26,8 +26,9 @@ cd ~/.local/bin/ && wget https://github.com/obsidianmd/obsidian-releases/release
 # download alacritty
 wget -O ~/.dotfiles/bash/.alacritty.bash https://github.com/alacritty/alacritty/raw/master/extra/completions/alacritty.bash
 
-conda create -n hikyuu python==3.9
-conda create -n pytest python==3.9
+conda create -n hikyuu python=3.9
+conda create -n pytest python=3.9
+conda create -n py27 python=2.7
 
 #neovim AppImage
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
@@ -51,7 +52,11 @@ bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/
 # uninstall lunarvim
 # bash ~/.local/share/lunarvim/lvim/utils/installer/uninstall.sh
 # git submodule add --depth=1 https://github.com/ryanoasis/nerd-fonts.git
+# git submodule add --depth=1 https://github.com/magicmonty/bash-git-prompt.git 
 
+# markdown-preview
+yarn install
+yarn build
 
 # bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/uninstall.sh)
 dnf install -y black fish luarocks ruby cpan perl-App-cpanminus julia ruby-devel spawn tree-sitter-cli nodejs yarnpkg alacritty coreutils
