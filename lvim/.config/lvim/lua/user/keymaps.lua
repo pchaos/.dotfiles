@@ -22,6 +22,34 @@ function tmap(shortcut, command)
   map('t', shortcut, command)
 end
 
+local cmd = vim.cmd -- execute Vim commands
+
 -- insert timestamp
 -- nmap("<F3>", 'i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>')
 -- imap('<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:% %p")<CR>')
+
+-- sane regexes
+nmap('/', '/\\v')
+vmap('/', '/\\v')
+
+-- keep search matches in the middle of the window
+nmap('n', 'nzzzv')
+nmap('N', 'Nzzzv')
+
+-- Terminal
+-- ESC to go to normal mode in terminal
+tmap('<C-s>', '<C-\\><C-n>')
+tmap('<Esc><Esc>', '<C-\\><C-n>')
+
+-- edit
+-- nmap('<leader>bd', ":bd<cr>") -- buffer delete
+nmap('<leader>fs', ':w<cr>')                          -- file save
+imap('<Esc>', '<Esc>`^')                              -- ESC in inser mode ,todo: 行尾的时候不切换到下一行
+
+cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
+
+-- tab move
+-- nmap('S-h', ':bnext<cr>')
+-- nmap('S-l', ':bprev<cr>')
+lvim.keys.normal_mode["<S-h>"] = ":bnext<cr>" -- shift+h move to next tab
+lvim.keys.normal_mode["<S-l>"] = ":bprev<cr>" -- shift+l move to prev tab

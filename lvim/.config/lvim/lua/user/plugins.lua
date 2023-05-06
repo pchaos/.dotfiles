@@ -1,3 +1,4 @@
+-- Install your plugins here
 lvim.plugins = {
   -- Last modified:   2022-07-07 16:59:57
   {
@@ -6,16 +7,25 @@ lvim.plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
-    ft = "markdown",
-    config = function()
-      vim.g.mkdp_auto_start = 0
-    end,
+    build = function() vim.fn["mkdp#util#install"]() end,
   },
-  {
-    "LunarVim/Colorschemes"
-  },
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   run = "cd app && npm install",
+  --   -- run = function() vim.fn["mkdp#util#install"]() end,
+  --   setup = function()
+  --     vim.g.mkdp_filetypes = { "markdown" }
+  --   end,
+  --   ft = "markdown",
+  --   config = function()
+  --     -- " set to 1, nvim will open the preview window after entering the markdown buffer
+  --     -- " default: 0
+  --     vim.g.mkdp_auto_start = 0
+  --   end,
+  -- },
+  -- {
+  --   "LunarVim/Colorschemes"
+  -- },
 
   {
     "mhinz/vim-signify"

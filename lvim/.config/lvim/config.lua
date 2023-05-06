@@ -7,15 +7,16 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-
+-- Import plugins
+-- require('user.plugins')
 
 require("user.plugins")
 require("user.dap")
 require("user.user_settings")
 -- require("user.markdown-preview")
 -- require("user.barbar")
-require("user.bufferline")
-require("user.lualine")
+-- require("user.bufferline") -- 启用会引起init.lua报错
+-- require("user.lualine")
 require("user.bashls")
 require("user.keymaps")
 require("user.timestamp_vim")
@@ -23,7 +24,7 @@ require("user.timestamp_vim")
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "codemonkey"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -77,23 +78,6 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.open_on_setup = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
-
--- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  -- "c++",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  -- "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
-}
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
