@@ -43,7 +43,7 @@ tmap('<Esc><Esc>', '<C-\\><C-n>')
 
 -- edit
 -- nmap('<leader>bd', ":bd<cr>") -- buffer delete
-nmap('<leader>fs', ':w<cr>')                          -- file save
+-- nmap('<leader>fs', ':w<cr>')                          -- file save
 imap('<Esc>', '<Esc>`^')                              -- ESC in inser mode ,todo: 行尾的时候不切换到下一行
 
 cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
