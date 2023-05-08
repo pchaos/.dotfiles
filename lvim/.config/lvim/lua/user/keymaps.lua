@@ -51,5 +51,5 @@ cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
 -- tab move
 -- nmap('S-h', ':bnext<cr>')
 -- nmap('S-l', ':bprev<cr>')
-lvim.keys.normal_mode["<S-h>"] = ":bnext<cr>" -- shift+h move to next tab
-lvim.keys.normal_mode["<S-l>"] = ":bprev<cr>" -- shift+l move to prev tab
+lvim.keys.normal_mode["<A-l>"] = ":bnext<cr>" -- alt+l move to next tab
+lvim.keys.normal_mode["<A-h>"] = ":bprev<cr>" -- alt+h move to prev tab
