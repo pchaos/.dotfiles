@@ -55,7 +55,7 @@ function M.post()
   local dap_python = require("dap-python")
 
   -- dap_python.setup("~/.cache/virtualenvs/debugpy/bin/python", { include_configs = false })
-  dap_python.setup(os.execute("which python"), { include_configs = false })
+  dap_python.setup(os.execute('$(which python)'), { include_configs = false })
   dap.configurations.python = {
     {
       type = "python",

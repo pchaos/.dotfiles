@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2022-07-07 16:59:57
+  -- Last modified:   2023-05-16 23:50:39
   {
     "felipec/vim-sanegx",
     event = "BufRead",
@@ -62,17 +62,48 @@ lvim.plugins = {
     -- m<BS>        Remove all markers
   },
   {
-    "heavenshell/vim-pydocstring"
+    "mfussenegger/nvim-dap",
+  },
+  {
+    "mfussenegger/nvim-dap-python"
+  },
+  {
+    "heavenshell/vim-pydocstring",
+    --     Basic usage
+    -- Move your cursor on a def or class keyword line,
+    -- type :Pydocstring and
+    -- watch a docstring template magically appear below the current line
+    -- Format all
+    -- type :PydocstringFormat will insert all docstrings to current buffer.
+
+    -- Settings
+    -- Pydocstring depends on shiftwidth if smarttab is set, otherwise softtabstop. For the latter, you need to set like set softtabstop=4.
+
+    -- Example .vimrc
+
+    -- autocmd FileType python setlocal tabstop=4 shiftwidth=4 smarttab expandtab
+    -- Or:
+
+    -- autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+    -- Pydocstring use ftplugin, so filetype plugin on required.
+
+    -- Key map
+    -- If you want change default keymapping, set following to your .vimrc.
+
+    -- nmap <silent> <C-_> <Plug>(pydocstring)
+    -- Or, if you want disable default keymapping, you can set like following.
+
+    -- let g:pydocstring_enable_mapping = 0
   },
   {
     "dhruvasagar/vim-table-mode",
     -- https://github.com/dhruvasagar/vim-table-mode
   },
-  {
-    -- Python-mode, a Python IDE for Vim
-    "python-mode/python-mode",
-    branch = "develop",
-  },
+  -- {
+  --   -- Python-mode, a Python IDE for Vim
+  --   "python-mode/python-mode",
+  --   branch = "develop",
+  -- },
   {
     "Glench/Vim-Jinja2-Syntax"
   },

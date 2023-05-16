@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2022-10-18 16:14:41
+Last modified:   2023-05-17 00:50:29
 
 Linters should be
 filled in as strings with either
@@ -11,7 +11,7 @@ an executable
 -- require('user.plugins')
 
 require("user.plugins")
-require("user.dap")
+require("user.dap-configs.daps")
 require("user.user_settings")
 -- require("user.markdown-preview")
 -- require("user.barbar")
@@ -19,7 +19,11 @@ require("user.user_settings")
 -- require("user.lualine")
 require("user.bashls")
 require("user.keymaps")
+require("user.whichkey")
 require("user.timestamp_vim")
+
+-- 配置 dap-python; The argument to setup is the path to the python installation which contains the debugpy module.
+-- require('dap-python').setup('$(which python)')
 
 -- general
 lvim.log.level = "warn"

@@ -44,7 +44,10 @@ tmap('<Esc><Esc>', '<C-\\><C-n>')
 -- edit
 -- nmap('<leader>bd', ":bd<cr>") -- buffer delete
 -- nmap('<leader>fs', ':w<cr>')                          -- file save
-imap('<Esc>', '<Esc>`^')                              -- ESC in inser mode ,todo: 行尾的时候不切换到下一行
+imap('<Esc>', '<Esc>`^') -- ESC in inser mode ,todo: 行尾的时候不切换到下一行
+
+-- Convert Inserted Text to Normal Mode Commands
+imap('<F2>', '<ESC>u@.')
 
 cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
 
@@ -53,3 +56,6 @@ cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
 -- nmap('S-l', ':bprev<cr>')
 lvim.keys.normal_mode["<A-l>"] = ":bnext<cr>" -- alt+l move to next tab
 lvim.keys.normal_mode["<A-h>"] = ":bprev<cr>" -- alt+h move to prev tab
+
+-- <C--> 快捷键来触发 pydocstring 插件
+lvim.keys.normal_mode["<C-->"] = { "<Plug>(pydocstring)", { silent = true } }
