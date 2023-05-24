@@ -1,5 +1,5 @@
 -- Created: 2023-05-13 23:31:20
--- Modified: 2023-05-20 00:14:45
+-- Modified: 2023-05-24 14:14:24
 
 -- builtin debug 增加Last Exit
 lvim.builtin.which_key.mappings.d["l"] = {
@@ -9,9 +9,15 @@ lvim.builtin.which_key.mappings.d["x"] = {
   "<cmd>lua require'dap'.terminate()<cr>", "Exit"
 }
 
-lvim.builtin.which_key.mappings["W"] = {
-  ":w !sudo tee %<cr>", "sudo save"
+-- builtin Diff current buffer and the original file
+lvim.builtin.which_key.mappings.b["d"] = {
+  ":w !diff % -<cr>", "Diff current buffer and the original file"
 }
+
+lvim.builtin.which_key.mappings["W"] = {
+  ":w !sudo tee %<cr>", "sudo save file"
+}
+
 
 local m_opts = {
   mode = "n",     -- NORMAL mode

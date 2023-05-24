@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2023-05-19 23:25:27
+-- Last Modified: 2023-05-24 16:30:28
 
 -----------------------------------------------------------
 -- Neovim API aliases
@@ -24,6 +24,8 @@ opt.numberwidth = 3  -- set number column width to 2 {default 4}
 
 opt.updatetime = 300 -- faster completion (4000ms default)
 opt.wrap = true      -- line wrap
+
+vim.wo.colorcolumn = '120'
 
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds
 -- vim.lsp.buf.format({ timeout_ms = 2000 }) -- nvim 0.8+
@@ -55,6 +57,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "make",
   "latex",
   "lua",
+  "org",
   "pascal",
   "python",
   "regex",
