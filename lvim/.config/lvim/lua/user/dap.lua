@@ -1,3 +1,5 @@
+-- Modified: 2023-05-19 23:33:11
+
 local M = {}
 
 function M.post()
@@ -53,9 +55,10 @@ function M.post()
 
   dap.set_log_level("DEBUG")
   local dap_python = require("dap-python")
+  local python_install_path = vim.fn.exepath('python')
 
   -- dap_python.setup("~/.cache/virtualenvs/debugpy/bin/python", { include_configs = false })
-  dap_python.setup(os.execute('$(which python)'), { include_configs = false })
+  dap_python.setup(os.execute(python_install_path), { include_configs = false })
   dap.configurations.python = {
     {
       type = "python",
@@ -71,7 +74,7 @@ function M.post()
       request = "attach",
       name = "Attach remote",
       justMyCode = false,
-      pythonPath = require("util").get_python_path(),
+      pythonPath = python_install_path,
       host = function()
         local value = vim.fn.input("Host [127.0.0.1]: ")
         if value ~= "" then

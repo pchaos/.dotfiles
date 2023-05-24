@@ -1,3 +1,5 @@
+-- Modified: 2023-05-17 15:48:59
+
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -43,7 +45,7 @@ tmap('<Esc><Esc>', '<C-\\><C-n>')
 
 -- edit
 -- nmap('<leader>bd', ":bd<cr>") -- buffer delete
--- nmap('<leader>fs', ':w<cr>')                          -- file save
+-- nmap('<leader>fs', ':w<cr>')  -- file save
 imap('<Esc>', '<Esc>`^') -- ESC in inser mode ,todo: 行尾的时候不切换到下一行
 
 -- Convert Inserted Text to Normal Mode Commands

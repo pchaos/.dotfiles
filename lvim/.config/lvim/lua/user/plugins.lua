@@ -1,13 +1,15 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-05-16 23:50:39
+  -- Last modified:   2023-05-20 20:28:59
   {
     "felipec/vim-sanegx",
+    -- open url with gx
     event = "BufRead",
   },
   {
     "iamcco/markdown-preview.nvim",
     event = "BufRead",
+    ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
   },
   -- {
@@ -31,6 +33,16 @@ lvim.plugins = {
   {
     "mhinz/vim-signify"
   }, --Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+
+  {
+    "ggandor/leap.nvim",
+    -- Leap is a general-purpose motion plugin for Neovim, with the ultimate goal of establishing a new standard interface for moving around in the visible area in Vim-like modal editors.
+    -- Leap allows you to jump to any positions in the visible editor area by entering a 2-character search pattern, and then potentially a label character to pick your target from multiple matches, similar to Sneak. The novel idea in Leap is its "clairvoyant" ability: you get a live preview of the target labels - by mapping possible futures, Leap can show you which key(s) you will need to press before you actually need to do that.
+    name = "leap",
+    config = function()
+      require("leap").add_default_mappings()
+    end,
+  },
 
   {
     "kshenoy/vim-signature",
@@ -68,7 +80,65 @@ lvim.plugins = {
     "mfussenegger/nvim-dap-python"
   },
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      -- "nvim-lua/plenary.nvim",
+      -- "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim"
+    }
+  },
+  {
+    "nvim-neotest/neotest-python",
+    ft = { "python" },
+    -- https://betterprogramming.pub/lunarvim-debugging-testing-python-code-fa84f804c469
+    -- require("neotest").setup({
+    --   adapters = {
+    --     require("neotest-python")({
+    --       -- Extra arguments for nvim-dap configuration
+    --       -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+    --       dap = { justMyCode = false },
+    --       -- Command line arguments for runner
+    --       -- Can also be a function to return dynamic values
+    --       args = { "--log-level", "DEBUG" },
+    --       -- Runner to use. Will use pytest if available by default.
+    --       -- Can be a function to return dynamic value.
+    --       runner = "pytest",
+    --       -- Custom python path for the runner.
+    --       -- Can be a string or a list of strings.
+    --       -- Can also be a function to return dynamic value.
+    --       -- If not provided, the path will be inferred by checking for
+    --       -- virtual envs in the local directory and for Pipenev/Poetry configs
+    --       -- python = ".venv/bin/python",
+    --       -- Returns if a given file path is a test file.
+    --       -- NB: This function is called a lot so don't perform any heavy tasks within it.
+    --       -- is_test_file = function(file_path)
+    --       -- end,
+    --     })
+    --   }
+    -- }
+    -- Set up Keybindings
+    -- This section might look a little complicated but all we’re doing is adding some keybindings to our leader key menu that pops up when you press space. For instance, pressing space d m will test the nearest method.
+
+    -- lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
+    --   "Test Method" }
+    -- lvim.builtin.which_key.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+    --   "Test Method DAP" }
+    -- lvim.builtin.which_key.mappings["df"] = {
+    --   "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
+    -- lvim.builtin.which_key.mappings["dF"] = {
+    --   "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
+    -- lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+    -- Keybindings explanation:
+
+    -- space d m: runs the nearest test
+    -- space d M: runs the nearest test in debug mode
+    -- space d f: runs all tests in file
+    -- space d F: runs all tests in file in debug mode
+    -- space d S: displays summary for tests)
+  },
+  {
     "heavenshell/vim-pydocstring",
+    ft = { "python" },
     --     Basic usage
     -- Move your cursor on a def or class keyword line,
     -- type :Pydocstring and
@@ -128,7 +198,7 @@ local noused_plugins = {
   {
     -- barbar.nvim is a tabline plugin with re-orderable, auto-sizing, clickable tabs, icons, nice highlighting, sort-by commands and a magic jump-to-buffer mode. Plus the tab names are made unique when two filenames match.
     'romgrk/barbar.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('barbar').setup()
     end

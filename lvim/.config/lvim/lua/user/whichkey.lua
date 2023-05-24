@@ -1,5 +1,5 @@
 -- Created: 2023-05-13 23:31:20
--- Modified: 2023-05-13 23:32:03
+-- Modified: 2023-05-20 00:14:45
 
 -- builtin debug 增加Last Exit
 lvim.builtin.which_key.mappings.d["l"] = {
@@ -7,6 +7,10 @@ lvim.builtin.which_key.mappings.d["l"] = {
 }
 lvim.builtin.which_key.mappings.d["x"] = {
   "<cmd>lua require'dap'.terminate()<cr>", "Exit"
+}
+
+lvim.builtin.which_key.mappings["W"] = {
+  ":w !sudo tee %<cr>", "sudo save"
 }
 
 local m_opts = {

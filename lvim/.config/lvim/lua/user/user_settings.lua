@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2022-07-07 11:32:34
+-- Last Modified: 2023-05-19 23:25:27
 
 -----------------------------------------------------------
 -- Neovim API aliases
@@ -60,8 +60,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "regex",
   "rust",
   "toml",
+  "tsx",
   "typescript",
-  -- "tsx",
   "vim",
   "vimdoc",
   "yaml",

@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2023-05-17 00:50:29
+Last modified:   2023-05-20 21:02:13
 
 Linters should be
 filled in as strings with either
@@ -28,8 +28,9 @@ require("user.timestamp_vim")
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "codemonkey"
+lvim.colorscheme = "desert"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -37,7 +38,7 @@ lvim.colorscheme = "onedarker"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<leader>W"] = ":w !sudo tee %<cr>"
+
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
