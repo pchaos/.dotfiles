@@ -1,6 +1,6 @@
 {
   "Create": "Created: 2023-05-26 15:03:29",
-  "Modified": "Last Modified: 2023-05-26 15:10:32",
+  "Modified": "Last Modified: 2023-05-26 15:22:25",
   "URL": "https://github.com/pchaos/ultisnips-vscode",
   "download": "cd /tmp; git clone --depth 1 https://github.com/honza/vim-snippets.git",
   "Befor run": "ln -s ~/.dotfiles/.vscode/ultisnips-vscode.json ~/.vscode/",
@@ -8,5 +8,6 @@
   "Run": "ultisnips2vscode",
   "ultisnips-snippets#": "/tmp/vim-snippets/snippets",
   "ultisnips-snippets": "/tmp/vim-snippets/UltiSnips",
-  "vscode-snippets": "/tmp/json"
+  "vscode-snippets": "/tmp/json",
+  "description": "This script allows you to write all of your snippets in vims Ultisnips format, and convert the whole batch to json format for use in vscode."
 }

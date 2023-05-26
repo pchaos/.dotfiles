@@ -9,8 +9,21 @@
   "timestamp": {
     "prefix": "timestamp",
     "body": [
-      "Last Modified: 2022-07-12 15:45:34"
+      "Last Modified: TIMESTAMP"
     ],
     "description": "timestamp on save file"
+  },
+  "snippet": {
+    "prefix": "snippet",
+    "body": [
+      "\"$1\": {",
+      "  \"prefix\": \"$1\",",
+      "  \"body\": [",
+      "    \"$2\"",
+      "],",
+      "  \"description\": \"$3\"",
+      "}"
+    ],
+    "description": "json format snippet"
   }
 }

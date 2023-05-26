@@ -1,0 +1,398 @@
+{
+  "def": {
+    "prefix": "def",
+    "description": "#define ...",
+    "body": [
+      "#define $1"
+    ]
+  },
+  "#ifndef": {
+    "prefix": "#ifndef",
+    "description": "#ifndef ... #define ... #endif",
+    "body": [
+      "#ifndef ${1/([A-Za-z0-9_]+).*/$1/}",
+      "#define ${1:SYMBOL} ${2:value}",
+      "#endif /* ifndef $1 */"
+    ]
+  },
+  "#if": {
+    "prefix": "#if",
+    "description": "#if #endif",
+    "body": [
+      "#if ${1:0}",
+      "${TM_SELECTED_TEXT}$0",
+      "#endif"
+    ]
+  },
+  "mark": {
+    "prefix": "mark",
+    "description": "#pragma mark (mark)",
+    "body": [
+      "#if 0",
+      "${1:#pragma mark -",
+      "}#pragma mark $2",
+      "#endif",
+      "",
+      "$0"
+    ]
+  },
+  "main": {
+    "prefix": "main",
+    "body": [
+      "int main(int argc, char *argv[])",
+      "{",
+      "\t${0}",
+      "\treturn 0;",
+      "}"
+    ]
+  },
+  "for": {
+    "prefix": "for",
+    "description": "for loop (for)",
+    "body": [
+      "for (${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "fori": {
+    "prefix": "fori",
+    "description": "for int loop (fori)",
+    "body": [
+      "for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "fora": {
+    "prefix": "fora",
+    "description": "for-loop",
+    "body": [
+      "for (${1:var}; ${2:condition}; `!p",
+      "if len(t[1]) > 0:",
+      "\tsnip.rv = t[1].split('=')[0].split()[-1]",
+      "`++) {",
+      "\t",
+      "\t$0",
+      "} /* for ($1; $2; `!p if len(t[1]) > 0: snip.rv = t[1].split('=')[0].split()[-1]`++) */"
+    ]
+  },
+  "once": {
+    "prefix": "once",
+    "description": "Include header once only guard",
+    "body": [
+      "#ifndef ${1:`!p",
+      "if not snip.c:",
+      "\timport random, string",
+      "\tname = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()",
+      "\trand = ''.join(random.sample(string.ascii_letters+string.digits, 8))",
+      "\tsnip.rv = ('%s_%s' % (name,rand)).upper()",
+      "else:",
+      "\tsnip.rv = snip.c`}",
+      "#define $1",
+      "",
+      "${TM_SELECTED_TEXT}$0",
+      "",
+      "#endif /* end of include guard: $1 */"
+    ]
+  },
+  "fprintf": {
+    "prefix": "fprintf",
+    "description": "fprintf ...",
+    "body": [
+      "fprintf(${1:stderr}, \"${2:%s}\\n\"${2/([^%]|%%)*(%.)?.*/(?2:, :\\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\\);)/}"
+    ]
+  },
+  "eli": {
+    "prefix": "eli",
+    "description": "else if .. (eli)",
+    "body": [
+      "else if (${1:/* condition */}) {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "\"printf\"": {
+    "prefix": "\"printf\"",
+    "description": "printf",
+    "body": [
+      "printf(\"$1\\n\"$2);"
+    ]
+  },
+  "st": {
+    "prefix": "st",
+    "description": "struct",
+    "body": [
+      "struct ${1:`!p snip.rv = (snip.basename or \"name\") + \"_t\"`} {",
+      "\t${0:/* data */}",
+      "};"
+    ]
+  },
+  "fun": {
+    "prefix": "fun",
+    "description": "function",
+    "body": [
+      "${1:void} ${2:function_name}($3)",
+      "{",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "fund": {
+    "prefix": "fund",
+    "description": "function declaration",
+    "body": [
+      "${1:void} ${2:function_name}($3);"
+    ]
+  },
+  "head": {
+    "prefix": "head",
+    "description": "File Header",
+    "body": [
+      "/******************************************************************************",
+      "* File:             `!p snip.rv = fn`",
+      "*",
+      "* Author:           ${2}  ",
+      "* Created:          `date +%m/%d/%y` ",
+      "* Description:      ${4:${TM_SELECTED_TEXT}}",
+      "*****************************************************************************/",
+      "${0}"
+    ]
+  },
+  "func": {
+    "prefix": "func",
+    "description": "Function Header",
+    "body": [
+      "/******************************************************************************",
+      "* Function:         $1",
+      "* Description:      ${4:${TM_SELECTED_TEXT}}",
+      "* Where:`!p ",
+      "snip.rv = \"\"",
+      "snip >> 2",
+      "",
+      "args = get_args(t[2])",
+      "if args:",
+      "\tfor arg in args:",
+      "\t\tsnip.rv += '\\n' + '*' + ' '*19 + arg + ' - TODO'",
+      "snip << 2",
+      "`",
+      "* Return:           $5",
+      "* Error:            $6",
+      "*****************************************************************************/",
+      "${1}($2){",
+      "\t${0}",
+      "}"
+    ]
+  },
+  "ponce": {
+    "prefix": "ponce",
+    "description": "#pragma once include guard",
+    "body": [
+      "#pragma once",
+      ""
+    ]
+  },
+  "forc": {
+    "prefix": "forc",
+    "description": "general for loop (for)",
+    "body": [
+      "for (${6:auto} ${1:i} = ${2:v.begin()}; `!p import re; snip.rv = re.split(\"[^\\w]\",t[1])[-1]` ${4:!=} ${3:`!p m = re.search(r'^(?:(.*)(\\.|->)begin\\(\\)|((?:std|boost)::)?begin\\((.*)\\))$', t[2]); snip.rv = (((m.group(3) if m.group(3) else \"\") + \"end(\" + m.group(4) + \")\") if m.group(4) else (m.group(1) + m.group(2) + \"end()\")) if m else \"\"`}; ${5:++`!p snip.rv = t[1].split(\" \")[-1]`}) {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "beginend": {
+    "prefix": "beginend",
+    "description": "$1.begin(), $1.end() (beginend)",
+    "body": [
+      "${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()"
+    ]
+  },
+  "cl": {
+    "prefix": "cl",
+    "description": "class .. (class)",
+    "body": [
+      "class ${1:`!p snip.rv = snip.basename or \"name\"`}",
+      "{",
+      "public:",
+      "\t${1/(\\w+).*/$1/} (${2:arguments});",
+      "\tvirtual ~${1/(\\w+).*/$1/} ();",
+      "",
+      "private:",
+      "\t${0:/* data */}",
+      "};"
+    ]
+  },
+  "ns": {
+    "prefix": "ns",
+    "description": "namespace .. (namespace)",
+    "body": [
+      "namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or \"name\"`}",
+      "{",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}${1/.+/ \\/* /m}$1${1/.+/ *\\/ /m}"
+    ]
+  },
+  "nsa": {
+    "prefix": "nsa",
+    "description": "namespace alias",
+    "body": [
+      "namespace ${1:alias} = ${2:namespace};"
+    ]
+  },
+  "using": {
+    "prefix": "using",
+    "description": "using directive/using declaration/type alias",
+    "body": [
+      "using ${1:namespace}`!p snip.rv = ' ' if t[1] == 'namespace' else ' = ' if t[1] != '' else ''`${2:name};"
+    ]
+  },
+  "readfile": {
+    "prefix": "readfile",
+    "description": "read file (readF)",
+    "body": [
+      "std::vector<char> v;",
+      "if (FILE *fp = fopen(${1:\"filename\"}, \"r\"))",
+      "{",
+      "\tchar buf[1024];",
+      "\twhile(size_t len = fread(buf, 1, sizeof(buf), fp))",
+      "\t\tv.insert(v.end(), buf, buf + len);",
+      "\tfclose(fp);",
+      "}"
+    ]
+  },
+  "map": {
+    "prefix": "map",
+    "description": "std::map (map)",
+    "body": [
+      "std::map<${1:key}, ${2:value}> map$0;"
+    ]
+  },
+  "vector": {
+    "prefix": "vector",
+    "description": "std::vector (v)",
+    "body": [
+      "std::vector<${1:char}> v$0;"
+    ]
+  },
+  "tp": {
+    "prefix": "tp",
+    "description": "template <typename ..> (template)",
+    "body": [
+      "template <typename ${1:_InputIter}>"
+    ]
+  },
+  "cla": {
+    "prefix": "cla",
+    "description": "An entire .h generator",
+    "body": [
+      "#ifndef ${2:`!v substitute(vim_snippets#Filename('$1_H','ClassName'),'.*','\\U&\\E','')`}",
+      "#define $2",
+      "",
+      "class ${1:`!v substitute(substitute(vim_snippets#Filename('$1','ClassName'),'^.','\\u&',''), '_\\(\\w\\)', '\\u\\1', 'g')`}",
+      "{",
+      "private:",
+      "\t$3",
+      "",
+      "public:",
+      "\t$1();",
+      "\tvirtual ~$1();",
+      "};",
+      "",
+      "#endif /* $2 */"
+    ]
+  },
+  "fnc": {
+    "prefix": "fnc",
+    "description": "Basic c++ doxygen function template",
+    "body": [
+      "/**",
+      "* @brief: ${4:brief}",
+      "*",
+      "* @param: `!p write_docstring_args(t[3],snip)`",
+      "*",
+      "* @return: `!p snip.rv = t[1]`",
+      "*/",
+      "${1:ReturnType} ${2:FunctionName}(${3:param})",
+      "{",
+      "\t${0:FunctionBody}",
+      "}"
+    ]
+  },
+  "boost_test": {
+    "prefix": "boost_test",
+    "description": "Boost test module",
+    "body": [
+      "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+      "#include <boost/test/included/unit_test.hpp>",
+      "",
+      "BOOST_AUTO_TEST_CASE(${2:TestCaseName})",
+      "{",
+      "\t${0:TestDefinition}",
+      "}",
+      ""
+    ]
+  },
+  "boost_suite": {
+    "prefix": "boost_suite",
+    "description": "Boost test suite module",
+    "body": [
+      "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+      "#include <boost/test/included/unit_test.hpp>",
+      "",
+      "BOOST_AUTO_TEST_SUITE(${2:SuiteName})",
+      "",
+      "BOOST_AUTO_TEST_CASE(${3:TestCaseName})",
+      "{",
+      "\t${0:TestDefinition}",
+      "}",
+      "",
+      "BOOST_AUTO_TEST_SUITE_END()",
+      ""
+    ]
+  },
+  "boost_test_fixture": {
+    "prefix": "boost_test_fixture",
+    "description": "Boost test module with fixture",
+    "body": [
+      "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+      "#include <boost/test/included/unit_test.hpp>",
+      "",
+      "struct ${2:FixtureName} {",
+      "\t$2() {}",
+      "\tvirtual ~$2() {}",
+      "\t/* define members here */",
+      "};",
+      "",
+      "BOOST_FIXTURE_TEST_CASE(${3:SuiteName}, $2)",
+      "{",
+      "\t${0:TestDefinition}",
+      "}",
+      ""
+    ]
+  },
+  "boost_suite_fixture": {
+    "prefix": "boost_suite_fixture",
+    "description": "Boost test suite with fixture",
+    "body": [
+      "#define BOOST_TEST_MODULE ${1:TestModuleName}",
+      "#include <boost/test/included/unit_test.hpp>",
+      "",
+      "struct ${2:FixtureName} {",
+      "\t$2() {}",
+      "\tvirtual ~$2() {}",
+      "\t/* define members here */",
+      "};",
+      "",
+      "BOOST_FIXTURE_TEST_SUITE(${3:SuiteName}, $2)",
+      "",
+      "BOOST_AUTO_TEST_CASE(${4:TestCaseName})",
+      "{",
+      "\t${0:TestDefinition}",
+      "}",
+      "",
+      "BOOST_AUTO_TEST_SUITE_END()",
+      ""
+    ]
+  }
+}

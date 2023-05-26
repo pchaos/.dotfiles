@@ -1,0 +1,10 @@
+{
+  "contributes for package.json": {
+    "prefix": "contributes",
+    "body": [
+      "{\n\t\t\"language\": \"all\", \"path\": \"./all.json\" \n}"
+    ]
+  ],
+  "description": "contributes for package.json"
+}
+}

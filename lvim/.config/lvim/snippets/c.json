@@ -1,0 +1,188 @@
+{
+  "def": {
+    "prefix": "def",
+    "description": "#define ...",
+    "body": [
+      "#define $1"
+    ]
+  },
+  "#ifndef": {
+    "prefix": "#ifndef",
+    "description": "#ifndef ... #define ... #endif",
+    "body": [
+      "#ifndef ${1/([A-Za-z0-9_]+).*/$1/}",
+      "#define ${1:SYMBOL} ${2:value}",
+      "#endif /* ifndef $1 */"
+    ]
+  },
+  "#if": {
+    "prefix": "#if",
+    "description": "#if #endif",
+    "body": [
+      "#if ${1:0}",
+      "${TM_SELECTED_TEXT}$0",
+      "#endif"
+    ]
+  },
+  "mark": {
+    "prefix": "mark",
+    "description": "#pragma mark (mark)",
+    "body": [
+      "#if 0",
+      "${1:#pragma mark -",
+      "}#pragma mark $2",
+      "#endif",
+      "",
+      "$0"
+    ]
+  },
+  "main": {
+    "prefix": "main",
+    "description": "main() (main)",
+    "body": [
+      "int main(int argc, char *argv[])",
+      "{",
+      "\t${TM_SELECTED_TEXT}$0",
+      "\treturn 0;",
+      "}"
+    ]
+  },
+  "for": {
+    "prefix": "for",
+    "description": "for loop (for)",
+    "body": [
+      "for (${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "fori": {
+    "prefix": "fori",
+    "description": "for int loop (fori)",
+    "body": [
+      "for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "fora": {
+    "prefix": "fora",
+    "description": "for-loop",
+    "body": [
+      "for (${1:var}; ${2:condition}; `!p",
+      "if len(t[1]) > 0:",
+      "\tsnip.rv = t[1].split('=')[0].split()[-1]",
+      "`++) {",
+      "\t",
+      "\t$0",
+      "} /* for ($1; $2; `!p if len(t[1]) > 0: snip.rv = t[1].split('=')[0].split()[-1]`++) */"
+    ]
+  },
+  "once": {
+    "prefix": "once",
+    "description": "Include header once only guard",
+    "body": [
+      "#ifndef ${1:`!p",
+      "if not snip.c:",
+      "\timport random, string",
+      "\tname = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()",
+      "\trand = ''.join(random.sample(string.ascii_letters+string.digits, 8))",
+      "\tsnip.rv = ('%s_%s' % (name,rand)).upper()",
+      "else:",
+      "\tsnip.rv = snip.c`}",
+      "#define $1",
+      "",
+      "${TM_SELECTED_TEXT}$0",
+      "",
+      "#endif /* end of include guard: $1 */"
+    ]
+  },
+  "fprintf": {
+    "prefix": "fprintf",
+    "description": "fprintf ...",
+    "body": [
+      "fprintf(${1:stderr}, \"${2:%s}\\n\"${2/([^%]|%%)*(%.)?.*/(?2:, :\\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\\);)/}"
+    ]
+  },
+  "eli": {
+    "prefix": "eli",
+    "description": "else if .. (eli)",
+    "body": [
+      "else if (${1:/* condition */}) {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "\"printf\"": {
+    "prefix": "\"printf\"",
+    "description": "printf",
+    "body": [
+      "printf(\"$1\\n\"$2);"
+    ]
+  },
+  "st": {
+    "prefix": "st",
+    "description": "struct",
+    "body": [
+      "struct ${1:`!p snip.rv = (snip.basename or \"name\") + \"_t\"`} {",
+      "\t${0:/* data */}",
+      "};"
+    ]
+  },
+  "fun": {
+    "prefix": "fun",
+    "description": "function",
+    "body": [
+      "${1:void} ${2:function_name}($3)",
+      "{",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "fund": {
+    "prefix": "fund",
+    "description": "function declaration",
+    "body": [
+      "${1:void} ${2:function_name}($3);"
+    ]
+  },
+  "head": {
+    "prefix": "head",
+    "description": "File Header",
+    "body": [
+      "/******************************************************************************",
+      "* File:             `!p snip.rv = fn`",
+      "*",
+      "* Author:           ${2}  ",
+      "* Created:          `date +%m/%d/%y` ",
+      "* Description:      ${4:${TM_SELECTED_TEXT}}",
+      "*****************************************************************************/",
+      "${0}"
+    ]
+  },
+  "func": {
+    "prefix": "func",
+    "description": "Function Header",
+    "body": [
+      "/******************************************************************************",
+      "* Function:         $1",
+      "* Description:      ${4:${TM_SELECTED_TEXT}}",
+      "* Where:`!p ",
+      "snip.rv = \"\"",
+      "snip >> 2",
+      "",
+      "args = get_args(t[2])",
+      "if args:",
+      "\tfor arg in args:",
+      "\t\tsnip.rv += '\\n' + '*' + ' '*19 + arg + ' - TODO'",
+      "snip << 2",
+      "`",
+      "* Return:           $5",
+      "* Error:            $6",
+      "*****************************************************************************/",
+      "${1}($2){",
+      "\t${0}",
+      "}"
+    ]
+  }
+}

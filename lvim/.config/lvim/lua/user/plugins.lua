@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-05-20 20:28:59
+  -- Last modified:   2023-05-26 11:48:25
   {
     "felipec/vim-sanegx",
     -- open url with gx
@@ -81,6 +81,7 @@ lvim.plugins = {
   },
   {
     "nvim-neotest/neotest",
+    ft = { "python", "c", "lua" },
     dependencies = {
       -- "nvim-lua/plenary.nvim",
       -- "nvim-treesitter/nvim-treesitter",

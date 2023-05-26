@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2023-05-20 21:02:13
+Last modified:   2023-05-25 19:03:29
 
 Linters should be
 filled in as strings with either
@@ -30,7 +30,9 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "codemonkey"
-lvim.colorscheme = "desert"
+-- lvim.colorscheme = "desert"
+-- lvim.colorscheme = "lunaperche"
+lvim.colorscheme = "koehler"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
