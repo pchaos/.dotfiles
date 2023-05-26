@@ -1,0 +1,75 @@
+{
+  "fn": {
+    "prefix": "fn",
+    "description": "fn name(?) -> ? {}",
+    "body": [
+      "fn ${1:function_name}($2)${3/..*/ -> /}$3 {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "pfn": {
+    "prefix": "pfn",
+    "description": "pub fn name(?) -> ? {}",
+    "body": [
+      "pub fn ${1:function_name}($2)${3/..*/ -> /}$3 {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "afn": {
+    "prefix": "afn",
+    "description": "async fn name(?) -> ? {}",
+    "body": [
+      "async fn ${1:function_name}($2)${3/..*/ -> /}$3 {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "pafn": {
+    "prefix": "pafn",
+    "description": "pub async fn name(?) -> ? {}",
+    "body": [
+      "pub async fn ${1:function_name}($2)${3/..*/ -> /}$3 {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "}"
+    ]
+  },
+  "pri": {
+    "prefix": "pri",
+    "description": "print!(..)",
+    "body": [
+      "print!(\"$1\"${2/..*/, /}$2);"
+    ]
+  },
+  "pln": {
+    "prefix": "pln",
+    "description": "println!(..)",
+    "body": [
+      "println!(\"$1\"${2/..*/, /}$2);"
+    ]
+  },
+  "fmt": {
+    "prefix": "fmt",
+    "description": "format!(..)",
+    "body": [
+      "format!(\"$1\"${2/..*/, /}$2);"
+    ]
+  },
+  ".it": {
+    "prefix": ".it",
+    "description": ".iter()",
+    "body": [
+      ".iter()$0"
+    ]
+  },
+  "impl": {
+    "prefix": "impl",
+    "description": "Struct/Trait implementation",
+    "body": [
+      "impl$4 ${1:Type/Trait}${2: for ${3:Type}}${4:<${5:T}>} {",
+      "\t${0}",
+      "}"
+    ]
+  }
+}

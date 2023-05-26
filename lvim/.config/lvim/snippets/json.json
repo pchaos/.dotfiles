@@ -1,82 +1,88 @@
 {
   "#create": {
-    "prefix": "#create",
+    "prefix": "#create_time",
     "body": [
       "Created: 2023-05-26 17:01:19",
-      "Last Modified: 2023-05-26 17:01:19"
+      "Last Modified: 2023-05-26 17:47:03"
     ],
     "description": "just nothing"
-  }
+  },
   "contributes for package.json": {
     "prefix": "contributes",
     "body": [
       "{\n\t\t\"language\": \"all\", \"path\": \"./all.json\" \n}"
+    ],
+    "description": "contributes for package.json"
+  },
+  "s": {
+    "prefix": "s",
+    "description": "String",
+    "body": [
+      "\"${1:key}\": \"${0:value}\","
     ]
-  ],
-  "description": "contributes for package.json"
-},
-"s": {
-  "prefix": "s",
-  "description": "String",
-  "body": [
-    "\"${1:key}\": \"${0:value}\","
-  ]
-},
-"n": {
-  "prefix": "n",
-  "description": "Number",
-  "body": [
-    "\"${1:key}\": ${0:value},"
-  ]
-},
-"a": {
-  "prefix": "a",
-  "description": "Array",
-  "body": [
-    "[",
-    "\t${TM_SELECTED_TEXT}$0",
-    "],"
-  ]
-},
-"na": {
-  "prefix": "na",
-  "description": "Named array",
-  "body": [
-    "\"${1:key}\": [",
-    "\t${TM_SELECTED_TEXT}$0",
-    "],"
-  ]
-},
-"o": {
-  "prefix": "o",
-  "description": "Object",
-  "body": [
-    "{",
-    "\t${TM_SELECTED_TEXT}$0",
-    "},"
-  ]
-},
-"no": {
-  "prefix": "no",
-  "description": "Named object",
-  "body": [
-    "\"${1:key}\": {",
-    "\t${TM_SELECTED_TEXT}$0",
-    "},"
-  ]
-},
-"null": {
-  "prefix": "null",
-  "description": "Null",
-  "body": [
-    "\"${0:key}\": null,"
-  ]
-},
-"b": {
-  "prefix": "b",
-  "description": "Bool",
-  "body": [
-    "\"${1:key}\": $2`!p snip.rv=compB(t[2], ['true', 'false'])`,"
-  ]
-}
+  },
+  "n": {
+    "prefix": "n",
+    "description": "Number",
+    "body": [
+      "\"${1:key}\": ${0:value},"
+    ]
+  },
+  "a": {
+    "prefix": "a",
+    "description": "Array",
+    "body": [
+      "[",
+      "\t${TM_SELECTED_TEXT}$0",
+      "],"
+    ]
+  },
+  "na": {
+    "prefix": "na",
+    "description": "Named array",
+    "body": [
+      "\"${1:key}\": [",
+      "\t${TM_SELECTED_TEXT}$0",
+      "],"
+    ]
+  },
+  "o": {
+    "prefix": "o",
+    "description": "Object",
+    "body": [
+      "{",
+      "\t${TM_SELECTED_TEXT}$0",
+      "},"
+    ]
+  },
+  "no": {
+    "prefix": "no",
+    "description": "Named object",
+    "body": [
+      "\"${1:key}\": {",
+      "\t${TM_SELECTED_TEXT}$0",
+      "},"
+    ]
+  },
+  "null": {
+    "prefix": "null",
+    "description": "Null",
+    "body": [
+      "\"${0:key}\": null,"
+    ]
+  },
+  "b": {
+    "prefix": "b",
+    "description": "Bool",
+    "body": [
+      "\"${1:key}\": $2`!p snip.rv=compB(t[2], ['true', 'false'])`,"
+    ]
+  },
+  "language": {
+    "prefix": "language",
+    "description": "language block",
+    "body": [
+      "{\n\t\t\"language\": \"${1}\", \"path\": \"./${1}.json\" \n},${0}"
+    ]
+  }
 }

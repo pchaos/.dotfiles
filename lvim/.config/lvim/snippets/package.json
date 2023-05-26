@@ -11,6 +11,18 @@
         "path": "./all.json"
       },
       {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
+        "language": "bash",
+        "path": "./shellscript.json"
+      },
+      {
         "language": "json",
         "path": "./json.json"
       }
