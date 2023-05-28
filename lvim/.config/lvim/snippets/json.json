@@ -3,7 +3,7 @@
     "prefix": "#create_time",
     "body": [
       "Created: 2023-05-26 17:01:19",
-      "Last Modified: 2023-05-26 17:47:03"
+      "Last Modified: 2023-05-26 18:10:54"
     ],
     "description": "just nothing"
   },
@@ -80,7 +80,7 @@
   },
   "language": {
     "prefix": "language",
-    "description": "language block",
+    "description": "Json language for snippetss",
     "body": [
       "{\n\t\t\"language\": \"${1}\", \"path\": \"./${1}.json\" \n},${0}"
     ]

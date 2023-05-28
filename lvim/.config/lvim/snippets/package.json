@@ -19,6 +19,10 @@
         "path": "./markdown.json"
       },
       {
+        "language": "latex",
+        "path": "./latex.json"
+      },
+      {
         "language": "bash",
         "path": "./shellscript.json"
       },
