@@ -1,5 +1,5 @@
 -- Created: 2023-05-13 23:31:20
--- Modified: 2023-05-24 14:14:24
+-- Modified: 2023-05-30 14:20:41
 
 -- builtin debug 增加Last Exit
 lvim.builtin.which_key.mappings.d["l"] = {
@@ -7,6 +7,11 @@ lvim.builtin.which_key.mappings.d["l"] = {
 }
 lvim.builtin.which_key.mappings.d["x"] = {
   "<cmd>lua require'dap'.terminate()<cr>", "Exit"
+}
+
+lvim.builtin.which_key.mappings["C"] = {
+  name = "Python",
+  c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
 }
 
 -- builtin Diff current buffer and the original file

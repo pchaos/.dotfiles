@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2023-05-24 16:30:28
+-- Last Modified: 2023-05-30 15:16:59
 
 -----------------------------------------------------------
 -- Neovim API aliases
@@ -69,3 +69,5 @@ lvim.builtin.treesitter.ensure_installed = {
   "vimdoc",
   "yaml",
 }
+lvim.builtin.treesitter.ignore_install = { "haskell" }
+lvim.builtin.treesitter.highlight.enabled = true

@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2023-05-25 19:03:29
+Last modified:   2023-05-30 15:17:09
 
 Linters should be
 filled in as strings with either
@@ -85,9 +85,6 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.open_on_setup = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
-
-lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
 
 -- generic LSP settings
 

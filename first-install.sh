@@ -1,4 +1,6 @@
 #!/bin/bash
+# Last Modified: 2023-05-31 14:51:07
+
 #:默认脚本根路径
 dotfilepath="~/.dotfiles"
 
@@ -25,6 +27,8 @@ mkdir -p ~/install/ ~/.config/autostart
 cd ~/.local/bin/ && wget https://github.com/obsidianmd/obsidian-releases/releases/download/v0.15.9/Obsidian-0.15.9.AppImage && ln -s Obsidian-0.15.9.AppImage obsidian
 # download alacritty
 wget -O ~/.dotfiles/bash/.alacritty.bash https://github.com/alacritty/alacritty/raw/master/extra/completions/alacritty.bash
+# download fishmarks ;Fishmarks is a clone of bashmarks for the Fish shell
+curl -L https://github.com/techwizrd/fishmarks/raw/master/install.fish | fish
 
 conda create -n hikyuu python=3.9
 conda create -n pytest python=3.9

@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-05-26 11:48:25
+  -- Last modified:   2023-05-30 19:06:06
   {
     "felipec/vim-sanegx",
     -- open url with gx
@@ -166,6 +166,31 @@ lvim.plugins = {
 
     -- let g:pydocstring_enable_mapping = 0
   },
+
+  {
+    -- Managing Virtual Environments
+    "AckslD/swenv.nvim",
+    "stevearc/dressing.nvim",
+    config = function()
+      require('swenv').setup({
+        -- Should return a list of tables with a `name` and a `path` entry each.
+        -- Gets the argument `venvs_path` set below.
+        -- By default just lists the entries in `venvs_path`.
+        get_venvs = function(venvs_path)
+          return require('swenv.api').get_venvs(venvs_path)
+        end,
+        -- Path passed to `get_venvs`.
+        venvs_path = vim.fn.expand('~/software/python3rd/anaconda/bin'),
+        -- Something to do after setting an environment, for example call vim.cmd.LspRestart
+        post_set_venv = vim.cmd.LspRestart,
+      })
+    end
+
+  },
+  {
+    'stsewd/gx-extended.vim',
+    -- Extend gx to use it beyond just URLs!
+  },
   {
     "dhruvasagar/vim-table-mode",
     -- https://github.com/dhruvasagar/vim-table-mode
@@ -180,8 +205,8 @@ lvim.plugins = {
   },
   {
     "pchaos/timestamp.vim",
-    -- branch = "master",
-    branch = "dev",
+    branch = "master",
+    -- branch = "dev",
     -- When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
     -- For instance, if you create a new file and want to stamp it with a creation date and a last modified date, make the first few lines: >
     --    Created:            TIMESTAMP
