@@ -1,11 +1,13 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-05-30 19:06:06
-  {
-    "felipec/vim-sanegx",
-    -- open url with gx
-    event = "BufRead",
-  },
+  -- Last modified:   2023-06-05 14:04:01
+
+  -- {
+  --   "felipec/vim-sanegx",
+  --   -- open url with gx
+  --   event = "BufRead",
+  -- },
+
   {
     "iamcco/markdown-preview.nvim",
     event = "BufRead",
@@ -31,18 +33,38 @@ lvim.plugins = {
   -- },
 
   {
-    "mhinz/vim-signify"
-  }, --Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+    -- Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
+    -- https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
+    -- 使用该插件可以很方便的添加包围符号：
+
+    -- 首先进入普通模式，将光标移动到需要包围的文本块区域。
+    -- 然后按下 v 进入可视模式，选中需要包围的文本块区域。
+    -- 运行命令 S{your-surrounding-character}，其中 {your-surrounding-character} 表示您想要使用的自定义字符或字符串，如引号、括号等。
+    -- 例如，如果您想要使用单引号将选中的文本块包围起来，可以按下 S' 键（注意是大写字母 S），然后 surround.vim 就会自动将选中的文本块用单引号包围起来。
+
+    "tpope/vim-surround",
+    event = "BufRead",
+  },
 
   {
-    "ggandor/leap.nvim",
-    -- Leap is a general-purpose motion plugin for Neovim, with the ultimate goal of establishing a new standard interface for moving around in the visible area in Vim-like modal editors.
-    -- Leap allows you to jump to any positions in the visible editor area by entering a 2-character search pattern, and then potentially a label character to pick your target from multiple matches, similar to Sneak. The novel idea in Leap is its "clairvoyant" ability: you get a live preview of the target labels - by mapping possible futures, Leap can show you which key(s) you will need to press before you actually need to do that.
-    name = "leap",
-    config = function()
-      require("leap").add_default_mappings()
-    end,
+    "tpope/vim-repeat",
+    event = "BufRead",
   },
+
+  {
+    "mhinz/vim-signify"
+    --Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+  },
+
+  -- {
+  --   "ggandor/leap.nvim",
+  --   -- Leap is a general-purpose motion plugin for Neovim, with the ultimate goal of establishing a new standard interface for moving around in the visible area in Vim-like modal editors.
+  --   -- Leap allows you to jump to any positions in the visible editor area by entering a 2-character search pattern, and then potentially a label character to pick your target from multiple matches, similar to Sneak. The novel idea in Leap is its "clairvoyant" ability: you get a live preview of the target labels - by mapping possible futures, Leap can show you which key(s) you will need to press before you actually need to do that.
+  --   name = "leap",
+  --   config = function()
+  --     require("leap").add_default_mappings()
+  --   end,
+  -- },
 
   {
     "kshenoy/vim-signature",
@@ -77,7 +99,8 @@ lvim.plugins = {
     "mfussenegger/nvim-dap",
   },
   {
-    "mfussenegger/nvim-dap-python"
+    "mfussenegger/nvim-dap-python",
+    ft = { "python" },
   },
   {
     "nvim-neotest/neotest",
@@ -190,6 +213,7 @@ lvim.plugins = {
   {
     'stsewd/gx-extended.vim',
     -- Extend gx to use it beyond just URLs!
+    -- using shortcut: ge
   },
   {
     "dhruvasagar/vim-table-mode",

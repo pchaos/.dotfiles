@@ -1,4 +1,4 @@
--- Modified: 2023-06-01 16:31:18
+-- Modified: 2023-06-05 14:33:13
 
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
@@ -62,8 +62,8 @@ lvim.keys.normal_mode["<A-h>"] = ":bprev<cr>" -- alt+h move to prev tab
 -- <C--> 快捷键来触发 pydocstring 插件
 lvim.keys.normal_mode["<C-->"] = { "<Plug>(pydocstring)", { silent = true } }
 
--- ge to use it beyond just URLs! 默认的gx不起作用；
+-- ge to use it beyond just URLs! 默认的gx不起作用；使用ge快捷键替换默认设置
 lvim.keys.normal_mode['ge'] = { '<Plug>(gxext-normal)', { silent = false } }
 lvim.keys.visual_mode['ge'] = { '<Plug>(gxext-visual)', { silent = false } }
 -- nmap("gx", "<Plug>(gxext-normal)")
--- vmap("gx", "<Plug>(gxext-visual)")
+-- vmap("gx", "<Plug>(gxext-vi
