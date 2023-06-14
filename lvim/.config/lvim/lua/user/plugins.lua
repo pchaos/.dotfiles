@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-06-05 14:04:01
+  -- Last modified:   2023-06-09 16:22:21
 
   -- {
   --   "felipec/vim-sanegx",
@@ -242,6 +242,9 @@ lvim.plugins = {
   {
     "pchaos/fcitx5-status"
   },
+  -- {
+  --   "pchaos/select2snippet"
+  -- }
 }
 
 local noused_plugins = {
