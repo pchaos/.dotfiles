@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2023-06-14 10:25:56
+-- Last Modified: 2023-06-14 12:05:21
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -20,14 +20,6 @@ opt.relativenumber = true
 opt.showcmd = true
 opt.numberwidth = 3 -- set number column width to 3 {default 4}
 
--- lua文件设置保存格式化代码tab为四个空格
--- lvim.augroups = {
---   _general_settings = {
---     -- 设置 lua 文件缩进
---     { "FileType", "lua", "setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab" },
---   },
--- }
-
 -- function is_lua_file()
 --   return vim.bo.filetype == "lua"
 -- end
@@ -36,25 +28,27 @@ opt.updatetime = 350 -- faster completion (4000ms default)
 opt.wrap = true -- line wrap
 
 -- colored column
-vim.wo.colorcolumn = '120'
+vim.wo.colorcolumn = '121'
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
     -- python
-    {command = "black", filetypes = {"python"}}, {command = "isort", filetypes = {"python"}}, -- 
+    {command = "black", filetypes = {"python"}}, -- 
+    {command = "isort", filetypes = {"python"}}, -- 
     {
         -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
         command = "prettier",
         ---@usage arguments to pass to the formatter
         -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-        extra_args = {"--print-with", "100"},
+        extra_args = {"--print-with", "120"},
         ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
         filetypes = {"typescript", "typescriptreact"}
     }, -- 
     {
-        -- 针对Lua文件添加一个格式化器（lua-langage-server）
-        -- dnf install -y lua-devle  
+        -- https://github.com/Koihik/LuaFormatter 
+        -- 针对Lua文件添加一个格式化器
+        -- dnf install -y lua-devel  
         command = "lua-format",
         filetypes = {"lua"},
         args = {
