@@ -1,10 +1,48 @@
 #!/usr/bin/env zsh
+# Last Modified: 2023-06-15 19:55:20
+
+# stow (GNU Stow) version 2.3.1
+
+# SYNOPSIS:
+
+#     stow [OPTION ...] [-D|-S|-R] PACKAGE ... [-D|-S|-R] PACKAGE ...
+
+# OPTIONS:
+
+#     -d DIR, --dir=DIR     Set stow dir to DIR (default is current dir)
+#     -t DIR, --target=DIR  Set target to DIR (default is parent of stow dir)
+
+#     -S, --stow            Stow the package names that follow this option
+#     -D, --delete          Unstow the package names that follow this option
+#     -R, --restow          Restow (like stow -D followed by stow -S)
+
+#     --ignore=REGEX        Ignore files ending in this Perl regex
+#     --defer=REGEX         Don't stow files beginning with this Perl regex
+#                           if the file is already stowed to another package
+#     --override=REGEX      Force stowing files beginning with this Perl regex
+#                           if the file is already stowed to another package
+#     --adopt               (Use with care!)  Import existing files into stow package
+#                           from target.  Please read docs before using.
+#     -p, --compat          Use legacy algorithm for unstowing
+
+#     -n, --no, --simulate  Do not actually make any filesystem changes
+#     -v, --verbose[=N]     Increase verbosity (levels are from 0 to 5;
+#                             -v or --verbose adds 1; --verbose=N sets level)
+#     -V, --version         Show stow version number
+#     -h, --help            Show this help
+
+# Report bugs to: bug-stow@gnu.org
+# Stow home page: <http://www.gnu.org/software/stow/>
+# General help using GNU software: <http://www.gnu.org/gethelp/>
+
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="bash,conda,git,htinsight,lvim,tmux"
+  # STOW_FOLDERS="bash,conda,git,htinsight,lvim,tmux"
+  STOW_FOLDERS="bash,conda,git,lvim,tmux"
 fi
 
 if [[ -z $DOTFILES ]]; then
-    DOTFILES=$HOME/.dotfiles
+  DOTFILES=$HOME/.dotfiles
 fi
 
+# 调用同目录下的：install
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
