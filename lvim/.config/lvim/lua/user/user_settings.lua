@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2023-06-14 12:05:21
+-- Last Modified: 2023-06-15 12:30:02
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -43,18 +43,16 @@ formatters.setup {
         -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
         extra_args = {"--print-with", "120"},
         ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-        filetypes = {"typescript", "typescriptreact"}
+        filetypes = {"typescript", "typescriptreact", "markdown"}
     }, -- 
+    {command = "beautysh", filetypes = {"sh", "csh", "zsh"}, args = {"--indent-size", "2"}}, -- bash csh zsh
     {
         -- https://github.com/Koihik/LuaFormatter 
         -- 针对Lua文件添加一个格式化器
         -- dnf install -y lua-devel  
         command = "lua-format",
         filetypes = {"lua"},
-        args = {
-            "--indent-width", "4", "--tab-width", "4", "--no-use-tab", "--column-limit=120",
-            "--no-keep-simple-control-block-one-line"
-        },
+        args = {"--indent-size", "2"},
         stdin = true
     }
 }
