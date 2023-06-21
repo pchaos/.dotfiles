@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2023-06-15 12:30:02
+-- Last Modified: 2023-06-21 00:54:02
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -62,7 +62,8 @@ formatters.setup {
 
 -- opt.pydocstring_doq_path = "~/.local/bin/doq"
 -- lvim.pydocstring_doq_path = "~/.local/bin/doq"
-cmd("let g:python3_host_prog  = expand('~/software/python3rd/anaconda/bin/python')")
+cmd("let g:python3_host_prog  = expand('~/software/python3rd/conda3/bin/python')")
+-- cmd("let g:python3_host_prog  = expand('which python')")
 cmd("let g:pydocstring_doq_path = '~/.local/bin/doq'")
 
 -- if you don't want all the parsers change this to a table of the ones you want
