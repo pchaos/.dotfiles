@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2023-06-21 00:54:02
+-- Last Modified: 2023-06-21 13:53:49
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -8,6 +8,7 @@ local exec = vim.api.nvim_exec -- execute Vimscript
 local fn = vim.fn -- call Vim functions
 local g = vim.g -- global variables
 local opt = vim.opt -- global/buffer/windows-scoped options
+local api = vim.api
 
 opt.encoding = "utf-8"
 
@@ -63,6 +64,10 @@ formatters.setup {
 -- opt.pydocstring_doq_path = "~/.local/bin/doq"
 -- lvim.pydocstring_doq_path = "~/.local/bin/doq"
 cmd("let g:python3_host_prog  = expand('~/software/python3rd/conda3/bin/python')")
+-- 以下会报错 ERROR Failed to run healthcheck for "provider" plugin. Exception:
+-- api.nvim_command("let g:python3_host_prog = \"" .. string.gsub(fn.system("which python"), "%s+$", "") .. "\"")
+
+
 -- cmd("let g:python3_host_prog  = expand('which python')")
 cmd("let g:pydocstring_doq_path = '~/.local/bin/doq'")
 
