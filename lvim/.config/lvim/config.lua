@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2023-06-14 10:26:08
+Last modified:   2023-06-23 12:25:13
 
 Linters should be
 filled in as strings with either
@@ -8,8 +8,8 @@ a global executable or a path to
 an executable
 ]] -- Import plugins
 require("user.plugins")
-require("user.dap-configs.daps")
 require("user.user_settings")
+require("user.dap-configs.daps")
 -- require("user.markdown-preview")
 -- require("user.barbar")
 -- require("user.bufferline") -- 启用会引起init.lua报错
@@ -25,11 +25,7 @@ require("user.timestamp_vim")
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
--- lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "codemonkey"
--- lvim.colorscheme = "desert"
--- lvim.colorscheme = "lunaperche"
-lvim.colorscheme = "koehler"
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 

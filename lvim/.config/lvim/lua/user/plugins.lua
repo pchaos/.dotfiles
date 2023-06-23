@@ -1,6 +1,6 @@
--- Install your plugins here
+--4Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-06-19 19:27:58
+  -- Last modified:   2023-06-22 19:40:48
 
   -- {
   --   "felipec/vim-sanegx",
@@ -31,7 +31,9 @@ lvim.plugins = {
   -- {
   --   "LunarVim/Colorschemes"
   -- },
-
+  {
+      "nyoom-engineering/oxocarbon.nvim",
+  },
   {
     -- Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
     -- https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
