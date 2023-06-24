@@ -1,5 +1,5 @@
 -- 用户自定义
--- Last Modified: 2023-06-23 12:24:33
+-- Last Modified: 2023-06-23 20:14:34
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -25,16 +25,16 @@ opt.numberwidth = 3 -- set number column width to 3 {default 4}
 --   return vim.bo.filetype == "lua"
 -- end
 
-opt.updatetime = 350 -- faster completion (4000ms default)
+opt.updatetime = 330 -- faster completion (4000ms default)
 opt.wrap = true -- line wrap
 
-opt.background = "dark" -- set this to dark or light
+-- opt.background = "dark" -- set this to dark or light
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "codemonkey"
 -- lvim.colorscheme = "desert"
 -- lvim.colorscheme = "lunaperche"
--- lvim.colorscheme = "koehler"
-lvim.colorscheme = "oxocarbon"
+lvim.colorscheme = "koehler"
+-- lvim.colorscheme = "oxocarbon"
 
 -- colored column
 vim.wo.colorcolumn = '121'
