@@ -1,6 +1,6 @@
 # lunarvim
 
-Last Modified: 2023-06-24 11:26:35
+Last Modified: 2023-06-24 11:51:08
 
 ## install
 
@@ -19,6 +19,13 @@ LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.
 
 All the new features with all the new bugs:
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+### Install a Nerd Font
+
+```
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf
+```
 
 ## uninstall
 

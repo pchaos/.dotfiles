@@ -1,6 +1,6 @@
 --4Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-06-24 10:53:06
+  -- Last modified:   2023-06-24 13:34:07
 
   -- {
   --   "felipec/vim-sanegx",
@@ -32,6 +32,7 @@ lvim.plugins = {
   --   "LunarVim/Colorschemes"
   -- },
   -- {
+    -- -- 可能引起查找文件时卡死？？？
   --     "nyoom-engineering/oxocarbon.nvim",
   -- },
   {
