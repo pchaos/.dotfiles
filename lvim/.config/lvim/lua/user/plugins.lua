@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-06-28 11:12:34
+  -- Last modified:   2023-06-28 11:33:51
 
   -- {
   --   "felipec/vim-sanegx",
@@ -11,7 +11,7 @@ lvim.plugins = {
   {
     "iamcco/markdown-preview.nvim",
     event = "BufRead",
-    ft = {"markdown"},
+    ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
   }, -- {
   --   "iamcco/markdown-preview.nvim",
@@ -60,10 +60,12 @@ lvim.plugins = {
     -- dst : 删除 html/xml 的标签内部的所有字符
     -- cst : 删除 html/xml 的标签内部的所有字符并进入插入模式
     -- ysa<': 在 <> 包裹的范围上加符号 '
-  }, { -- 支持重复
+  },
+  { -- 支持重复
     "tpope/vim-repeat",
     event = "BufRead",
-  }, {
+  },
+  {
     -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
     "mhinz/vim-signify",
   }, -- {
@@ -103,7 +105,9 @@ lvim.plugins = {
     -- [=           Jump to prev line having a marker of any type
     -- m?           Open location list and display markers from current buffer
     -- m<BS>        Remove all markers
-  }, {"mfussenegger/nvim-dap"}, {"mfussenegger/nvim-dap-python", ft = {"python"}}, -- {
+  },
+  { "mfussenegger/nvim-dap" },
+  { "mfussenegger/nvim-dap-python", ft = { "python" } }, -- {
   --   'jpalardy/vim-slime',
   --   ft = { "python" },
   -- },
@@ -113,15 +117,16 @@ lvim.plugins = {
   -- },
   {
     "nvim-neotest/neotest",
-    ft = {"python", "c", "lua"},
+    ft = { "python", "c", "lua" },
     dependencies = {
       -- "nvim-lua/plenary.nvim",
       -- "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
     },
-  }, {
+  },
+  {
     "nvim-neotest/neotest-python",
-    ft = {"python"},
+    ft = { "python" },
     -- https://betterprogramming.pub/lunarvim-debugging-testing-python-code-fa84f804c469
     -- require("neotest").setup({
     --   adapters = {
@@ -167,9 +172,10 @@ lvim.plugins = {
     -- space d f: runs all tests in file
     -- space d F: runs all tests in file in debug mode
     -- space d S: displays summary for tests)
-  }, {
+  },
+  {
     "heavenshell/vim-pydocstring",
-    ft = {"python"},
+    ft = { "python" },
     --     Basic usage
     -- Move your cursor on a def or class keyword line,
     -- type :Pydocstring and
@@ -195,7 +201,9 @@ lvim.plugins = {
     -- Or, if you want disable default keymapping, you can set like following.
 
     -- let g:pydocstring_enable_mapping = 0
-  }, {"andrejlevkovitch/vim-lua-format", ft = {"lua"}}, {
+  },
+  { "andrejlevkovitch/vim-lua-format", ft = { "lua" } },
+  {
     -- Managing Virtual Environments
     "AckslD/swenv.nvim",
     "stevearc/dressing.nvim",
@@ -212,11 +220,13 @@ lvim.plugins = {
       })
     end,
 
-  }, {
+  },
+  {
     'stsewd/gx-extended.vim',
     -- Extend gx to use it beyond just URLs!
     -- using shortcut: ge
-  }, {
+  },
+  {
     "dhruvasagar/vim-table-mode",
     -- https://github.com/dhruvasagar/vim-table-mode
   }, -- {
@@ -224,7 +234,8 @@ lvim.plugins = {
   --   "python-mode/python-mode",
   --   branch = "develop",
   -- },
-  {"Glench/Vim-Jinja2-Syntax"}, {
+  { "Glench/Vim-Jinja2-Syntax" },
+  {
     "pchaos/timestamp.vim",
     branch = "master",
     -- branch = "dev",
@@ -234,9 +245,11 @@ lvim.plugins = {
     --    Last modified:      TIMESTAMP
     --    Modified:      TIMESTAMP
     --    Changed:       TIMESTAMP
-  }, { -- 返回到 normal 模式时快速切换为英文输入法
+  },
+  { -- 返回到 normal 模式时快速切换为英文输入法
     "pchaos/fcitx5-status",
-  }, {"pchaos/vim-templates"},
+  },
+  { "pchaos/vim-templates" },
   -- {
   --   "pchaos/select2snippet"
   -- }
@@ -246,7 +259,7 @@ local noused_plugins = {
   {
     -- barbar.nvim is a tabline plugin with re-orderable, auto-sizing, clickable tabs, icons, nice highlighting, sort-by commands and a magic jump-to-buffer mode. Plus the tab names are made unique when two filenames match.
     'romgrk/barbar.nvim',
-    dependencies = {'kyazdani42/nvim-web-devicons'},
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function() require('barbar').setup() end,
   },
 }
