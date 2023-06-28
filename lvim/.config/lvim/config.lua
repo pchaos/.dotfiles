@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2023-06-23 12:25:13
+Last modified:   2023-06-28 10:54:50
 
 Linters should be
 filled in as strings with either

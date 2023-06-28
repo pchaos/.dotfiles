@@ -1,6 +1,6 @@
---4Install your plugins here
+-- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-06-24 13:34:07
+  -- Last modified:   2023-06-28 11:12:34
 
   -- {
   --   "felipec/vim-sanegx",
@@ -11,10 +11,9 @@ lvim.plugins = {
   {
     "iamcco/markdown-preview.nvim",
     event = "BufRead",
-    ft = { "markdown" },
+    ft = {"markdown"},
     build = function() vim.fn["mkdp#util#install"]() end,
-  },
-  -- {
+  }, -- {
   --   "iamcco/markdown-preview.nvim",
   --   run = "cd app && npm install",
   --   -- run = function() vim.fn["mkdp#util#install"]() end,
@@ -32,7 +31,7 @@ lvim.plugins = {
   --   "LunarVim/Colorschemes"
   -- },
   -- {
-    -- -- 可能引起查找文件时卡死？？？
+  -- -- 可能引起查找文件时卡死？？？
   --     "nyoom-engineering/oxocarbon.nvim",
   -- },
   {
@@ -47,19 +46,27 @@ lvim.plugins = {
 
     "tpope/vim-surround",
     event = "BufRead",
-  },
-
-  {
+    --     ds : 删除包围符号
+    -- cs : 改变包围符号
+    -- ysw : 当前至下一个词尾添加一个包围符号
+    -- ysW : 当前至至下一个空格添加一个包围符号
+    -- ySw : 当前至下一个词尾添加一个包围符号并将焦点移至下一行
+    -- ySW : 当前至下一个空格添加一个包围符号并将焦点移至下一行
+    -- yss : 整行添加包围符号
+    -- S": Visual 模式下对选中区域添加包围符号 "
+    -- gS": Visual 模式下对选中区域进行换行并添加包围符号
+    -- ⌃-s : Insert 模式下插入包围符号
+    -- ⌃-s, ⌃-s : Insert 模式下在插入包围符号并将焦点移至下一行
+    -- dst : 删除 html/xml 的标签内部的所有字符
+    -- cst : 删除 html/xml 的标签内部的所有字符并进入插入模式
+    -- ysa<': 在 <> 包裹的范围上加符号 '
+  }, { -- 支持重复
     "tpope/vim-repeat",
     event = "BufRead",
-  },
-
-  {
-    "mhinz/vim-signify"
-    --Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
-  },
-
-  -- {
+  }, {
+    -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
+    "mhinz/vim-signify",
+  }, -- {
   --   "ggandor/leap.nvim",
   --   -- Leap is a general-purpose motion plugin for Neovim, with the ultimate goal of establishing a new standard interface for moving around in the visible area in Vim-like modal editors.
   --   -- Leap allows you to jump to any positions in the visible editor area by entering a 2-character search pattern, and then potentially a label character to pick your target from multiple matches, similar to Sneak. The novel idea in Leap is its "clairvoyant" ability: you get a live preview of the target labels - by mapping possible futures, Leap can show you which key(s) you will need to press before you actually need to do that.
@@ -68,10 +75,9 @@ lvim.plugins = {
   --     require("leap").add_default_mappings()
   --   end,
   -- },
-
   {
     "kshenoy/vim-signature",
-    --o vim-signature is a plugin to place, toggle and display marks.
+    -- o vim-signature is a plugin to place, toggle and display marks.
     --   mx           Toggle mark 'x' and display it in the leftmost column
     -- dmx          Remove mark 'x' where x is a-zA-Z
 
@@ -97,26 +103,25 @@ lvim.plugins = {
     -- [=           Jump to prev line having a marker of any type
     -- m?           Open location list and display markers from current buffer
     -- m<BS>        Remove all markers
-  },
-  {
-    "mfussenegger/nvim-dap",
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = { "python" },
-  },
+  }, {"mfussenegger/nvim-dap"}, {"mfussenegger/nvim-dap-python", ft = {"python"}}, -- {
+  --   'jpalardy/vim-slime',
+  --   ft = { "python" },
+  -- },
+  -- {
+  --  'hanschen/vim-ipython-cell',
+  --   ft = { "python" },
+  -- },
   {
     "nvim-neotest/neotest",
-    ft = { "python", "c", "lua" },
+    ft = {"python", "c", "lua"},
     dependencies = {
       -- "nvim-lua/plenary.nvim",
       -- "nvim-treesitter/nvim-treesitter",
-      "antoinemadec/FixCursorHold.nvim"
-    }
-  },
-  {
+      "antoinemadec/FixCursorHold.nvim",
+    },
+  }, {
     "nvim-neotest/neotest-python",
-    ft = { "python" },
+    ft = {"python"},
     -- https://betterprogramming.pub/lunarvim-debugging-testing-python-code-fa84f804c469
     -- require("neotest").setup({
     --   adapters = {
@@ -162,10 +167,9 @@ lvim.plugins = {
     -- space d f: runs all tests in file
     -- space d F: runs all tests in file in debug mode
     -- space d S: displays summary for tests)
-  },
-  {
+  }, {
     "heavenshell/vim-pydocstring",
-    ft = { "python" },
+    ft = {"python"},
     --     Basic usage
     -- Move your cursor on a def or class keyword line,
     -- type :Pydocstring and
@@ -191,9 +195,7 @@ lvim.plugins = {
     -- Or, if you want disable default keymapping, you can set like following.
 
     -- let g:pydocstring_enable_mapping = 0
-  },
-
-  {
+  }, {"andrejlevkovitch/vim-lua-format", ft = {"lua"}}, {
     -- Managing Virtual Environments
     "AckslD/swenv.nvim",
     "stevearc/dressing.nvim",
@@ -202,35 +204,27 @@ lvim.plugins = {
         -- Should return a list of tables with a `name` and a `path` entry each.
         -- Gets the argument `venvs_path` set below.
         -- By default just lists the entries in `venvs_path`.
-        get_venvs = function(venvs_path)
-          return require('swenv.api').get_venvs(venvs_path)
-        end,
+        get_venvs = function(venvs_path) return require('swenv.api').get_venvs(venvs_path) end,
         -- Path passed to `get_venvs`.
         venvs_path = vim.fn.expand('~/software/python3rd/anaconda/bin'),
         -- Something to do after setting an environment, for example call vim.cmd.LspRestart
         post_set_venv = vim.cmd.LspRestart,
       })
-    end
+    end,
 
-  },
-  {
+  }, {
     'stsewd/gx-extended.vim',
     -- Extend gx to use it beyond just URLs!
     -- using shortcut: ge
-  },
-  {
+  }, {
     "dhruvasagar/vim-table-mode",
     -- https://github.com/dhruvasagar/vim-table-mode
-  },
-  -- {
+  }, -- {
   --   -- Python-mode, a Python IDE for Vim
   --   "python-mode/python-mode",
   --   branch = "develop",
   -- },
-  {
-    "Glench/Vim-Jinja2-Syntax"
-  },
-  {
+  {"Glench/Vim-Jinja2-Syntax"}, {
     "pchaos/timestamp.vim",
     branch = "master",
     -- branch = "dev",
@@ -240,14 +234,9 @@ lvim.plugins = {
     --    Last modified:      TIMESTAMP
     --    Modified:      TIMESTAMP
     --    Changed:       TIMESTAMP
-  },
-
-  {
-    "pchaos/fcitx5-status"
-  },
-  {
-    "pchaos/vim-templates"
-  },
+  }, { -- 返回到 normal 模式时快速切换为英文输入法
+    "pchaos/fcitx5-status",
+  }, {"pchaos/vim-templates"},
   -- {
   --   "pchaos/select2snippet"
   -- }
@@ -257,9 +246,7 @@ local noused_plugins = {
   {
     -- barbar.nvim is a tabline plugin with re-orderable, auto-sizing, clickable tabs, icons, nice highlighting, sort-by commands and a magic jump-to-buffer mode. Plus the tab names are made unique when two filenames match.
     'romgrk/barbar.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
-    config = function()
-      require('barbar').setup()
-    end
+    dependencies = {'kyazdani42/nvim-web-devicons'},
+    config = function() require('barbar').setup() end,
   },
 }
