@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-06-28 11:33:51
+  -- Last modified:   2023-06-29 16:44:49
 
   -- {
   --   "felipec/vim-sanegx",
@@ -202,7 +202,6 @@ lvim.plugins = {
 
     -- let g:pydocstring_enable_mapping = 0
   },
-  { "andrejlevkovitch/vim-lua-format", ft = { "lua" } },
   {
     -- Managing Virtual Environments
     "AckslD/swenv.nvim",
@@ -214,7 +213,7 @@ lvim.plugins = {
         -- By default just lists the entries in `venvs_path`.
         get_venvs = function(venvs_path) return require('swenv.api').get_venvs(venvs_path) end,
         -- Path passed to `get_venvs`.
-        venvs_path = vim.fn.expand('~/software/python3rd/anaconda/bin'),
+        venvs_path = vim.fn.expand('~/software/python3rd/conda3/bin'),
         -- Something to do after setting an environment, for example call vim.cmd.LspRestart
         post_set_venv = vim.cmd.LspRestart,
       })
@@ -227,8 +226,8 @@ lvim.plugins = {
     -- using shortcut: ge
   },
   {
-    "dhruvasagar/vim-table-mode",
     -- https://github.com/dhruvasagar/vim-table-mode
+    "dhruvasagar/vim-table-mode",
   }, -- {
   --   -- Python-mode, a Python IDE for Vim
   --   "python-mode/python-mode",
@@ -250,16 +249,47 @@ lvim.plugins = {
     "pchaos/fcitx5-status",
   },
   { "pchaos/vim-templates" },
-  -- {
+  { "pchaos/vim-lua-formatter.nvim", branch="dev",
+  ft={ "lua"}},
+    -- {
   --   "pchaos/select2snippet"
   -- }
 }
 
 local noused_plugins = {
+  { "andrejlevkovitch/vim-lua-format", ft = { "lua" } },
   {
     -- barbar.nvim is a tabline plugin with re-orderable, auto-sizing, clickable tabs, icons, nice highlighting, sort-by commands and a magic jump-to-buffer mode. Plus the tab names are made unique when two filenames match.
     'romgrk/barbar.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function() require('barbar').setup() end,
   },
+  {
+    -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+    "folke/neodev.nvim",
+    opts = {
+      library = {
+        enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
+        -- these settings will be used for your Neovim config directory
+        runtime = true, -- runtime path
+        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+        plugins = true, -- installed opt or start plugins in packpath
+        -- you can also specify the list of plugins to make available as a workspace library
+        -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+      },
+      setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
+      -- for your Neovim config directory, the config.library settings will be used as is
+      -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
+      -- for any other directory, config.library.enabled will be set to false
+      override = function(root_dir, options) end,
+      -- With lspconfig, Neodev will automatically setup your lua-language-server
+      -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
+      -- in your lsp start options
+      lspconfig = true,
+      -- much faster, but needs a recent built of lua-language-server
+      -- needs lua-language-server >= 3.6.0
+      pathStrict = true,
+    },
+  },
+
 }

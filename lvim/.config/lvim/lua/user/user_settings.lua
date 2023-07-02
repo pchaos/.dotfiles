@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2023-06-28 00:21:57
+-- Last Modified: 2023-07-02 18:40:42
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -19,7 +19,7 @@ opt.formatoptions = "qnj1" -- q - comment formatting; n - numbered lists; j - re
 -- Sidebar
 opt.relativenumber = true
 opt.showcmd = true
-opt.numberwidth = 3 -- set number column width to 3 {default 4}
+opt.numberwidth = 4 -- set number column width to 3 {default 4}
 
 -- function is_lua_file()
 --   return vim.bo.filetype == "lua"
@@ -38,6 +38,7 @@ lvim.colorscheme = "koehler"
 
 -- colored column
 vim.wo.colorcolumn = "121"
+opt.cmdheight = 2
 
 g.null_ls_auto_start = 0
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
@@ -47,28 +48,28 @@ formatters.setup({
   {
     -- The uncompromising code formatter
     command = "black",
-    filetypes = {"python"},
+    filetypes = { "python" },
   }, --
-  {command = "isort", filetypes = {"python"}}, --
+  { command = "isort", filetypes = { "python" } }, --
   {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
     ---@usage arguments to pass to the formatter
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = {"--print-with", "120"},
+    extra_args = { "--print-with", "120" },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = {"typescript", "typescriptreact", "markdown"},
+    filetypes = { "typescript", "typescriptreact", "markdown" },
   }, --
-  {command = "beautysh", filetypes = {"sh", "csh", "zsh"}, args = {"--indent-size", "2"}}, -- bash csh zsh
+  { command = "beautysh", filetypes = { "sh", "csh", "zsh" }, args = { "--indent-size", "2" } }, -- bash csh zsh
   {
     -- https://github.com/Koihik/LuaFormatter
     -- config demo: https://github.com/Koihik/LuaFormatter/blob/master/docs/Style-Config.md
     -- 针对Lua文件添加一个格式化器
     -- dnf install -y lua-devel
     command = "lua-format",
-    filetypes = {"lua"},
+    filetypes = { "lua" },
     -- args = {"--indent-size", "2",},
-    args = {"--indent-size", "2", "--extra-sep-at-table-end"},
+    args = { "--indent-size", "2", "--extra-sep-at-table-end" },
     stdin = true,
   },
   -- {
@@ -81,10 +82,10 @@ formatters.setup({
 })
 
 -- for andrejlevkovitch/vim-lua-format
-vim.cmd([[
-  autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
-  autocmd BufWritePre *.lua call LuaFormat()
-]])
+-- vim.cmd([[
+--   autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
+--   autocmd BufWritePre *.lua call LuaFormat()
+-- ]])
 
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds
 -- vim.lsp.buf.format({ timeout_ms = 2000 }) -- nvim 0.8+
@@ -100,16 +101,78 @@ cmd("let g:pydocstring_doq_path = expand('~/.local/bin/doq')")
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "arduino", "awk", "bash", "c", "cmake", "cpp", "css", "diff", "dockerfile", "fish", "go", "html", "http", "ini",
-  "java", "javascript", "json", "jsonc", "make", "latex", "llvm", "lua", "org", "pascal", "python", "regex", "rust",
-  "toml", "typescript", "vim", "vimdoc", "yaml",
+  "arduino",
+  "awk",
+  "bash",
+  "c",
+  "cmake",
+  "cpp",
+  "css",
+  "diff",
+  "dockerfile",
+  "fish",
+  "go",
+  "html",
+  "http",
+  "ini",
+  "java",
+  "javascript",
+  "json",
+  "jsonc",
+  "make",
+  "latex",
+  "llvm",
+  "lua",
+  "org",
+  "pascal",
+  "python",
+  "regex",
+  "rust",
+  "toml",
+  "typescript",
+  "vim",
+  "vimdoc",
+  "yaml",
 }
-lvim.builtin.treesitter.ignore_install = {"haskell"}
+lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 lvim.builtin.telescope.defaults.file_ignore_patterns = {
-  "vendor/*", "%.lock", "__pycache__/*", "%.sqlite3", "%.ipynb", "node_modules/*", "%.jpg", "%.jpeg", "%.png", "%.svg",
-  "%.otf", "%.ttf", "%.webp", ".dart_tool/", ".github/", ".gradle/", ".idea/", ".vscode/", "__pycache__/", "build/",
-  "env/", "gradle/", "node_modules/", "target/", "%.pdb", "%.dll", "%.class", "%.exe", "%.cache", "%.ico", "%.pdf",
-  "%.dylib", "%.jar", "%.docx", "%.met", "smalljre_*/*", ".vale/",
+  "vendor/*",
+  "%.lock",
+  "__pycache__/*",
+  "%.sqlite3",
+  "%.ipynb",
+  "node_modules/*",
+  "%.jpg",
+  "%.jpeg",
+  "%.png",
+  "%.svg",
+  "%.otf",
+  "%.ttf",
+  "%.webp",
+  ".dart_tool/",
+  ".github/",
+  ".gradle/",
+  ".idea/",
+  ".vscode/",
+  "__pycache__/",
+  "build/",
+  "env/",
+  "gradle/",
+  "node_modules/",
+  "target/",
+  "%.pdb",
+  "%.dll",
+  "%.class",
+  "%.exe",
+  "%.cache",
+  "%.ico",
+  "%.pdf",
+  "%.dylib",
+  "%.jar",
+  "%.docx",
+  "%.met",
+  "smalljre_*/*",
+  ".vale/",
 }

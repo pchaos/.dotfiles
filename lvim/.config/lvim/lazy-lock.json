@@ -51,7 +51,7 @@
   "toggleterm.nvim": { "branch": "main", "commit": "cf146a267a6a7db62b1e2aff40414b20081048a1" },
   "tokyonight.nvim": { "branch": "main", "commit": "18259404c962736c70c0f670b71c976c4a5ac2bb" },
   "vim-illuminate": { "branch": "master", "commit": "a2907275a6899c570d16e95b9db5fd921c167502" },
-  "vim-lua-format": { "branch": "master", "commit": "9996af0cf63b349f14268beac585d89c903a541e" },
+  "vim-lua-formatter.nvim": { "branch": "dev", "commit": "44fb50bdc332b17e6ba79f9b0fe5f780ef9e0026" },
   "vim-pydocstring": { "branch": "master", "commit": "bc710d75262dfbaa820e5564391bf62f6c9b25fd" },
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-signature": { "branch": "master", "commit": "6bc3dd1294a22e897f0dcf8dd72b85f350e306bc" },
