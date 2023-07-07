@@ -1,18 +1,20 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-06-29 16:44:49
+  -- Last modified:   2023-07-04 00:22:48
 
   -- {
   --   "felipec/vim-sanegx",
   --   -- open url with gx
   --   event = "BufRead",
   -- },
-
+  { 'wakatime/vim-wakatime' },
   {
     "iamcco/markdown-preview.nvim",
     event = "BufRead",
     ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   }, -- {
   --   "iamcco/markdown-preview.nvim",
   --   run = "cd app && npm install",
@@ -211,7 +213,9 @@ lvim.plugins = {
         -- Should return a list of tables with a `name` and a `path` entry each.
         -- Gets the argument `venvs_path` set below.
         -- By default just lists the entries in `venvs_path`.
-        get_venvs = function(venvs_path) return require('swenv.api').get_venvs(venvs_path) end,
+        get_venvs = function(venvs_path)
+          return require('swenv.api').get_venvs(venvs_path)
+        end,
         -- Path passed to `get_venvs`.
         venvs_path = vim.fn.expand('~/software/python3rd/conda3/bin'),
         -- Something to do after setting an environment, for example call vim.cmd.LspRestart
@@ -236,8 +240,8 @@ lvim.plugins = {
   { "Glench/Vim-Jinja2-Syntax" },
   {
     "pchaos/timestamp.vim",
-    branch = "master",
-    -- branch = "dev",
+    -- branch = "master",
+    branch = "dev",
     -- When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
     -- For instance, if you create a new file and want to stamp it with a creation date and a last modified date, make the first few lines: >
     --    Created:            TIMESTAMP
@@ -249,9 +253,8 @@ lvim.plugins = {
     "pchaos/fcitx5-status",
   },
   { "pchaos/vim-templates" },
-  { "pchaos/vim-lua-formatter.nvim", branch="dev",
-  ft={ "lua"}},
-    -- {
+  { "pchaos/vim-lua-formatter.nvim", branch = "dev", ft = { "lua" } },
+  -- {
   --   "pchaos/select2snippet"
   -- }
 }
@@ -262,7 +265,9 @@ local noused_plugins = {
     -- barbar.nvim is a tabline plugin with re-orderable, auto-sizing, clickable tabs, icons, nice highlighting, sort-by commands and a magic jump-to-buffer mode. Plus the tab names are made unique when two filenames match.
     'romgrk/barbar.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
-    config = function() require('barbar').setup() end,
+    config = function()
+      require('barbar').setup()
+    end,
   },
   {
     -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
@@ -281,7 +286,8 @@ local noused_plugins = {
       -- for your Neovim config directory, the config.library settings will be used as is
       -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
       -- for any other directory, config.library.enabled will be set to false
-      override = function(root_dir, options) end,
+      override = function(root_dir, options)
+      end,
       -- With lspconfig, Neodev will automatically setup your lua-language-server
       -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
       -- in your lsp start options

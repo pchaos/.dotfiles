@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2023-07-02 18:40:42
+-- Last Modified: 2023-07-07 18:27:56
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -38,7 +38,7 @@ lvim.colorscheme = "koehler"
 
 -- colored column
 vim.wo.colorcolumn = "121"
-opt.cmdheight = 2
+-- opt.cmdheight = 2
 
 g.null_ls_auto_start = 0
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
@@ -49,6 +49,7 @@ formatters.setup({
     -- The uncompromising code formatter
     command = "black",
     filetypes = { "python" },
+    args = { "--line-length", "120", "--skip-string-normalization" },
   }, --
   { command = "isort", filetypes = { "python" } }, --
   {
@@ -61,17 +62,17 @@ formatters.setup({
     filetypes = { "typescript", "typescriptreact", "markdown" },
   }, --
   { command = "beautysh", filetypes = { "sh", "csh", "zsh" }, args = { "--indent-size", "2" } }, -- bash csh zsh
-  {
-    -- https://github.com/Koihik/LuaFormatter
-    -- config demo: https://github.com/Koihik/LuaFormatter/blob/master/docs/Style-Config.md
-    -- 针对Lua文件添加一个格式化器
-    -- dnf install -y lua-devel
-    command = "lua-format",
-    filetypes = { "lua" },
-    -- args = {"--indent-size", "2",},
-    args = { "--indent-size", "2", "--extra-sep-at-table-end" },
-    stdin = true,
-  },
+  -- {
+  --   -- https://github.com/Koihik/LuaFormatter
+  --   -- config demo: https://github.com/Koihik/LuaFormatter/blob/master/docs/Style-Config.md
+  --   -- 针对Lua文件添加一个格式化器
+  --   -- dnf install -y lua-devel
+  --   command = "lua-format",
+  --   filetypes = { "lua" },
+  --   -- args = {"--indent-size", "2",},
+  --   args = { "--indent-size", "2", "--extra-sep-at-table-end" },
+  --   stdin = true,
+  -- },
   -- {
   -- 	command = "stylua",
   -- 	filetypes = { "lua" },
