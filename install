@@ -1,4 +1,6 @@
 #!/usr/bin/env zsh
+# Last Modified: 2023-07-11 11:18:17
+
 # I am using zsh instead of bash.  I was having some troubles using bash with
 # arrays.  Didn't want to investigate, so I just did zsh
 if [[ -n $HOME/.oh-my-zsh/custom ]]; then
@@ -12,7 +14,8 @@ for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g"); do
 done
 popd
 
+# lunarvim 已经改用lazy.nvim
 # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-$HOME/.tmux/plugins/tpm/bin/install_plugins
-$HOME/.tmux/plugins/tpm/bin/update_plugins all
+# $HOME/.tmux/plugins/tpm/bin/install_plugins
+# $HOME/.tmux/plugins/tpm/bin/update_plugins all
