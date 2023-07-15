@@ -25,7 +25,7 @@
   "mason.nvim": { "branch": "main", "commit": "f7f81ab41b153e2902ebded401a8a0a6abe28607" },
   "neodev.nvim": { "branch": "main", "commit": "b41da3926ce1c022a2f6a7ea8858889c3a8be4d7" },
   "neotest": { "branch": "master", "commit": "e46eae5739c470aa011ee43108ea8a730736174e" },
-  "neotest-python": { "branch": "master", "commit": "6c06041cfb45f45e276068020baa06c06fe20d5c" },
+  "neotest-python": { "branch": "master", "commit": "054f22129405e747adfc2cbeddfcc59537df50ba" },
   "nlsp-settings.nvim": { "branch": "main", "commit": "26dbcefebbf3d423feb4cc8f543a5827b444ecb3" },
   "null-ls.nvim": { "branch": "main", "commit": "bbaf5a96913aa92281f154b08732be2f57021c45" },
   "nvim-autopairs": { "branch": "master", "commit": "e8f7dd7a72de3e7b6626c050a802000e69d53ff0" },
@@ -47,7 +47,7 @@
   "swenv.nvim": { "branch": "main", "commit": "08aea3e8809ab00dfcab3cebb466dcb8001ad162" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "9bc8237565ded606e6c366a71c64c0af25cd7a50" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
-  "timestamp.vim": { "branch": "dev", "commit": "c7fbc3b1a02f0676b2cb25f50e7775b15a828291" },
+  "timestamp.vim": { "branch": "dev", "commit": "279d5ca44afa6434ddfe3f23384bef199030c148" },
   "toggleterm.nvim": { "branch": "main", "commit": "cf146a267a6a7db62b1e2aff40414b20081048a1" },
   "tokyonight.nvim": { "branch": "main", "commit": "18259404c962736c70c0f670b71c976c4a5ac2bb" },
   "vim-illuminate": { "branch": "master", "commit": "a2907275a6899c570d16e95b9db5fd921c167502" },
@@ -58,7 +58,8 @@
   "vim-signify": { "branch": "master", "commit": "7d538b77a5a8806e344b057f8846f6d0c035efa9" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-table-mode": { "branch": "master", "commit": "9555a3e6e5bcf285ec181b7fc983eea90500feb4" },
-  "vim-templates": { "branch": "master", "commit": "00d670c3f1dc0df9f19771691c01695aaa433b3c" },
+  "vim-templates": { "branch": "master", "commit": "1f5a26856e9ef17e400f459d614907d0c8b920d8" },
+  "vim-ubuntu-pastebin": { "branch": "master", "commit": "574fb2a8f095b920acf6e5b0b0bda15f1f19de5a" },
   "vim-wakatime": { "branch": "master", "commit": "018fa9a80c27ccf2a8967b9e27890372e5c2fb4f" },
   "which-key.nvim": { "branch": "main", "commit": "d871f2b664afd5aed3dc1d1573bef2fb24ce0484" }
 }

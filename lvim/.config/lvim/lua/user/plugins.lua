@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-07-04 00:22:48
+  -- Last modified:   2023-07-13 19:52:49
 
   -- {
   --   "felipec/vim-sanegx",
@@ -238,6 +238,7 @@ lvim.plugins = {
   --   branch = "develop",
   -- },
   { "Glench/Vim-Jinja2-Syntax" },
+  { "PegasusWang/vim-ubuntu-pastebin" },
   {
     "pchaos/timestamp.vim",
     -- branch = "master",
