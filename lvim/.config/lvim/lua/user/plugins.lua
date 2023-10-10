@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-07-13 19:52:49
+  -- Last modified:   2023-09-21 19:29:13
 
   -- {
   --   "felipec/vim-sanegx",
@@ -107,6 +107,31 @@ lvim.plugins = {
     -- [=           Jump to prev line having a marker of any type
     -- m?           Open location list and display markers from current buffer
     -- m<BS>        Remove all markers
+  },
+  {
+    -- A vim 7.4+ plugin to generate table of contents for Markdown files.
+    -- Generate table of contents
+    -- Move the cursor to the line you want to append table of contents, then type a command below suit you. The command will generate headings after the cursor into table of contents.
+    -- :GenTocGFM
+    -- Generate table of contents in GFM link style.
+    -- This command is suitable for Markdown files in GitHub repositories, like README.md, and Markdown files for GitBook.
+    -- :GenTocRedcarpet
+    -- Generate table of contents in Redcarpet link style.
+    -- This command is suitable for Jekyll or anywhere else use Redcarpet as its Markdown parser.
+    -- :GenTocGitLab
+    -- Generate table of contents in GitLab link style.
+    -- This command is suitable for GitLab repository and wiki.
+    -- :GenTocMarked
+    -- Generate table of contents for iamcco/markdown-preview.vim which use Marked markdown parser.
+    -- Update existing table of contents
+    -- Generally you don't need to do this manually, existing table of contents will auto update on save by default.
+
+    -- The :UpdateToc command, which is designed to update toc manually, can only work when g:vmt_auto_update_on_save turned off, and keep insert fence.
+
+    -- Remove table of contents
+    -- :RemoveToc command will do this for you, just remember keep insert fence option by default.
+
+    'mzlogin/vim-markdown-toc',
   },
   { "mfussenegger/nvim-dap" },
   { "mfussenegger/nvim-dap-python", ft = { "python" } }, -- {
