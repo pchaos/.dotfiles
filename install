@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2023-07-11 11:18:17
+# Last Modified: 2023-09-27 16:16:45
 
 # I am using zsh instead of bash.  I was having some troubles using bash with
 # arrays.  Didn't want to investigate, so I just did zsh
@@ -9,8 +9,8 @@ fi
 
 pushd $DOTFILES
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g"); do
-  stow -D $folder
-  stow $folder
+  stow --verbose -D $folder
+  stow --verbose $folder
 done
 popd
 

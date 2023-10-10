@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2023-06-15 19:55:20
+# Last Modified: 2023-09-27 15:58:45
 
 # stow (GNU Stow) version 2.3.1
 
@@ -35,6 +35,8 @@
 # Stow home page: <http://www.gnu.org/software/stow/>
 # General help using GNU software: <http://www.gnu.org/gethelp/>
 
+echo "Stowing Dotfiles...";
+
 if [[ -z $STOW_FOLDERS ]]; then
   # STOW_FOLDERS="bash,conda,git,htinsight,lvim,tmux"
   STOW_FOLDERS="bash,conda,git,lvim,tmux"
@@ -43,6 +45,7 @@ fi
 if [[ -z $DOTFILES ]]; then
   DOTFILES=$HOME/.dotfiles
 fi
+echo $STOW_FOLDERS $DOTFILES
 
 # 调用同目录下的：install
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
