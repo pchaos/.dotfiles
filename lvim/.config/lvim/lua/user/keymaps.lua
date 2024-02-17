@@ -1,5 +1,4 @@
--- Modified: 2023-06-05 14:33:13
-
+-- Modified: 2024-01-27 11:49:37
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -67,3 +66,17 @@ lvim.keys.normal_mode['ge'] = { '<Plug>(gxext-normal)', { silent = false } }
 lvim.keys.visual_mode['ge'] = { '<Plug>(gxext-visual)', { silent = false } }
 -- nmap("gx", "<Plug>(gxext-normal)")
 -- vmap("gx", "<Plug>(gxext-vi
+
+-- keybindings for python unittest
+lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" }
+lvim.builtin.which_key.mappings["dM"] = {
+  "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+  "Test Method DAP",
+}
+lvim.builtin.which_key.mappings["df"] =
+  { "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
+lvim.builtin.which_key.mappings["dF"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+  "Test Class DAP",
+}
+lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }

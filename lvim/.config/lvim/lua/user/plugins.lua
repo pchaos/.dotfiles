@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2023-09-21 19:29:13
+  -- Last modified:   2024-01-27 19:14:16
 
   -- {
   --   "felipec/vim-sanegx",
@@ -155,31 +155,31 @@ lvim.plugins = {
     "nvim-neotest/neotest-python",
     ft = { "python" },
     -- https://betterprogramming.pub/lunarvim-debugging-testing-python-code-fa84f804c469
-    -- require("neotest").setup({
-    --   adapters = {
-    --     require("neotest-python")({
-    --       -- Extra arguments for nvim-dap configuration
-    --       -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
-    --       dap = { justMyCode = false },
-    --       -- Command line arguments for runner
-    --       -- Can also be a function to return dynamic values
-    --       args = { "--log-level", "DEBUG" },
-    --       -- Runner to use. Will use pytest if available by default.
-    --       -- Can be a function to return dynamic value.
-    --       runner = "pytest",
-    --       -- Custom python path for the runner.
-    --       -- Can be a string or a list of strings.
-    --       -- Can also be a function to return dynamic value.
-    --       -- If not provided, the path will be inferred by checking for
-    --       -- virtual envs in the local directory and for Pipenev/Poetry configs
-    --       -- python = ".venv/bin/python",
-    --       -- Returns if a given file path is a test file.
-    --       -- NB: This function is called a lot so don't perform any heavy tasks within it.
-    --       -- is_test_file = function(file_path)
-    --       -- end,
-    --     })
-    --   }
-    -- }
+    require("neotest").setup({
+      adapters = {
+        require("neotest-python")({
+          -- Extra arguments for nvim-dap configuration
+          -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+          dap = { justMyCode = false, console = "integratedTerminal" },
+          -- Command line arguments for runner
+          -- Can also be a function to return dynamic values
+          args = { "--log-level", "DEBUG" },
+          -- Runner to use. Will use pytest if available by default.
+          -- Can be a function to return dynamic value.
+          runner = "pytest",
+          -- Custom python path for the runner.
+          --       -- Can be a string or a list of strings.
+          --       -- Can also be a function to return dynamic value.
+          --       -- If not provided, the path will be inferred by checking for
+          --       -- virtual envs in the local directory and for Pipenev/Poetry configs
+          --       -- python = ".venv/bin/python",
+          --       -- Returns if a given file path is a test file.
+          --       -- NB: This function is called a lot so don't perform any heavy tasks within it.
+          --       -- is_test_file = function(file_path)
+          --       -- end,
+        }),
+      },
+    }),
     -- Set up Keybindings
     -- This section might look a little complicated but all we’re doing is adding some keybindings to our leader key menu that pops up when you press space. For instance, pressing space d m will test the nearest method.
 
@@ -257,7 +257,8 @@ lvim.plugins = {
   {
     -- https://github.com/dhruvasagar/vim-table-mode
     "dhruvasagar/vim-table-mode",
-  }, -- {
+  },
+  -- {
   --   -- Python-mode, a Python IDE for Vim
   --   "python-mode/python-mode",
   --   branch = "develop",
@@ -283,6 +284,7 @@ lvim.plugins = {
   -- {
   --   "pchaos/select2snippet"
   -- }
+  { "github/copilot.vim" },
 }
 
 local noused_plugins = {

@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2023-06-28 10:54:50
+Last modified:   2024-02-17 17:24:19
 
 Linters should be
 filled in as strings with either
@@ -33,6 +33,16 @@ lvim.format_on_save = true
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<C-n>"] = ":NvimTreeToggle<CR>"
+lvim.keys.normal_mode["<F1>"] = "<cmd>lua vim.diagnostic.open_float()<CR>"
+lvim.keys.normal_mode["<F2>"] = ":WhichKey<CR>"
+lvim.keys.normal_mode["<F3>"] = ":Telescope live_grep_args<CR>"
+-- lvim.keys.normal_mode["<F4>"] = ":AerialToggle<CR>"
+lvim.keys.normal_mode["<F4>"] = ":SymbolsOutline<CR>"
+lvim.keys.normal_mode["<F5>"] = "<Esc>:Telescope treesitter<CR>"
+lvim.keys.normal_mode["<F6>"] = ":terminal<CR>"
+-- lvim.keys.normal_mode["<F>"] = ":terminal<CR>"
+lvim.keys.normal_mode["Z"] = ":TZFocus<CR>"
 
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
