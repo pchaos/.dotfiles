@@ -1,297 +1,36 @@
 #=============================================================================
 # dark_powered.toml --- dark powered configuration example for SpaceVim
-# Copyright (c) 2016-2017 Wang Shidong & Contributors
-# Author: Wang Shidong < wsdjeg at 163.com >
+# Copyright (c) 2016-2022 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg@outlook.com >
 # URL: https://spacevim.org
 # License: GPLv3
 #=============================================================================
 
 # All SpaceVim option below [option] section
 [options]
-    # 启动函数
-    bootstrap_before = "myspacevim#before"
-    bootstrap_after  = "myspacevim#after"
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    # colorscheme = "gruvbox"
-    # colorscheme_bg = "dark"
+    colorscheme = "gruvbox"
+    colorscheme_bg = "dark"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
-    # guifont = "SourceCodePro Nerd Font Mono:h12"
-    # guifont = "mononoki-Regular Nerd Font Complete Mono"
-    guifont = "Space Mono Nerd Font Complete:h12"
     statusline_separator = "arrow"
-    statusline_inactive_separator = "arrow"
-    # 设置顶部标签列表序号类型，有以下五种类型，分别是 0 - 4
-    # 0: 1 ➛ ➊
-    # 1: 1 ➛ ➀
-    # 2: 1 ➛ ⓵
-    # 3: 1 ➛ ¹
-    # 4: 1 ➛ 1
-    buffer_index_type = 2
+    statusline_iseparator = "arrow"
+    buffer_index_type = 4
     enable_tabline_filetype_icon = true
-    # 是否在状态栏上显示当前模式，默认情况下，不显示 Normal/Insert 等
-    # 字样，只以颜色区分当前模式
-    enable_statusline_mode = true
-    vim_help_language = "cn"
-    encoding= "utf-8"
-    filemanager = "nerdtree"
-    # filemanager = "defx"
-    # 设置文件树默认关闭
-    enable_vimfiler_welcome = false
-    max_column = 120
-    textwidth = 118
-
-[[layers]]
-  name = "colorscheme"
-  random_theme = true
-  frequency = "hourly"
+    enable_statusline_mode = false
 
 # Enable autocomplete layer
 [[layers]]
-  name = 'autocomplete'
-  auto-completion-return-key-behavior = "complete"
-  auto-completion-tab-key-behavior = "smart"
+name = 'autocomplete'
+auto_completion_return_key_behavior = "complete"
+auto_completion_tab_key_behavior = "smart"
 
 [[layers]]
-# default_position = 'top'
-  name = 'shell'
-  default_position = 'bottom'
-  default_height = 32
-
-[[layers]]
-  name = "denite"
-#enable=false
-
-[[layers]]
-name = "github"
-
-[[layers]]
-  name = "git"
-
-[[layers]]
-  name = "sudo"
-
-[[layers]]
-  name = "edit"
-
-[[layers]]
-    name = 'core'
-    filetree_show_hidden = true
-    enable_smooth_scrolling = true
-
-[[layers]]
-  name = "core#tabline"
-  enable = true
-
-[[layers]]
-name = "lang#autohotkey"
-enable=false
-
-[[layers]]
-name="lang#sh"
-
-[[layers]]
-    name = 'lang#c'
-
-[[layers]]
-  name="lang#python"
-  python_file_head = [
-      '# -*- coding: utf-8 -*-',
-      '',
-      ''
-  ]
-  # enable_typeinfo = true
-  # format_on_save = true
-
-[[layers]]
-  name = "lang#ipynb"
-   
-[[layers]]
-  name="lang#markdown"
-  enabled_formater=["remark", "prettier"]
-# yarn global add prettier
-# npm -g install remark
-# enable=false
-
-[[layers]]
-name="tools"
-
-[[layers]]
-  name = "chinese"
-
-[[layers]]
-name="lang#go"
-enable=false
-
-[[layers]]
-  # need pip install notedown
-  name="lang#ipynb"
-
-[[layers]]
-name="lang#html"
-
-[[layers]]
-name="lang#latex"
-
-[[layers]]
-name="lang#toml"
-
-[[layers]]
-  name="test"
-
-[[layers]]
-name="default"
-
-[[layers]]
-  name = "format"
-
-[[layers]]
-  name="debug"
-  debugger_plugin = "vimspector"
-
-[[layers]]
-  name = "incsearch"
-
-[[layers]]
-  name="vim-snippets"
-  enable=true
-
-[[layers]]
-  name="vimwiki/wimwiki"
-# enable=false
-
-[[layers]]
-  name = "tmux"
-  tmux_navigator_modifier = "alt"
-
-[[layers]]
-  name = "lang#pascal"
-
-[[layers]]
-# Key Binding	Description
-# SPC m m l	fuzzy find musics
-# SPC m m n	next musics
-# SPC m m s	stop mpv
-    name = 'tools#mpv'
-    mpv_interpreter = '/usr/bin/mpv'
-    musics_directory = '~/Downloads/Music'
-    # enable=false
-
-[[layers]]
-  name="vim-surround"
-  enable=true
-
-[[layers]]
-  name ="lang#xml"
-  enable = true
-
-[[layers]]
-  name = "lang#javascript"
-
-[[layers]]
-  name = 'lsp'
-  enabled_clients = ['pyright']
-    filetypes = [
-    "python",
-    "css",
-    "vim",
-    "sh"
-  ]
-  enable=true
-  # enable=false
-
-[[layers]]
-  name = "checkers"
-  lint_on_the_fly=false
-  lint_on_save	=true
-  show_cursor_error = false
-
-# [[layers]]
-  # name = "fzf"
-  # enable=true
-
-# [[layers]]
-# name = "neosnippte"
-# enable=false
-
-[[layers]]
-  name = "ctrlspace"
-  enable = false
-
-
-[[custom_plugins]]
-# DoGe is a (Do)cumentation (Ge)nerator which will generate a proper documentation skeleton based on certain expressions (mainly functions).
-  name="kkoomen/vim-doge"
-  merged=0
-  enable=true
-
-# 添加自定义插件
-# [[custom_plugins]]
-    # Vim sugar for the UNIX shell commands that need it the most. Features include:
-
-    #:Delete: Delete a buffer and the file on disk simultaneously.
-    # :Unlink: Like :Delete, but keeps the now empty buffer.
-    # :Move: Rename a buffer and the file on disk simultaneously.
-    # :Rename: Like :Move, but relative to the current file's containing directory.
-    # :Chmod: Change the permissions of the current file.
-    # :Mkdir: Create a directory, defaulting to the parent of the current file.
-    # :Cfind: Run find and load the results into the quickfix list.
-    # :Clocate: Run locate and load the results into the quickfix list.
-    # :Lfind/:Llocate: Like above, but use the location list.
-    # :Wall: Write every open window. Handy for kicking off tools like guard.
-    # :SudoWrite: Write a privileged file with sudo.
-    # :SudoEdit: Edit a privileged file with sudo.
-    # File type detection for sudo -e is based on original file name.
-    # New files created with a shebang line are automatically made executable.
-    # repo = "tpope/vim-eunuch"
-    # merged = 0
-
-[[custom_plugins]]
-# snippte
-  name="SirVer/ultisnips"
-  merged=0
-
-# [[custom_plugins]]
-  # name="tpope/vim-surround"
-  # merged=0
-  # enable=false
-
-[[custom_plugins]]
-  name = "chrisbra/csv.vim"
-
-[[custom_plugins]]
-# Find And Replace Vim plugin
-# Searching with Command
-# :Far foo bar **/*.py
-# :Fardo
-  name = "brooth/far.vim"
-  enable=false
-
-# # [[layers]]
-# [[custom_plugins]]
-# #name="vimwiki/wimwiki"
-# name="https://gitee.com/pchaos/vimwiki.git"
-# merged=0
-# enable=false
-
-[[custom_plugins]]
-  #An awesome automatic table creator & formatter allowing one to create neat tables as you type.
-  name="dhruvasagar/vim-table-mode"
-  merge=0
-
-[[custom_plugins]]
-  # When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
-  name = "vim-scripts/timestamp.vim"
-  merged=0
-  # enable=false
-
-[[custom_plugins]]
-  # 中文自动切换
-  name = "pchaos/fcitx5-status"
-  merged=0
-
+name = 'shell'
+default_position = 'top'
+default_height = 30
