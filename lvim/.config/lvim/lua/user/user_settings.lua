@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2023-07-07 18:27:56
+-- Last Modified: 2024-02-21 13:42:09
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -11,6 +11,8 @@ local opt = vim.opt -- global/buffer/windows-scoped options
 local api = vim.api
 
 opt.encoding = "utf-8"
+
+local func = require("user.functions")
 
 -- White characters
 opt.expandtab = true -- expand tab to spaces
@@ -28,12 +30,13 @@ opt.numberwidth = 4 -- set number column width to 3 {default 4}
 opt.updatetime = 330 -- faster completion (4000ms default)
 opt.wrap = true -- line wrap
 
--- opt.background = "dark" -- set this to dark or light
+opt.background = "dark" -- set this to dark or light
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "codemonkey"
 -- lvim.colorscheme = "desert"
+lvim.colorscheme = "evening"
 -- lvim.colorscheme = "lunaperche"
-lvim.colorscheme = "koehler"
+-- lvim.colorscheme = "koehler"
 -- lvim.colorscheme = "oxocarbon"
 
 -- colored column
@@ -50,7 +53,7 @@ formatters.setup({
     command = "black",
     filetypes = { "python" },
     args = { "--line-length", "120", "--skip-string-normalization" },
-  }, --
+  }, -- isort
   { command = "isort", filetypes = { "python" } }, --
   {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
@@ -98,11 +101,20 @@ cmd("let g:python3_host_prog  = expand('~/software/python3rd/conda3/bin/python')
 -- g.python3_host_prog = fn.substitute(fn.system("which python"), "\n", "", "")
 
 -- cmd("let g:python3_host_prog  = expand('which python')")
-cmd("let g:pydocstring_doq_path = expand('~/.local/bin/doq')")
+-- cmd("let g:pydocstring_doq_path = expand('~/.local/bin/doq')")
+-- local doq_path = m.findCommandPath("doq")
+-- if doq_path ~= "" then
+--   -- print("Found doq path: " .. doq_path)
+--   vim.g.pydocstring_doq_path = doq_path
+-- end
+func.setGlobalVarPath("doq", "pydocstring_")
+
+-- 以下代码单独执行不会报错，加上cmd就无法执行
+-- cmd("let g:pydocstring_doq_path = substitute(system('which doq'), '\n', '', '')")
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "arduino",
+  -- "arduino",
   "awk",
   "bash",
   "c",
