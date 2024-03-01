@@ -1,16 +1,13 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2024-03-01 18:34:56
+  -- Last modified:   2024-02-21 23:06:35
 
   -- {
   --   "felipec/vim-sanegx",
   --   -- open url with gx
   --   event = "BufRead",
   -- },
-  {
-    -- https://wakatime.com/dashboard
-    'wakatime/vim-wakatime',
-  },
+  { 'wakatime/vim-wakatime' },
   {
     -- A vim / nvim plugin that intelligently reopens files at your last edit position.
     "farmergreg/vim-lastplace",
@@ -20,91 +17,14 @@ lvim.plugins = {
     end,
   },
   {
-    -- https://github.com/nathom/filetype.nvim
-    "nathom/filetype.nvim",
-    lazy = true,
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      require("filetype").setup({ overrides = { extensions = { h = "cpp" } } })
-    end,
-  },
-  -- {
-  --   "s1n7ax/nvim-window-picker",
-  --   -- lazy = true,
-  --   event = { "WinNew" },
-  --   dependencies = { "ten3roberts/window-picker.nvim" },
-  --   config = function()
-  --     local picker = require("window-picker")
-  --     picker.setup({
-  --       autoselect_one = true,
-  --       include_current = false,
-  --       filter_rules = {
-  --         bo = { filetype = { "neo-tree", "neo-tree-popup", "notify", "quickfix" }, buftype = { "terminal" } },
-  --       },
-  --       other_win_hl_color = "#e35e4f",
-  --     })
-
-  --     --  以下快捷键设置，转换成lunarvim语法
-  --     vim.keymap.set("n", ",r", function()
-  --       local picked_window_id = picker.pick_window({ include_current_win = true }) or vim.api.nvim_get_current_win()
-  --       vim.api.nvim_set_current_win(picked_window_id)
-  --     end, { desc = "Pick a window" })
-
-  --     -- Swap two windows using the awesome window picker
-  --     local function swap_windows()
-  --       local window = picker.pick_window({ include_current_win = false })
-  --       local target_buffer = vim.fn.winbufnr(window)
-  --       -- Set the target window to contain current buffer
-  --       vim.api.nvim_win_set_buf(window, 0)
-  --       -- Set current window to contain target buffer
-  --       vim.api.nvim_win_set_buf(0, target_buffer)
-  --     end
-
-  --     vim.keymap.set("n", ",W", swap_windows, { desc = "Swap windows" })
-  --   end,
-  -- },
-
-  -- {
-  --   -- https://github.com/ten3roberts/window-picker.nvim
-  --   "ten3roberts/window-picker.nvim",
-  --   event = { "WinNew", "TabNew", "FileReadPost " },
-  --   config = function()
-  --     require'window-picker'.setup {
-  --       -- Default keys to annotate, keys will be used in order. The default uses the
-  --       -- most accessible keys from the home row and then top row.
-  --       keys = 'alskdjfhgwoeiruty',
-  --       -- Swap windows by holding shift + letter
-  --       swap_shift = true,
-  --       -- Windows containing filetype to exclude
-  --       exclude = { qf = true, NvimTree = true, aerial = true },
-  --       -- Flash the cursor line of the newly focused window for 300ms.
-  --       -- Set to 0 or false to disable.
-  --       flash_duration = 300,
-  --     }
-  --     -- Example keymaps
-  --     -- Move to window, or swap by using shift + letter
-  --     lvim.keymap.normal_mode[",w"] = "WindowPick"
-
-  --     -- Swap with any window
-  --     lvim.keymap.normal_mode[",W"] = "WindowSwap"
-  --     lvim.keymap.normal_mode[",q"] = "WindowZap"
-  --   end,
-  -- },
-
-  {
     "iamcco/markdown-preview.nvim",
-    event = { "BufRead" },
+    event = "BufRead",
     ft = { "markdown" },
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
-    config = function()
-      -- " set to 1, nvim will open the preview window after entering the markdown buffer
-      -- " default: 0
-      vim.g.mkdp_auto_start = 0
-    end,
-
-  }, -- {
+  },
+  -- {
   --   "iamcco/markdown-preview.nvim",
   --   run = "cd app && npm install",
   --   -- run = function() vim.fn["mkdp#util#install"]() end,
@@ -121,51 +41,10 @@ lvim.plugins = {
   -- {
   --   "LunarVim/Colorschemes"
   -- },
-  {
-    -- A highly customizable theme for vim and neovim with support for lsp, treesitter and a variety of plugins.
-    "EdenEast/nightfox.nvim",
-  },
-  {
-    -- https://github.com/ap/vim-css-color
-    "ap/vim-css-color",
-    ft = { "css" },
-  },
-  -- {
-  --   -- 还没配置好
-  --   -- A vim theme scheduler. Divide your day into as many intervals as you like, assigning each interval its own theme.
-
-  --   -- https://github.com/erwinvaneijk/night-and-day
-  --   "erwinvaneijk/night-and-day",
-  --   -- config = function()
-  --   --   vim.g.nd_themes = {
-  --   --     { '4:00', 'peachpuff', 'light' },
-  --   --     { '11:00', 'murphy', 'dark' },
-  --   --     { '18:00', 'evening', 'dark' },
-  --   --   }
-  --   -- end,
-  -- },
-  -- {
-  --  -- 需要配置lazy=false,否则不会显示TokyoNight
-  --   -- https://github.com/folke/tokyonight.nvim
-  --   -- A dark and light Neovim theme written in Lua ported from the Visual Studio Code TokyoNight theme. Includes extra themes for Kitty, Alacritty, iTerm and Fish.
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  -- },
   -- {
   -- -- 可能引起查找文件时卡死？？？
   --     "nyoom-engineering/oxocarbon.nvim",
   -- },
-  {
-    --[[
-    https://github.com/MattesGroeger/vim-bookmarks/issues
-    This vim plugin allows toggling bookmarks per line. A quickfix window gives access to all bookmarks. Annotations can be added as well. These are special bookmarks with a comment attached. They are useful for preparing code reviews. All bookmarks will be restored on the next startup.
-    --]]
-    "MattesGroeger/vim-bookmarks",
-    init = function()
-      vim.g.bookmark_no_default_key_mappings = 1
-      vim.g.bookmark_auto_save = 1 -- Enables/disables automatic saving for bookmarks
-    end,
-  },
   {
     -- Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
     -- https://github.com/tpope/vim-surround/blob/master/doc/surround.txt
@@ -178,7 +57,6 @@ lvim.plugins = {
 
     "tpope/vim-surround",
     event = "BufRead",
-    lazy = true,
     --     ds : 删除包围符号
     -- cs : 改变包围符号
     -- ysw : 当前至下一个词尾添加一个包围符号
@@ -201,7 +79,6 @@ lvim.plugins = {
   {
     -- Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS).
     "mhinz/vim-signify",
-    lazy = true,
   }, -- {
   --   "ggandor/leap.nvim",
   --   -- Leap is a general-purpose motion plugin for Neovim, with the ultimate goal of establishing a new standard interface for moving around in the visible area in Vim-like modal editors.
@@ -213,7 +90,6 @@ lvim.plugins = {
   -- },
   {
     "kshenoy/vim-signature",
-    lazy = true,
     -- o vim-signature is a plugin to place, toggle and display marks.
     --   mx           Toggle mark 'x' and display it in the leftmost column
     -- dmx          Remove mark 'x' where x is a-zA-Z
@@ -267,7 +143,8 @@ lvim.plugins = {
     'mzlogin/vim-markdown-toc',
   },
   { "mfussenegger/nvim-dap" },
-  { "mfussenegger/nvim-dap-python", ft = { "python" } }, -- {
+  { "mfussenegger/nvim-dap-python", ft = { "python" },},
+  -- {
   --   'jpalardy/vim-slime',
   --   ft = { "python" },
   -- },
@@ -276,9 +153,66 @@ lvim.plugins = {
   --   ft = { "python" },
   -- },
   {
+    "nvim-neotest/neotest",
+    ft = { "python", "c", "lua" },
+    dependencies = {
+      -- "nvim-lua/plenary.nvim",
+      -- "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+    },
+  },
+  {
+    "nvim-neotest/neotest-python",
+    ft = { "python" },
+    -- https://betterprogramming.pub/lunarvim-debugging-testing-python-code-fa84f804c469
+    require("neotest").setup({
+      adapters = {
+        require("neotest-python")({
+          -- Extra arguments for nvim-dap configuration
+          -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+          dap = { justMyCode = false, console = "integratedTerminal" },
+          -- Command line arguments for runner
+          -- Can also be a function to return dynamic values
+          args = { "--log-level", "DEBUG" },
+          -- Runner to use. Will use pytest if available by default.
+          -- Can be a function to return dynamic value.
+          runner = "pytest",
+          -- Custom python path for the runner.
+          --       -- Can be a string or a list of strings.
+          --       -- Can also be a function to return dynamic value.
+          --       -- If not provided, the path will be inferred by checking for
+          --       -- virtual envs in the local directory and for Pipenev/Poetry configs
+          --       -- python = ".venv/bin/python",
+          --       -- Returns if a given file path is a test file.
+          --       -- NB: This function is called a lot so don't perform any heavy tasks within it.
+          --       -- is_test_file = function(file_path)
+          --       -- end,
+        }),
+      },
+    }),
+    -- Set up Keybindings
+    -- This section might look a little complicated but all we’re doing is adding some keybindings to our leader key menu that pops up when you press space. For instance, pressing space d m will test the nearest method.
+
+    -- lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
+    --   "Test Method" }
+    -- lvim.builtin.which_key.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+    --   "Test Method DAP" }
+    -- lvim.builtin.which_key.mappings["df"] = {
+    --   "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
+    -- lvim.builtin.which_key.mappings["dF"] = {
+    --   "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
+    -- lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+    -- Keybindings explanation:
+
+    -- space d m: runs the nearest test
+    -- space d M: runs the nearest test in debug mode
+    -- space d f: runs all tests in file
+    -- space d F: runs all tests in file in debug mode
+    -- space d S: displays summary for tests)
+  },
+  {
     "heavenshell/vim-pydocstring",
     ft = { "python" },
-    lazy = true,
     --     Basic usage
     -- Move your cursor on a def or class keyword line,
     -- type :Pydocstring and
@@ -306,26 +240,9 @@ lvim.plugins = {
     -- let g:pydocstring_enable_mapping = 0
   },
   {
-    -- https://github.com/vim-test/vim-test
-    --[[
-    Python
-Since there are multiple Python test runners for the same type of tests, test.vim has no way of detecting which one did you intend to use. By default the first available will be chosen, but you can force a specific one:
-
-let test#python#runner = 'pytest'
-" Runners available are 'pytest', 'nose', 'nose2', 'djangotest', 'djangonose', 'mamba', and Python's built-in unittest as 'pyunit'
---]]
-    "vim-test/vim-test",
-    ft = { "python", "lua" },
-  },
-  {
-    -- https://github.com/stevearc/dressing.nvim
-    "stevearc/dressing.nvim",
-    lazy = true,
-  },
-  {
     -- Managing Virtual Environments
     "AckslD/swenv.nvim",
-    lazy = true,
+    "stevearc/dressing.nvim",
     config = function()
       require('swenv').setup({
         -- Should return a list of tables with a `name` and a `path` entry each.
@@ -344,14 +261,12 @@ let test#python#runner = 'pytest'
   },
   {
     'stsewd/gx-extended.vim',
-    lazy = true,
     -- Extend gx to use it beyond just URLs!
     -- using shortcut: ge
   },
   {
     -- https://github.com/dhruvasagar/vim-table-mode
     "dhruvasagar/vim-table-mode",
-    lazy = true,
   },
   -- {
   --   -- Python-mode, a Python IDE for Vim
@@ -359,27 +274,11 @@ let test#python#runner = 'pytest'
   --   branch = "develop",
   -- },
   { "Glench/Vim-Jinja2-Syntax" },
-  -- { "PegasusWang/vim-ubuntu-pastebin" },
-  {
-    -- https://github.com/iurimateus/luasnip-latex-snippets.nvim
-    -- A port of Gilles Castel's snippets for the LuaSnip Engine.
-    "iurimateus/luasnip-latex-snippets.nvim",
-    ft = { "markdown", "latex" },
-    config = function()
-      require("luasnip-latex-snippets").setup()
-      -- require("luasnip.config").set_config { enable_autosnippets = true }
-      -- require("luasnip").config.setup { enable_autosnippets = true }
-      require("luasnip").config.setup { enable_autosnippets = true, use_treesitter = true, allow_on_markdown = true }
-      -- require("luasnip").config.setup { enable_autosnippets = false, use_treesitter = true, allow_on_markdown = true }
-    end,
-    dependencies = { { "L3MON4D3/LuaSnip" }, { "lervag/vimtex" } },
-  },
+  { "PegasusWang/vim-ubuntu-pastebin" },
   {
     "pchaos/timestamp.vim",
     -- branch = "master",
     branch = "dev",
-    event = { "BufWritePre" },
-    lazy = true,
     -- When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
     -- For instance, if you create a new file and want to stamp it with a creation date and a last modified date, make the first few lines: >
     --    Created:            TIMESTAMP
@@ -390,58 +289,51 @@ let test#python#runner = 'pytest'
   { -- 返回到 normal 模式时快速切换为英文输入法
     "pchaos/fcitx5-status",
   },
-  { "pchaos/vim-templates", event = { "BufNewFile" } },
-  -- { "pchaos/vim-templates" },
+  { "pchaos/vim-templates" },
   { "pchaos/vim-lua-formatter.nvim", branch = "dev", ft = { "lua" } },
   -- {
   --   "pchaos/select2snippet"
-  -- },
+  -- }
+  { "github/copilot.vim" },
+}
+
+local noused_plugins = {
+  { "andrejlevkovitch/vim-lua-format", ft = { "lua" } },
   {
-    -- 加载copilot后，vim比较卡
-    "github/copilot.vim",
-    ft = { "python", "lua" },
-    lazy = true,
+    -- barbar.nvim is a tabline plugin with re-orderable, auto-sizing, clickable tabs, icons, nice highlighting, sort-by commands and a magic jump-to-buffer mode. Plus the tab names are made unique when two filenames match.
+    'romgrk/barbar.nvim',
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require('barbar').setup()
+    end,
   },
-  -- {
-  --   "nvim-neotest/neotest",
-  --   ft = { "python", "c", "lua" },
-  --   dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "antoinemadec/FixCursorHold.nvim" },
-  -- },
-  -- {
-  --   "nvim-neotest/neotest-python",
-  --   ft = { "python" },
-  --   config = function()
-  --     require("neotest").setup({
-  --       adapters = {
-  --         require("neotest-python")({
-  --           -- Extra arguments for nvim-dap configuration
-  --           -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
-  --           dap = { justMyCode = false, console = "integratedTerminal" },
-  --           -- Command line arguments for runner
-  --           -- Can also be a function to return dynamic values
-  --           args = { "--log-level", "DEBUG" },
-  --           -- Runner to use. Will use pytest if available by default.
-  --           -- Can be a function to return dynamic value.
-  --           runner = "pytest",
-  --           -- Custom python path for the runner.
-  --           --       -- Can be a string or a list of strings.
-  --           --       -- Can also be a function to return dynamic value.
-  --           --       -- If not provided, the path will be inferred by checking for
-  --           --       -- virtual envs in the local directory and for Pipenev/Poetry configs
-  --           --       -- python = ".venv/bin/python",
-  --           --       -- Returns if a given file path is a test file.
-  --           --       -- NB: This function is called a lot so don't perform any heavy tasks within it.
-  --           --       -- is_test_file = function(file_path)
-  --           --       -- end,
-  --         }),
-  --       },
-  --     })
-  --   end,
-  -- },
-  -- {
-  --   "nvim-neotest/neotest-plenary",
-  --   config = function()
-  --     require("neotest").setup({ adapters = { require("neotest-plenary") } })
-  --   end,
-  -- },
+  {
+    -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+    "folke/neodev.nvim",
+    opts = {
+      library = {
+        enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
+        -- these settings will be used for your Neovim config directory
+        runtime = true, -- runtime path
+        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+        plugins = true, -- installed opt or start plugins in packpath
+        -- you can also specify the list of plugins to make available as a workspace library
+        -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+      },
+      setup_jsonls = true, -- configures jsonls to provide completion for project specific .luarc.json files
+      -- for your Neovim config directory, the config.library settings will be used as is
+      -- for plugin directories (root_dirs having a /lua directory), config.library.plugins will be disabled
+      -- for any other directory, config.library.enabled will be set to false
+      override = function(root_dir, options)
+      end,
+      -- With lspconfig, Neodev will automatically setup your lua-language-server
+      -- If you disable this, then you have to set {before_init=require("neodev.lsp").before_init}
+      -- in your lsp start options
+      lspconfig = true,
+      -- much faster, but needs a recent built of lua-language-server
+      -- needs lua-language-server >= 3.6.0
+      pathStrict = true,
+    },
+  },
+
 }

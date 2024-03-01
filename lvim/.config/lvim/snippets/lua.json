@@ -19,6 +19,15 @@
       "`${2:msg})"
     ]
   },
+  "config": {
+    "prefix": "config",
+    "body": [
+      "config = function()",
+      "\t{$1}",
+      "end,"
+    ],
+    "description": "lvim plugin config"
+  },
   "!fun(ction)?!": {
     "prefix": "!fun(ction)?!",
     "description": "New function",

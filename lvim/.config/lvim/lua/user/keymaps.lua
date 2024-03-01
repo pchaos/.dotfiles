@@ -1,4 +1,4 @@
--- Modified: 2024-01-27 11:49:37
+-- Modified: 2024-03-01 18:39:00
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -80,3 +80,11 @@ lvim.builtin.which_key.mappings["dF"] = {
   "Test Class DAP",
 }
 lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+
+-- django-keymmaps
+-- require("user.keymaps.django-keymmaps")
+
+local status_ok, vb = pcall(require, "user.keymaps.vim-bookmarks-keymaps")
+if status_ok then
+  vb.setup()
+end

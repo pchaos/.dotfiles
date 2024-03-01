@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2024-02-21 13:42:09
+-- Last Modified: 2024-02-28 13:08:41
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -17,7 +17,6 @@ local func = require("user.functions")
 -- White characters
 opt.expandtab = true -- expand tab to spaces
 opt.formatoptions = "qnj1" -- q - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
-
 -- Sidebar
 opt.relativenumber = true
 opt.showcmd = true
@@ -30,7 +29,7 @@ opt.numberwidth = 4 -- set number column width to 3 {default 4}
 opt.updatetime = 330 -- faster completion (4000ms default)
 opt.wrap = true -- line wrap
 
-opt.background = "dark" -- set this to dark or light
+-- opt.background = "dark" -- set this to dark or light
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "codemonkey"
 -- lvim.colorscheme = "desert"
@@ -41,7 +40,8 @@ lvim.colorscheme = "evening"
 
 -- colored column
 vim.wo.colorcolumn = "121"
--- opt.cmdheight = 2
+opt.cmdheight = 2
+opt.guifont = "monospace:h16" -- the font used in graphical neovim applications
 
 g.null_ls_auto_start = 0
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
@@ -107,7 +107,8 @@ cmd("let g:python3_host_prog  = expand('~/software/python3rd/conda3/bin/python')
 --   -- print("Found doq path: " .. doq_path)
 --   vim.g.pydocstring_doq_path = doq_path
 -- end
-func.setGlobalVarPath("doq", "pydocstring_")
+-- func.setGlobalVarPath("doq", "pydocstring_")
+func.setGlobalVarPath("doq", "pydocstring_doq_path")
 
 -- 以下代码单独执行不会报错，加上cmd就无法执行
 -- cmd("let g:pydocstring_doq_path = substitute(system('which doq'), '\n', '', '')")

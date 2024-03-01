@@ -3,7 +3,7 @@
     "prefix": "#create_time",
     "body": [
       "Created: 2023-05-26 17:01:19",
-      "Last Modified: 2023-05-26 18:10:54"
+      "Last Modified: 2024-02-29 10:57:41"
     ],
     "description": "just nothing"
   },
@@ -83,6 +83,13 @@
     "description": "Json language for snippetss",
     "body": [
       "{\n\t\t\"language\": \"${1}\", \"path\": \"./${1}.json\" \n},${0}"
+    ]
+  },
+  "language_2": {
+    "prefix": "language_jump",
+    "description": "Json language for snippetss;Jump to filename",
+    "body": [
+      "{\n\t\t\"language\": \"${1}\", \"path\": \"./${2:${1}}.json\" \n},${0}"
     ]
   }
 }

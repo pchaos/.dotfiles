@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2024-02-17 17:24:19
+Last modified:   2024-02-26 15:40:58
 
 Linters should be
 filled in as strings with either
@@ -136,7 +136,6 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- Additional Plugins
 -- lvim.plugins = {
---     {"folke/tokyonight.nvim"},
 --     {
 --       "folke/trouble.nvim",
 --       cmd = "TroubleToggle",

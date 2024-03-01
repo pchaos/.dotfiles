@@ -1,5 +1,5 @@
 -- 测试 m.findCommandPath 函数
--- Last Modified: 2024-02-21 13:42:02
+-- Last Modified: 2024-02-22 11:21:27
 local m = require("user.functions")
 
 -- 测试 "doq" 命令
@@ -21,6 +21,6 @@ if nonExistentCommandPath ~= "" then
   error("找到了不存在的命令")
 end
 
-m.setGlobalVarPath("doq", "pydocstring")
+-- m.setGlobalVarPath("doq", "pydocstring")
 -- print(vim.g.pydocstring_doq_path)
 print("所有测试通过")

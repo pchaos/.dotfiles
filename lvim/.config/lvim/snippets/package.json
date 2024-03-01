@@ -11,6 +11,14 @@
         "path": "./all.json"
       },
       {
+        "language": "c",
+        "path": "./c.json"
+      },
+      {
+        "language": "css",
+        "path": "./css.json"
+      },
+      {
         "language": "python",
         "path": "./python.json"
       },
@@ -29,7 +37,11 @@
       {
         "language": "json",
         "path": "./json.json"
-      }
+      },
+      {
+        "language": "lua",
+        "path": "./lua.json"
+      },
     ]
   }
 }
