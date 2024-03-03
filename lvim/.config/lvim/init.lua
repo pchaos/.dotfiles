@@ -1,5 +1,6 @@
 -- Created: 2024-02-23 15:52:38
--- Last Modified: 2024-02-28 16:21:31
+-- Last Modified: 2024-03-02 13:01:38
 require("user.plugins.nvim-tree").setup()
 
+require("luasnip/loaders/from_vscode").load { paths = { "./snippets" } }
 -- print("init.lua done")

@@ -1,4 +1,4 @@
--- Modified: 2024-03-01 18:39:00
+-- Modified: 2024-03-03 23:18:58
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -36,6 +36,10 @@ vmap('/', '/\\v')
 -- keep search matches in the middle of the window
 nmap('n', 'nzzzv')
 nmap('N', 'Nzzzv')
+
+-- Centers cursor when moving 1/2 page down
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 
 -- Terminal
 -- ESC to go to normal mode in terminal
@@ -79,6 +83,8 @@ lvim.builtin.which_key.mappings["dF"] = {
   "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
   "Test Class DAP",
 }
+lvim.builtin.which_key.mappings["bx"] = { ':%s/^\n$//g<cr>', "连续的多个空行删除为只留一下一个空行" }
+
 lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
 -- django-keymmaps

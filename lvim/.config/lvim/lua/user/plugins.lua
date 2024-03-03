@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2024-03-01 18:34:56
+  -- Last modified:   2024-03-03 16:10:26
 
   -- {
   --   "felipec/vim-sanegx",
@@ -212,9 +212,9 @@ lvim.plugins = {
   --   end,
   -- },
   {
+    -- o vim-signature is a plugin to place, toggle and display marks.
     "kshenoy/vim-signature",
     lazy = true,
-    -- o vim-signature is a plugin to place, toggle and display marks.
     --   mx           Toggle mark 'x' and display it in the leftmost column
     -- dmx          Remove mark 'x' where x is a-zA-Z
 
@@ -360,20 +360,20 @@ let test#python#runner = 'pytest'
   -- },
   { "Glench/Vim-Jinja2-Syntax" },
   -- { "PegasusWang/vim-ubuntu-pastebin" },
-  {
-    -- https://github.com/iurimateus/luasnip-latex-snippets.nvim
-    -- A port of Gilles Castel's snippets for the LuaSnip Engine.
-    "iurimateus/luasnip-latex-snippets.nvim",
-    ft = { "markdown", "latex" },
-    config = function()
-      require("luasnip-latex-snippets").setup()
-      -- require("luasnip.config").set_config { enable_autosnippets = true }
-      -- require("luasnip").config.setup { enable_autosnippets = true }
-      require("luasnip").config.setup { enable_autosnippets = true, use_treesitter = true, allow_on_markdown = true }
-      -- require("luasnip").config.setup { enable_autosnippets = false, use_treesitter = true, allow_on_markdown = true }
-    end,
-    dependencies = { { "L3MON4D3/LuaSnip" }, { "lervag/vimtex" } },
-  },
+  -- {
+  --   -- https://github.com/iurimateus/luasnip-latex-snippets.nvim
+  --   -- A port of Gilles Castel's snippets for the LuaSnip Engine.
+  --   "iurimateus/luasnip-latex-snippets.nvim",
+  --   ft = { "markdown", "latex" },
+  --   config = function()
+  --     require("luasnip-latex-snippets").setup()
+  --     -- require("luasnip.config").set_config { enable_autosnippets = true }
+  --     -- require("luasnip").config.setup { enable_autosnippets = true }
+  --     require("luasnip").config.setup { enable_autosnippets = true, use_treesitter = true, allow_on_markdown = true }
+  --     -- require("luasnip").config.setup { enable_autosnippets = false, use_treesitter = true, allow_on_markdown = true }
+  --   end,
+  --   dependencies = { { "L3MON4D3/LuaSnip" }, { "lervag/vimtex" } },
+  -- },
   {
     "pchaos/timestamp.vim",
     -- branch = "master",
@@ -396,12 +396,12 @@ let test#python#runner = 'pytest'
   -- {
   --   "pchaos/select2snippet"
   -- },
-  {
-    -- 加载copilot后，vim比较卡
-    "github/copilot.vim",
-    ft = { "python", "lua" },
-    lazy = true,
-  },
+  -- {
+  --   -- 加载copilot后，vim比较卡
+  --   "github/copilot.vim",
+  --   ft = { "python", "lua" },
+  --   lazy = true,
+  -- },
   -- {
   --   "nvim-neotest/neotest",
   --   ft = { "python", "c", "lua" },
