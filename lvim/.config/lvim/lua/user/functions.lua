@@ -56,4 +56,49 @@ function M.showAutoDismissMessage(message, timeout)
   vim.notify(message, vim.log.levels.INFO, { timeout = timeout })
 end
 
+-- 定义合并选中区域内空行的函数
+function M.merge_empty_lines()
+  local selected = vim.fn.visualmode() == "V" or vim.fn.visualmode() == "v"
+  if selected then
+    -- 获取选中区域的起始行和结束行
+    local start_line = vim.fn.line("'<")
+    local end_line = vim.fn.line("'>")
+
+    -- 遍历选中区域内的每一行
+    local merged_empty_line = false
+    for line = start_line, end_line do
+      -- 获取当前行的内容
+      local current_line = vim.fn.getline(line)
+
+      -- 如果当前行是空行或者仅包含空格或tab字符，则与下一行合并
+      -- if current_line:match("^[ \t]*\n*$") and line < end_line then
+      if current_line:match("^%s*$") and line < end_line then
+        if not merged_empty_line then
+          merged_empty_line = true
+          vim.api.nvim_command(tostring(line) .. "j") -- 将光标移动到下一行
+          vim.api.nvim_command("d") -- 删除当前行
+        else
+          vim.api.nvim_command("d") -- 删除当前行 ???
+        end
+      else
+        merged_empty_line = false
+      end
+    end
+  end
+end
+
+function M.delete_empty_lines()
+  --[[删除包含tab键和空格的多个空行为一个空行
+  首先检查是否有文本被选择。如果有文本被选择，则使用 '<,'> 来表示当前选择的范围，然后执行删除空行的操作；否则，作用于整个 buffer 的所有内容。
+  --]]
+  local selected = vim.fn.visualmode() == "V" or vim.fn.visualmode() == "v"
+  if selected then
+    -- M.merge_empty_lines()
+    vim.api.nvim_command("\'<,\'>g/^\\s*$\\n\\s*$/d")
+  else
+    vim.api.nvim_command("g/^\\s*$\\n\\s*$/d")
+    vim.api.nvim_command("nohlsearch")
+  end
+end
+
 return M

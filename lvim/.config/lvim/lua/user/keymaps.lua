@@ -1,4 +1,4 @@
--- Modified: 2024-03-03 23:18:58
+-- Modified: 2024-03-12 12:09:51
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -77,13 +77,22 @@ lvim.builtin.which_key.mappings["dM"] = {
   "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
   "Test Method DAP",
 }
+
 lvim.builtin.which_key.mappings["df"] =
   { "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
 lvim.builtin.which_key.mappings["dF"] = {
   "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
   "Test Class DAP",
 }
-lvim.builtin.which_key.mappings["bx"] = { ':%s/^\n$//g<cr>', "连续的多个空行删除为只留一下一个空行" }
+
+-- local delete_empty_lines = require('user.functions').delete_empty_lines
+lvim.builtin.which_key.mappings["bx"] = {
+  -- :g/^\s*$\n\s*$/d 只有回车的空行，还能删除包含tab键和空格的空行
+  -- ":g/^\\s*$\\n\\s*$/d<CR>",
+  -- ":lua delete_empty_lines()<CR>",
+  ":lua require('user.functions').delete_empty_lines ()<CR>",
+  "连续的多个空行删除为只留一下一个空行",
+}
 
 lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 

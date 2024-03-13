@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2024-03-03 16:10:26
+  -- Last modified:   2024-03-13 11:32:39
 
   -- {
   --   "felipec/vim-sanegx",
@@ -26,6 +26,17 @@ lvim.plugins = {
     event = { "BufRead", "BufNewFile" },
     config = function()
       require("filetype").setup({ overrides = { extensions = { h = "cpp" } } })
+    end,
+  },
+  {
+    --[[
+    https://github.com/declancm/windex.nvim
+    A neovim plugin for cleeean neovim window (and tmux pane) functions
+    Use <leader>z to toggle maximizing the current neovim window (without any of the ugly borders that other maximizing plugins create) AND the current tmux pane.
+    -- ]]
+    'declancm/windex.nvim',
+    config = function()
+      require('windex').setup()
     end,
   },
   -- {
@@ -179,7 +190,7 @@ lvim.plugins = {
     "tpope/vim-surround",
     event = "BufRead",
     lazy = true,
-    --     ds : 删除包围符号
+    -- ds : 删除包围符号
     -- cs : 改变包围符号
     -- ysw : 当前至下一个词尾添加一个包围符号
     -- ysW : 当前至至下一个空格添加一个包围符号
@@ -343,22 +354,25 @@ let test#python#runner = 'pytest'
 
   },
   {
+    -- https://github.com/stsewd/gx-extended.vim
+    -- If you have plasticboy/vim-markdown installed (it's included in sheerun/vim-polyglot) you'll need to disable the default key mappings, since that plugin remaps gx by default.
     'stsewd/gx-extended.vim',
-    lazy = true,
+    -- lazy = true,
     -- Extend gx to use it beyond just URLs!
     -- using shortcut: ge
   },
   {
+    -- An awesome automatic table creator & formatter allowing one to create neat tables as you type.
     -- https://github.com/dhruvasagar/vim-table-mode
     "dhruvasagar/vim-table-mode",
-    lazy = true,
+    -- lazy = true,
   },
   -- {
   --   -- Python-mode, a Python IDE for Vim
   --   "python-mode/python-mode",
   --   branch = "develop",
   -- },
-  { "Glench/Vim-Jinja2-Syntax" },
+  -- { "Glench/Vim-Jinja2-Syntax" },
   -- { "PegasusWang/vim-ubuntu-pastebin" },
   -- {
   --   -- https://github.com/iurimateus/luasnip-latex-snippets.nvim
@@ -374,6 +388,34 @@ let test#python#runner = 'pytest'
   --   end,
   --   dependencies = { { "L3MON4D3/LuaSnip" }, { "lervag/vimtex" } },
   -- },
+  {
+    --[[ https://github.com/Exafunction/codeium.vim
+| Action | Function | Default Binding |
+| --- | --- | --- |
+| Clear current suggestion | `codeium#Clear()` | `<C-]>` |
+| Next suggestion | `codeium#CycleCompletions(1)` | `<M-]>` |
+| Previous suggestion | `codeium#CycleCompletions(-1)` | `<M-[>` |
+| Insert suggestion | `codeium#Accept()` | `<Tab>` |
+| Manually trigger suggestion | `codeium#Complete()` | `<M-Bslash>` |
+      --]]
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
+    config = function()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function()
+        return vim.fn['codeium#Accept']()
+      end, { expr = true, silent = true })
+      vim.keymap.set('i', '<c-;>', function()
+        return vim.fn['codeium#CycleCompletions'](1)
+      end, { expr = true, silent = true })
+      vim.keymap.set('i', '<c-,>', function()
+        return vim.fn['codeium#CycleCompletions'](-1)
+      end, { expr = true, silent = true })
+      vim.keymap.set('i', '<c-x>', function()
+        return vim.fn['codeium#Clear']()
+      end, { expr = true, silent = true })
+    end,
+  },
   {
     "pchaos/timestamp.vim",
     -- branch = "master",

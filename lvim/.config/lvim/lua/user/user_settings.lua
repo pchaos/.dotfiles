@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2024-02-28 13:08:41
+-- Last Modified: 2024-03-12 11:25:33
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -40,7 +40,7 @@ lvim.colorscheme = "evening"
 
 -- colored column
 vim.wo.colorcolumn = "121"
-opt.cmdheight = 2
+-- opt.cmdheight = 2
 opt.guifont = "monospace:h16" -- the font used in graphical neovim applications
 
 g.null_ls_auto_start = 0
@@ -62,7 +62,7 @@ formatters.setup({
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--print-with", "120" },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "typescript", "typescriptreact", "markdown" },
+    filetypes = { "latex", "typescriptreact", "markdown" },
   }, --
   { command = "beautysh", filetypes = { "sh", "csh", "zsh" }, args = { "--indent-size", "2" } }, -- bash csh zsh
   -- {
@@ -190,3 +190,6 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
   "smalljre_*/*",
   ".vale/",
 }
+
+-- require("user.plugins.friendly-snippets").print_current_directory()
+require("user.plugins.friendly-snippets").setup()

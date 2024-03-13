@@ -15,10 +15,6 @@
         "path": "./c.json"
       },
       {
-        "language": "css",
-        "path": "./css.json"
-      },
-      {
         "language": "python",
         "path": "./python.json"
       },

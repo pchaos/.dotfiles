@@ -1,6 +1,6 @@
 # lunarvim
 
-Last Modified: 2023-06-24 11:51:08
+Last Modified: 2024-03-10 00:00:00
 
 ## install
 
@@ -19,6 +19,7 @@ LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.
 
 All the new features with all the new bugs:
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+bash <(proxychains curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
 ### Install a Nerd Font
 
@@ -29,7 +30,17 @@ cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw
 
 ## uninstall
 
+### script
+
+You can remove LunarVim (including the configuration files) using the bundled uninstall script
+
+```shell
+bash ~/.local/share/lunarvim/lvim/utils/installer/uninstall.sh
+```
+
 To uninstall LunarVim, you can follow these steps:
+
+### By hand
 
 Open a terminal or command prompt.
 Navigate to the installation directory of LunarVim. By default, it is located in ~/.config/lvim on Unix-based systems or %USERPROFILE%\.config\lvim on Windows.
