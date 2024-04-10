@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2024-03-12 11:25:33
+-- Last Modified: 2024-04-01 00:18:13
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -26,7 +26,7 @@ opt.numberwidth = 4 -- set number column width to 3 {default 4}
 --   return vim.bo.filetype == "lua"
 -- end
 
-opt.updatetime = 330 -- faster completion (4000ms default)
+opt.updatetime = 350 -- faster completion (4000ms default)
 opt.wrap = true -- line wrap
 
 -- opt.background = "dark" -- set this to dark or light
@@ -85,33 +85,15 @@ formatters.setup({
   -- },
 })
 
--- for andrejlevkovitch/vim-lua-format
--- vim.cmd([[
---   autocmd FileType lua nnoremap <buffer> <c-k> :call LuaFormat()<cr>
---   autocmd BufWritePre *.lua call LuaFormat()
--- ]])
-
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds
 -- vim.lsp.buf.format({ timeout_ms = 2000 }) -- nvim 0.8+
 
 -- lvim.pydocstring_doq_path = "~/.local/bin/doq"
-cmd("let g:python3_host_prog  = expand('~/software/python3rd/conda3/bin/python')")
--- todo 以下会报错 ERROR Failed to run healthcheck for "provider" plugin. Exception:
--- api.nvim_command("let g:python3_host_prog = \"" .. string.gsub(fn.system("which python"), "%s+$", "") .. "\"")
--- g.python3_host_prog = fn.substitute(fn.system("which python"), "\n", "", "")
+-- cmd("let g:python3_host_prog  = expand('~/software/python3rd/conda3/bin/python')")
+func.setGlobalVarPath("python", "python3_host_prog")
 
--- cmd("let g:python3_host_prog  = expand('which python')")
 -- cmd("let g:pydocstring_doq_path = expand('~/.local/bin/doq')")
--- local doq_path = m.findCommandPath("doq")
--- if doq_path ~= "" then
---   -- print("Found doq path: " .. doq_path)
---   vim.g.pydocstring_doq_path = doq_path
--- end
--- func.setGlobalVarPath("doq", "pydocstring_")
 func.setGlobalVarPath("doq", "pydocstring_doq_path")
-
--- 以下代码单独执行不会报错，加上cmd就无法执行
--- cmd("let g:pydocstring_doq_path = substitute(system('which doq'), '\n', '', '')")
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {

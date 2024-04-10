@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2024-03-13 11:32:39
+  -- Last modified:   2024-04-03 16:40:32
 
   -- {
   --   "felipec/vim-sanegx",
@@ -431,6 +431,8 @@ let test#python#runner = 'pytest'
   },
   { -- 返回到 normal 模式时快速切换为英文输入法
     "pchaos/fcitx5-status",
+    -- branch = "dev",
+
   },
   { "pchaos/vim-templates", event = { "BufNewFile" } },
   -- { "pchaos/vim-templates" },
