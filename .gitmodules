@@ -19,3 +19,6 @@
 [submodule "submodule/bash-git-prompt"]
 	path = submodule/bash-git-prompt
 	url = https://github.com/magicmonty/bash-git-prompt.git
+[submodule "submodule/oh-my-bash"]
+	path = submodule/oh-my-bash
+	url = https://github.com/ohmybash/oh-my-bash.git
