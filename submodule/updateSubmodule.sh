@@ -1,6 +1,10 @@
 #!/bin/bash
-# Last Modified: 2023-06-16 09:58:19
+# Last Modified: 2024-04-25 23:37:57
 # 更新目录下的版本
+
+# Fetch New Changes: If you want to fetch the latest changes from the upstream repositories of all submodules and update them to the latest commit on their respective branches (not just the commit recorded in the main project), use:
+git submodule update --remote
+
 
 # 禁用 SC2145 警告
 # shellcheck disable=SC2145

@@ -1,5 +1,7 @@
 #!/bin/bash
-# Last Modified: 2023-06-16 09:52:09
+# Last Modified: 2024-04-12 11:56:59
+
+git submodule add https://github.com/ohmybash/oh-my-bash.git submodule/oh-my-bash
 
 # git clone https://github.com/chris-marsh/pureline.git
 cp pureline/configs/powerline_full_256col.conf ~/.pureline.conf
