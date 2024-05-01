@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2024-04-03 16:40:32
+  -- Last modified:   2024-04-29 12:08:19
 
   -- {
   --   "felipec/vim-sanegx",
@@ -276,6 +276,10 @@ lvim.plugins = {
     -- :RemoveToc command will do this for you, just remember keep insert fence option by default.
 
     'mzlogin/vim-markdown-toc',
+  },
+  {
+    -- https://github.com/fidian/hexmode
+    "fidian/hexmode",
   },
   { "mfussenegger/nvim-dap" },
   { "mfussenegger/nvim-dap-python", ft = { "python" } }, -- {

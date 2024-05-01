@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2024-04-01 00:18:13
+-- Last Modified: 2024-04-15 16:16:35
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -83,7 +83,7 @@ formatters.setup({
   -- 	args = { "--indent-width", "2", "--column-width", "120" },
   -- 	stdin = true,
   -- },
-})
+}, { command = "prettier", filetypes = { "css" } })
 
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds
 -- vim.lsp.buf.format({ timeout_ms = 2000 }) -- nvim 0.8+

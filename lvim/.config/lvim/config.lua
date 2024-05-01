@@ -24,6 +24,7 @@ require("user.timestamp_vim")
 
 -- general
 lvim.log.level = "warn"
+-- lvim.log.level = "warn"
 lvim.format_on_save = true
 
 -- to disable icons and use a minimalist setup, uncomment the following
