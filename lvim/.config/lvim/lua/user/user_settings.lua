@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2024-04-15 16:16:35
+-- Last Modified: 2024-07-03 23:19:21
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -11,6 +11,7 @@ local opt = vim.opt -- global/buffer/windows-scoped options
 local api = vim.api
 
 opt.encoding = "utf-8"
+opt.fileencodings = "ucs-bom,utf-8,chinese" -- 识别中文GB2312，UTF-8
 
 local func = require("user.functions")
 
