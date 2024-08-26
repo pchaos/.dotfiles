@@ -23,6 +23,8 @@
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
+    max_column = 120
+    textwidth = 118
 
 # Enable autocomplete layer
 [[layers]]
@@ -34,3 +36,77 @@ auto_completion_tab_key_behavior = "smart"
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+
+[[layers]]
+name = "github"
+
+[[layers]]
+  name = "git"
+
+[[layers]]
+  name = "sudo"
+
+[[layers]]
+  name = "edit"
+
+[[layers]]
+    name = 'core'
+    filetree_show_hidden = true
+    enable_smooth_scrolling = true
+
+[[layers]]
+name="lang#sh"
+
+[[layers]]
+    name = 'lang#c'
+
+[[layers]]
+  name="lang#python"
+  python_file_head = [
+      '# -*- coding: utf-8 -*-',
+      '',
+      ''
+  ]
+  # enable_typeinfo = true
+  # format_on_save = true
+
+[[layers]]
+  name = "lang#ipynb"
+   
+[[layers]]
+  name="lang#markdown"
+  enabled_formater=["remark", "prettier"]
+# yarn global add prettier
+# npm -g install remark
+# enable=false
+
+[[layers]]
+name="tools"
+
+[[layers]]
+  name = "chinese"
+
+[[layers]]
+  # need pip install notedown
+  name="lang#ipynb"
+
+[[layers]]
+name="lang#html"
+
+[[layers]]
+name="lang#latex"
+
+[[layers]]
+name="lang#toml"
+
+[[layers]]
+  name="test"
+
+[[layers]]
+name="default"
+
+[[layers]]
+  name = "format"
+
+
