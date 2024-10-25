@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2024-07-03 23:19:21
+-- Last Modified: 2024-10-25 18:06:31
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -34,8 +34,8 @@ opt.wrap = true -- line wrap
 -- lvim.colorscheme = "onedarker"
 -- lvim.colorscheme = "codemonkey"
 -- lvim.colorscheme = "desert"
-lvim.colorscheme = "evening"
--- lvim.colorscheme = "lunaperche"
+-- lvim.colorscheme = "evening"
+lvim.colorscheme = "lunaperche"
 -- lvim.colorscheme = "koehler"
 -- lvim.colorscheme = "oxocarbon"
 
@@ -63,7 +63,7 @@ formatters.setup({
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
     extra_args = { "--print-with", "120" },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "latex", "typescriptreact", "markdown" },
+    filetypes = { "latex", "typescriptreact", "css", "javascript", "markdown" },
   }, --
   { command = "beautysh", filetypes = { "sh", "csh", "zsh" }, args = { "--indent-size", "2" } }, -- bash csh zsh
   -- {
@@ -84,7 +84,7 @@ formatters.setup({
   -- 	args = { "--indent-width", "2", "--column-width", "120" },
   -- 	stdin = true,
   -- },
-}, { command = "prettier", filetypes = { "css" } })
+})
 
 -- vim.lsp.buf.formatting_sync(nil, 3500) -- 2.5 seconds
 -- vim.lsp.buf.format({ timeout_ms = 2000 }) -- nvim 0.8+
