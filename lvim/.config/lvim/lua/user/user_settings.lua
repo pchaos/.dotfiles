@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2024-10-25 18:06:31
+-- Last Modified: 2025-04-12 22:56:22
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -66,6 +66,14 @@ formatters.setup({
     filetypes = { "latex", "typescriptreact", "css", "javascript", "markdown" },
   }, --
   { command = "beautysh", filetypes = { "sh", "csh", "zsh" }, args = { "--indent-size", "2" } }, -- bash csh zsh
+  {
+    -- dnf install clang-tools-extra -y
+    command = "clang-format",
+    filetypes = { "c", "cpp" },
+    -- args = {"--indent-size", "2",},
+    args = { "--style=file" }, -- 使用项目中的 .clang-format 文件
+    stdin = true,
+  },
   -- {
   --   -- https://github.com/Koihik/LuaFormatter
   --   -- config demo: https://github.com/Koihik/LuaFormatter/blob/master/docs/Style-Config.md

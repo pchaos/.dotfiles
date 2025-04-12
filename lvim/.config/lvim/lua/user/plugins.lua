@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2024-04-29 12:08:19
+  -- Last modified:   2024-11-05 19:35:43
 
   -- {
   --   "felipec/vim-sanegx",
@@ -115,20 +115,7 @@ lvim.plugins = {
       vim.g.mkdp_auto_start = 0
     end,
 
-  }, -- {
-  --   "iamcco/markdown-preview.nvim",
-  --   run = "cd app && npm install",
-  --   -- run = function() vim.fn["mkdp#util#install"]() end,
-  --   setup = function()
-  --     vim.g.mkdp_filetypes = { "markdown" }
-  --   end,
-  --   ft = "markdown",
-  --   config = function()
-  --     -- " set to 1, nvim will open the preview window after entering the markdown buffer
-  --     -- " default: 0
-  --     vim.g.mkdp_auto_start = 0
-  --   end,
-  -- },
+  },
   -- {
   --   "LunarVim/Colorschemes"
   -- },
@@ -421,6 +408,24 @@ let test#python#runner = 'pytest'
     end,
   },
   {
+    -- https://github.com/tpope/vim-eunuch
+    "tpope/vim-eunuch",
+    --     Vim sugar for the UNIX shell commands that need it the most. Features include:
+
+    -- :Remove: Delete a file on disk without E211: File no longer available.
+    -- :Delete: Delete a file on disk and the buffer too.
+    -- :Move: Rename a buffer and the file on disk simultaneously. See also :Rename, :Copy, and :Duplicate.
+    -- :Chmod: Change the permissions of the current file.
+    -- :Mkdir: Create a directory, defaulting to the parent of the current file.
+    -- :Cfind: Run find and load the results into the quickfix list.
+    -- :Clocate: Run locate and load the results into the quickfix list.
+    -- :Lfind/:Llocate: Like above, but use the location list.
+    -- :Wall: Write every open window. Handy for kicking off tools like guard.
+    -- :SudoWrite: Write a privileged file with sudo.
+    -- :SudoEdit: Edit a privileged file with sudo.
+    -- Typing a shebang line causes the file type to be re-detected. Additionally the file will be automatically made executable (chmod +x) after the next write.
+  },
+  {
     "pchaos/timestamp.vim",
     -- branch = "master",
     branch = "dev",
@@ -440,7 +445,13 @@ let test#python#runner = 'pytest'
   },
   { "pchaos/vim-templates", event = { "BufNewFile" } },
   -- { "pchaos/vim-templates" },
-  { "pchaos/vim-lua-formatter.nvim", branch = "dev", ft = { "lua" } },
+  {
+    -- https://github.com/pchaos/vim-lua-formatter.nvim
+    -- https://github.com/Koihik/LuaFormatter
+    "pchaos/vim-lua-formatter.nvim",
+    branch = "dev",
+    ft = { "lua" },
+  },
   -- {
   --   "pchaos/select2snippet"
   -- },
