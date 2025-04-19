@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2024-11-05 19:35:43
+  -- Last modified:   2025-04-16 00:38:54
 
   -- {
   --   "felipec/vim-sanegx",
@@ -424,6 +424,13 @@ let test#python#runner = 'pytest'
     -- :SudoWrite: Write a privileged file with sudo.
     -- :SudoEdit: Edit a privileged file with sudo.
     -- Typing a shebang line causes the file type to be re-detected. Additionally the file will be automatically made executable (chmod +x) after the next write.
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
   },
   {
     "pchaos/timestamp.vim",

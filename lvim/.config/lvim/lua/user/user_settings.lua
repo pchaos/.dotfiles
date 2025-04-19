@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2025-04-12 22:56:22
+-- Last Modified: 2025-04-13 01:07:04
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -65,26 +65,30 @@ formatters.setup({
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "latex", "typescriptreact", "css", "javascript", "markdown" },
   }, --
-  { command = "beautysh", filetypes = { "sh", "csh", "zsh" }, args = { "--indent-size", "2" } }, -- bash csh zsh
   {
-    -- dnf install clang-tools-extra -y
+    -- bash csh zsh
+    command = "beautysh",
+    filetypes = { "sh", "csh", "zsh" },
+    args = { "--indent-size", "2" },
+  },
+  {
+    -- dnf install clangd clang-tools-extra -y
     command = "clang-format",
     filetypes = { "c", "cpp" },
-    -- args = {"--indent-size", "2",},
     args = { "--style=file" }, -- 使用项目中的 .clang-format 文件
     stdin = true,
   },
-  -- {
-  --   -- https://github.com/Koihik/LuaFormatter
-  --   -- config demo: https://github.com/Koihik/LuaFormatter/blob/master/docs/Style-Config.md
-  --   -- 针对Lua文件添加一个格式化器
-  --   -- dnf install -y lua-devel
-  --   command = "lua-format",
-  --   filetypes = { "lua" },
-  --   -- args = {"--indent-size", "2",},
-  --   args = { "--indent-size", "2", "--extra-sep-at-table-end" },
-  --   stdin = true,
-  -- },
+  {
+    -- https://github.com/Koihik/LuaFormatter
+    -- config demo: https://github.com/Koihik/LuaFormatter/blob/master/docs/Style-Config.md
+    -- 针对Lua文件添加一个格式化器
+    -- dnf install -y lua-devel
+    command = "lua-format",
+    filetypes = { "lua" },
+    -- args = {"--indent-size", "2",},
+    args = { "--indent-size", "2", "--extra-sep-at-table-end" },
+    stdin = true,
+  },
   -- {
   -- 	command = "stylua",
   -- 	filetypes = { "lua" },

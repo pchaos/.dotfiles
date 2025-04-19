@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2024-02-26 15:40:58
+Last modified:   2025-04-13 22:30:41
 
 Linters should be
 filled in as strings with either
@@ -25,7 +25,7 @@ require("user.timestamp_vim")
 -- general
 lvim.log.level = "warn"
 -- lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save.enabled = true
 
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -87,7 +87,7 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 -- lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.view.side = "right"
-lvim.builtin.nvimtree.setup.open_on_setup = false
+-- lvim.builtin.nvimtree.setup.open_on_setup = false -- 开启后，第一次启动r报错
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- generic LSP settings
