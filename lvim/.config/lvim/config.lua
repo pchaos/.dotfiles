@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2025-04-13 22:30:41
+Last modified:   2025-04-29 15:15:22
 
 Linters should be
 filled in as strings with either
@@ -9,6 +9,7 @@ an executable
 ]] -- Import plugins
 require("user.plugins")
 require("user.user_settings")
+require("user.filetypes")
 require("user.dap-configs.daps")
 -- require("user.markdown-preview")
 -- require("user.barbar")
