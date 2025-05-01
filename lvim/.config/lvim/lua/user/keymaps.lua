@@ -1,4 +1,4 @@
--- Modified: 2024-03-12 12:09:51
+-- Modified: 2025-05-01 12:01:55
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -102,4 +102,9 @@ lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.t
 local status_ok, vb = pcall(require, "user.keymaps.vim-bookmarks-keymaps")
 if status_ok then
   vb.setup()
+end
+
+local status_ok, ts = pcall(require, "user.keymaps.telescope-keymaps")
+if status_ok then
+  ts.setup()
 end

@@ -6,7 +6,7 @@
 local M = {}
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
-  prpint("which-key not found")
+  print("which-key not found")
   return
 end
 
