@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2023-09-27 15:58:45
+# Last Modified: 2025-06-12 12:19:41
 
 # stow (GNU Stow) version 2.3.1
 
@@ -49,3 +49,28 @@ echo $STOW_FOLDERS $DOTFILES
 
 # 调用同目录下的：install
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
+
+# 检查powerlevel10k主题
+THEME_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+
+# 检查主题目录是否存在
+if [ ! -d "$THEME_DIR" ]; then
+  echo "⏳ 正在克隆powerlevel10k主题..."
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+  # 验证克隆结果
+  if [ $? -eq 0 ]; then
+    echo "✅ 主题安装成功！"
+    ls -la "$THEME_DIR" | head -5  # 显示前5个文件验证
+  else
+    echo "❌ 克隆失败，请检查网络连接和git配置"
+    exit 1
+  fi
+else
+  echo "ℹ️ 主题已存在，目录内容："
+  ls -la "$THEME_DIR" | head -5
+fi
+
+# 检查关键文件
+THEME_FILE="$THEME_DIR/powerlevel10k.zsh-theme"
+[ -f "$THEME_FILE" ] && echo "🔍 找到主题文件: $THEME_FILE" || echo "⚠️ 缺少主题文件"
