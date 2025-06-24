@@ -1,2 +1,2 @@
--- last  Modified:   2025-05-15 17:57:27
-vim.g.loaded_perl_provider = 0
+-- last  Modified:   2025-06-18 23:40:23
+-- vim.g.loaded_perl_provider = 0

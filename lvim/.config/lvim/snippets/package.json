@@ -1,41 +1,57 @@
 {
-  "name": "nvim-snippets",
-  "author": "authorname",
-  "engines": {
+  "name": "nvim-snippets-custom",
+  "author": "author_name",
+  "#engines": {
     "vscode": "^1.11.0"
   },
   "contributes": {
     "snippets": [
       {
-        "language": "all",
+        "language": [
+          "all"
+        ],
         "path": "./all.json"
       },
       {
-        "language": "c",
+        "language": [
+          "c"
+        ],
         "path": "./c.json"
       },
       {
-        "language": "python",
+        "language": [
+          "python"
+        ],
         "path": "./python.json"
       },
       {
-        "language": "markdown",
+        "language": [
+          "markdown"
+        ],
         "path": "./markdown.json"
       },
       {
-        "language": "latex",
+        "language": [
+          "latex"
+        ],
         "path": "./latex.json"
       },
       {
-        "language": "bash",
+        "language": [
+          "bash"
+        ],
         "path": "./shellscript.json"
       },
       {
-        "language": "json",
+        "language": [
+          "json"
+        ],
         "path": "./json.json"
       },
       {
-        "language": "lua",
+        "language": [
+          "lua"
+        ],
         "path": "./lua.json"
       },
     ]

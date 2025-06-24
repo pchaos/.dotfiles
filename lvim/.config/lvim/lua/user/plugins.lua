@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-04-29 12:37:44
+  -- Last modified:   2025-06-15 22:03:59
 
   -- {
   --   "felipec/vim-sanegx",
@@ -306,6 +306,11 @@ lvim.plugins = {
     -- Or, if you want disable default keymapping, you can set like following.
 
     -- let g:pydocstring_enable_mapping = 0
+  },
+  {
+    -- Improvements to the handling of Django related files in Vim, some of which are based on Steve Losh's htmldjango scripts
+    'tweekmonster/django-plus.vim',
+    ft = { "htmldjango" },
   },
   {
     -- https://github.com/vim-test/vim-test
