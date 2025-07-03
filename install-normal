@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2025-06-12 12:19:41
+# Last Modified: 2025-07-03 19:31:11
 
 # stow (GNU Stow) version 2.3.1
 
@@ -74,3 +74,6 @@ fi
 # 检查关键文件
 THEME_FILE="$THEME_DIR/powerlevel10k.zsh-theme"
 [ -f "$THEME_FILE" ] && echo "🔍 找到主题文件: $THEME_FILE" || echo "⚠️ 缺少主题文件"
+
+# fcitx5 输入法切换,第一次使用需要执行
+# sudo update-desktop-database /usr/share/applications/
