@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2025-07-03 19:31:11
+# Last Modified: 2025-07-06 14:09:12
 
 # stow (GNU Stow) version 2.3.1
 
@@ -77,3 +77,69 @@ THEME_FILE="$THEME_DIR/powerlevel10k.zsh-theme"
 
 # fcitx5 输入法切换,第一次使用需要执行
 # sudo update-desktop-database /usr/share/applications/
+
+
+if [[ -n "$XDG_CURRENT_DESKTOP" && "$XDG_CURRENT_DESKTOP" =~ "KDE" ]]; then
+  echo "✅ 当前是KDE桌面环境 (XDG_CURRENT_DESKTOP=$XDG_CURRENT_DESKTOP)"
+
+  # 要删除的文件数组（支持通配符和相对路径）
+  files_to_delete=(
+    "$HOME/.config/autostart/terminal.desktop"
+  )
+
+  # ==================================================
+  # 文件删除函数（支持KDE回收站）
+  # ==================================================
+  function delete_files() {
+    local files=("${(@)files_to_delete}")  # 使用数组参数
+
+    # 检测KDE环境
+    if [[ "$XDG_CURRENT_DESKTOP" =~ "KDE" ]]; then
+      print -P "%F{blue}✓ 检测到KDE环境: 使用回收站功能%f"
+
+      # 检查kioclient是否可用
+      if ! command -v kioclient &>/dev/null; then
+        print -P "%F{red}✗ 需要安装kio包: sudo apt install kio%f" >&2
+        return 1
+      fi
+
+      # 处理数组中的文件
+      for pattern in "${files[@]}"; do
+        # 扩展通配符（支持~/*.tmp等表达式）
+        expanded_files=(${~pattern}(N))
+
+        # 检查文件是否存在
+        if [[ ${#expanded_files[@]} -eq 0 ]]; then
+          print -P "%F{yellow}⚠ 路径未找到: $pattern%f"
+          continue
+        fi
+
+        # 逐文件操作
+        for file in "${expanded_files[@]}"; do
+          absolute_path=${(e)~file:a}  # 获取绝对路径
+
+          # 执行回收站操作
+          kioclient move "$absolute_path" trash:/ && \
+            print -P "%F{green}♻️ 已移至回收站: $absolute_path%f" || \
+            print -P "%F{red}✗ 删除失败: $absolute_path%f" >&2
+        done
+      done
+
+    else
+      # 非KDE环境直接删除
+      print -P "%F{yellow}⚠ 非KDE环境: 永久删除文件%f"
+
+      for pattern in "${files[@]}"; do
+        expanded_files=(${~pattern}(N))
+
+        for file in "${expanded_files[@]}"; do
+          rm -v -- "$file" && \
+            print -P "%F{blue}?️ 已删除: ${file:a}%f" || \
+            print -P "%F{red}✗ 删除失败: ${file:a}%f" >&2
+        done
+      done
+    fi
+  }
+
+  delete_files files_to_delete
+fi
