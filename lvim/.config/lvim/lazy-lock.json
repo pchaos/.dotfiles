@@ -66,7 +66,7 @@
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-table-mode": { "branch": "master", "commit": "e4365bde024f73e205eefa2fb78e3029ddb92ea9" },
   "vim-templates": { "branch": "master", "commit": "bb76b7fab4a5cd081a42b7dc6d0e922c04c0057a" },
-  "vim-test": { "branch": "master", "commit": "62a13a84671829ecd5db1438aaec4903c964ff2e" },
+  "vim-test": { "branch": "master", "commit": "fba18e168565f055d4061408ada0f6abd9ea8bbd" },
   "vim-wakatime": { "branch": "master", "commit": "f39c4a201ae350aaba713b59d4a4fdd88e0811aa" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "windex.nvim": { "branch": "master", "commit": "1e86cba6f6f55ced60d17d6c6ebd51388a637b86" }

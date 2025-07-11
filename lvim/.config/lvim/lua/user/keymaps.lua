@@ -1,4 +1,4 @@
--- Modified: 2025-05-01 12:01:55
+-- Modified: 2025-07-11 20:07:45
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -107,4 +107,8 @@ end
 local status_ok, ts = pcall(require, "user.keymaps.telescope-keymaps")
 if status_ok then
   ts.setup()
+end
+local status_ok, bk = pcall(require, "user.keymaps.files-keymaps")
+if status_ok then
+  bk.setup()
 end
