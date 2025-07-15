@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2025-07-06 14:09:12
+# Last Modified: 2025-07-06 20:24:15
 
 # stow (GNU Stow) version 2.3.1
 
@@ -79,6 +79,7 @@ THEME_FILE="$THEME_DIR/powerlevel10k.zsh-theme"
 # sudo update-desktop-database /usr/share/applications/
 
 
+# 更新后,删除特定文件
 if [[ -n "$XDG_CURRENT_DESKTOP" && "$XDG_CURRENT_DESKTOP" =~ "KDE" ]]; then
   echo "✅ 当前是KDE桌面环境 (XDG_CURRENT_DESKTOP=$XDG_CURRENT_DESKTOP)"
 
