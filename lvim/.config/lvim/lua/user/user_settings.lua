@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2025-04-13 01:07:04
+-- Last Modified: 2025-07-16 19:03:17
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -185,6 +185,3 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
   "smalljre_*/*",
   ".vale/",
 }
-
--- require("user.plugins.friendly-snippets").print_current_directory()
-require("user.plugins.friendly-snippets").setup()

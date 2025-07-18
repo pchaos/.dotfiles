@@ -1,12 +1,14 @@
 {
   "createtimestamp": {
+    "scope": "all",
     "prefix": "ctimestamp",
     "body": [
       "Created: timestamp"
     ],
     "description": "create timestamp"
-  },  
+  },
   "modifytimestamp": {
+    "scope": "all",
     "prefix": "mtimestamp",
     "body": [
       "Modified: TIMESTAMP"
@@ -14,6 +16,7 @@
     "description": "Modified timestamp"
   },
   "timestamp": {
+    "scope": "all",
     "prefix": "timestamp",
     "body": [
       "Last Modified: TIMESTAMP"
@@ -21,6 +24,7 @@
     "description": "timestamp on save file"
   },
   "snippet": {
+    "scope": "all",
     "prefix": "snippet",
     "body": [
       "\"$1\": {",
