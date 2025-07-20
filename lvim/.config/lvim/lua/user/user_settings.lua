@@ -27,7 +27,7 @@ opt.numberwidth = 4 -- set number column width to 3 {default 4}
 --   return vim.bo.filetype == "lua"
 -- end
 
-opt.updatetime = 350 -- faster completion (4000ms default)
+opt.updatetime = 400 -- faster completion (4000ms default)
 opt.wrap = true -- line wrap
 
 -- opt.background = "dark" -- set this to dark or light
@@ -185,3 +185,6 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
   "smalljre_*/*",
   ".vale/",
 }
+
+require("user.plugins.auto-update-timestamp").config()
+
