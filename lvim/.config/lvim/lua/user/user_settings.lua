@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2025-07-16 19:03:17
+-- Last Modified: 2025-07-20 21:54:01
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -188,3 +188,5 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
 
 require("user.plugins.auto-update-timestamp").config()
 
+-- require('user.plugins.luasnip_config').setup()
+-- require("user.plugins.friendly-snippets").setup()

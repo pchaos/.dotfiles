@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-06-15 22:03:59
+  -- Last modified:   2025-07-20 12:44:01
 
   -- {
   --   "felipec/vim-sanegx",
@@ -437,19 +437,19 @@ let test#python#runner = 'pytest'
       require("todo-comments").setup()
     end,
   },
-  {
-    "pchaos/timestamp.vim",
-    -- branch = "master",
-    branch = "dev",
-    event = { "BufWritePre" },
-    lazy = true,
-    -- When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
-    -- For instance, if you create a new file and want to stamp it with a creation date and a last modified date, make the first few lines: >
-    --    Created:            TIMESTAMP
-    --    Last modified:      TIMESTAMP
-    --    Modified:      TIMESTAMP
-    --    Changed:       TIMESTAMP
-  },
+  -- {
+  --   "pchaos/timestamp.vim",
+  --   -- branch = "master",
+  --   branch = "dev",
+  --   event = { "BufWritePre" },
+  --   lazy = true,
+  --   --[[     When a file is written, and the filename matches |timestamp_automask|, this plugin will search the first and last |timestamp_modelines| lines of your file. If it finds the regexp |timestamp_regexp| then it will replace it with a timestamp. The timestamp is computed by first doing a |token_substitution| on |timestamp_rep| and passing the result to |strftime()|.
+  --   For instance, if you create a new file and want to stamp it with a creation date and a last modified date, make the first few lines: >
+  --      Created:            TIMESTAMP
+  --      Last modified:      TIMESTAMP
+  --      Modified:      TIMESTAMP
+  --      Changed:       TIMESTAMP ]]
+  -- },
   { -- 返回到 normal 模式时快速切换为英文输入法
     "pchaos/fcitx5-status",
     -- branch = "dev",
