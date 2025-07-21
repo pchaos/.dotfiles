@@ -1,6 +1,6 @@
 -- encoding=utf-8
 -- ~/.config/nvim/lua/auto-update-timestamp.lua
--- Modified: 2025-07-21 10:52:12
+-- Modified: 2025-07-21 19:08:10
 --[[ 这个 Lua 插件（auto-update-timestamp.lua）的主要作用是为 Neovim 提供一个自动更新文件时间戳的功能。
 
 具体来说，它的核心功能是在您保存文件之前（通过 BufWritePre 自动命令），自动查找文件中的特定时间戳字符串（如 "Modified: YYYY-MM-DD HH:MM:SS" 或 "Last Modified: YYYY-MM-DD HH:MM:SS"），并将其更新为当前的日期和时间。
@@ -30,16 +30,25 @@
 -- 默认配置
 local config = {
   search_lines = 10, -- 默认搜索文件的前10行和后10行
-  ignore_file_types = {},
-  ignore_file_names = {},
-  debug_mode = false, -- 调试模式开关
+  ignore_file_types = {}, -- 需要忽略的文件类型列表（可以根据需要填写）
+  ignore_file_names = {}, -- 需要忽略的文件名列表（可以根据需要填写）
+  debug_mode = false, -- 调试模式开关，控制是否输出调试信息
+  log_notify = false, -- 是否通过vim.notify输出日志
 }
 
--- 只有当 config.debug_mode 为 true 时才输出  
-local function debug_print(msg, debug_level)
-  debug_level = debug_level or vim.log.levels.DEBUG
-  if config.debug_mode then
-    debug_print(msg, debug_level)
+-- 只有当 config.debug_mode 为 true 时才输出调试信息
+-- msg: 要输出的消息
+-- debug_level: 输出的日志级别（默认为INFO级别）
+-- must_print: 是否强制输出，即使debug_mode为false时也会输出
+local function debug_print(msg, debug_level, must_print)
+  debug_level = debug_level or vim.log.levels.INFO -- 默认日志级别为INFO
+  must_print = must_print or false -- 默认为false，不强制输出
+  if config.debug_mode or must_print then -- 仅在debug_mode为true或must_print为true时输出
+    if config.log_notify then -- 如果启用vim.notify，使用notify输出
+      vim.notify(msg, debug_level) -- 使用vim.notify显示消息
+    else -- 否则使用print输出
+      print(msg) -- 直接在终端打印消息
+    end
   end
 end
 
@@ -141,7 +150,7 @@ local function update_timestamp()
         end)
         timestamp_found = true -- 标记已找到并更新
         updated_lines[i] = line
-        vim.notify("Auto-Update Timestamp: updated line " .. i .. ": '" .. line .. "'", vim.log.levels.INFO)
+        debug_print("Auto-Update Timestamp: updated line " .. i .. ": '" .. line .. "'", vim.log.levels.INFO, true)
       else
         -- 即使没有匹配，也显示该行的精确内容
         debug_print("Auto-Update Timestamp: No pattern match in line " .. i .. " (raw): " .. string.format("%q", line),
