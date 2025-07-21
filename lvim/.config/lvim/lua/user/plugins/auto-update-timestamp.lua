@@ -1,6 +1,6 @@
 -- encoding=utf-8
 -- ~/.config/nvim/lua/auto-update-timestamp.lua
--- Modified: 2025-07-20 21:25:48
+-- Modified: 2025-07-21 10:52:12
 --[[ 这个 Lua 插件（auto-update-timestamp.lua）的主要作用是为 Neovim 提供一个自动更新文件时间戳的功能。
 
 具体来说，它的核心功能是在您保存文件之前（通过 BufWritePre 自动命令），自动查找文件中的特定时间戳字符串（如 "Modified: YYYY-MM-DD HH:MM:SS" 或 "Last Modified: YYYY-MM-DD HH:MM:SS"），并将其更新为当前的日期和时间。
@@ -153,42 +153,6 @@ local function update_timestamp()
       debug_print("Auto-Update Timestamp: Skipping line " .. i .. " (outside search range).", vim.log.levels.WARN)
     end
   end
-  -- 遍历文件  -- 如果在前 N 行没有找到时间戳，则遍历文件的后 N 行进行查找和替换
-  -- if not timestamp_found then
-  --   debug_print("Auto-Update Timestamp: No match in top lines. Checking bottom " ..
-  --                 math.min(num_lines, config.search_lines) .. " lines.", vim.log.levels.INFO)
-  --   -- 重新初始化 updated_lines，因为我们可能需要从头开始修改
-  --   -- 这里的逻辑是先复制所有原始行，然后只修改后N行中匹配到的行
-  --   updated_lines = {}
-  --   for i = 1, num_lines do
-  --     table.insert(updated_lines, lines[i]) -- 先复制所有原始行
-  --   end
-
-  --   for i = math.max(1, num_lines - config.search_lines + 1), num_lines do
-  --     local line_idx = i -- 当前行在原始 lines 数组中的索引
-  --     local line = lines[line_idx] -- 获取原始行内容
-  --     -- 使用 string.format("%q", line) 打印行的精确内容，包括不可见字符
-  --     debug_print("Auto-Update Timestamp: Attempting match on line " .. line_idx .. " (raw): " ..
-  --                   string.format("%q", line), vim.log.levels.DEBUG)
-  --     if line:match(pattern) then
-  --       debug_print("Auto-Update Timestamp: Found match in line " .. line_idx .. ": '" .. line .. "'",
-  --                   vim.log.levels.INFO)
-  --       line = line:gsub(pattern, function(match)
-  --         local prefix_pattern = [[([Ll][Aa][Ss][Tt]%s*)*[Mm][Oo][Dd][Ii][Ff][Ii][Ee][Dd]%s*:%s*]]
-  --         local prefix = match:match(prefix_pattern)
-  --         return prefix .. current_time
-  --       end)
-  --       updated_lines[line_idx] = line -- 更新 updated_lines 中对应索引的行
-  --       timestamp_found = true
-  --       debug_print("Auto-Update Timestamp: Timestamp updated for line " .. line_idx .. ": '" .. line .. "'",
-  --                   vim.log.levels.INFO)
-  --     else
-  --       -- 即使没有匹配，也显示该行的精确内容
-  --       debug_print("Auto-Update Timestamp: No pattern match in line " .. line_idx .. " (raw): " ..
-  --                     string.format("%q", line), vim.log.levels.INFO)
-  --     end
-  --   end
-  -- end
 
   -- 如果在文件前 N 行或后 N 行找到了时间戳并进行了更新
   if timestamp_found then
