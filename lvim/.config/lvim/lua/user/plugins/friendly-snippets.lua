@@ -1,4 +1,4 @@
--- Last Modified: 2025-07-17 21:18:02
+-- Last Modified: 2025-07-23 14:51:47
 local status_ok, luasnip = pcall(require, "luasnip")
 if not status_ok then
   return
@@ -35,17 +35,17 @@ function M.setup()
   -- Debug: Path to custom snippets
   -- local custom_snippets_path = home_dir .. "/.config/lvim/snippets"
   -- local custom_snippets_path = home_dir .. "/snippets"
-  local custom_snippets_path = home_dir .. "/"
-  local lua_snippets_path = home_dir .. "/snippets/lua_custom_snippets.lua" -- New path
+  local custom_snippets_path = home_dir .. "/snippets"
+  -- local lua_snippets_path = home_dir .. "/snippets/lua_custom_snippets.lua" -- New path
   print("DEBUG: Expected custom snippets path: " .. custom_snippets_path)
   lvim.builtin.luasnip = {
     sources = {
       friendly_snippets = true, -- 启用官方片段
       lvim = true, -- 加载 LunarVim 内置片段
       custom = { -- 加载自定义片段
-        { paths = custom_snippets_path },
+        { paths = { custom_snippets_path } },
         -- Load your Lua dynamic snippets
-        { paths = lua_snippets_path, ft_func = require("luasnip.loaders.from_lua").load },
+        -- { paths = { lua_snippets_path }, ft_func = require("luasnip.loaders.from_lua").load },
       },
     },
   }

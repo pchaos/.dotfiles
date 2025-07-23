@@ -3,7 +3,7 @@
     "scope": "all",
     "prefix": "ctimestamp",
     "body": [
-      "Created: timestamp"
+      "Created: TIMESTAMP"
     ],
     "description": "create timestamp"
   },

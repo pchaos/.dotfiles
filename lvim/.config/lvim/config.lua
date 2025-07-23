@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2025-04-30 19:44:14
+Last modified:   2025-07-23 19:12:40
 
 Linters should be
 filled in as strings with either
@@ -20,13 +20,11 @@ require("user.keymaps")
 require("user.whichkey")
 require("user.timestamp_vim")
 
--- 配置 dap-python; The argument to setup is the path to the python installation which contains the debugpy module.
--- require('dap-python').setup('$(which python)')
-
 -- general
 lvim.log.level = "warn"
 -- lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
+lvim.format_on_save.timeout = 3000
 
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -82,7 +80,6 @@ lvim.keys.normal_mode["Z"] = ":TZFocus<CR>"
 -- }
 
 -- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true

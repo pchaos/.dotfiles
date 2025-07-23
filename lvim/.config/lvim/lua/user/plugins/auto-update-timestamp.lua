@@ -1,6 +1,6 @@
 -- encoding=utf-8
 -- ~/.config/nvim/lua/auto-update-timestamp.lua
--- Modified: 2025-07-21 19:08:10
+-- Modified: 2025-07-23 19:17:51
 --[[ 这个 Lua 插件（auto-update-timestamp.lua）的主要作用是为 Neovim 提供一个自动更新文件时间戳的功能。
 
 具体来说，它的核心功能是在您保存文件之前（通过 BufWritePre 自动命令），自动查找文件中的特定时间戳字符串（如 "Modified: YYYY-MM-DD HH:MM:SS" 或 "Last Modified: YYYY-MM-DD HH:MM:SS"），并将其更新为当前的日期和时间。
@@ -34,20 +34,21 @@ local config = {
   ignore_file_names = {}, -- 需要忽略的文件名列表（可以根据需要填写）
   debug_mode = false, -- 调试模式开关，控制是否输出调试信息
   log_notify = false, -- 是否通过vim.notify输出日志
+  message_prefix = "Auto-Update-Timestamp: ", -- 调试信息的前缀
 }
 
 -- 只有当 config.debug_mode 为 true 时才输出调试信息
 -- msg: 要输出的消息
 -- debug_level: 输出的日志级别（默认为INFO级别）
--- must_print: 是否强制输出，即使debug_mode为false时也会输出
-local function debug_print(msg, debug_level, must_print)
+-- force_print: 是否强制输出，即使debug_mode为false时也会输出
+local function debug_print(msg, debug_level, force_print)
   debug_level = debug_level or vim.log.levels.INFO -- 默认日志级别为INFO
-  must_print = must_print or false -- 默认为false，不强制输出
-  if config.debug_mode or must_print then -- 仅在debug_mode为true或must_print为true时输出
-    if config.log_notify then -- 如果启用vim.notify，使用notify输出
-      vim.notify(msg, debug_level) -- 使用vim.notify显示消息
+  force_print = force_print or false -- 默认为false，不强制输出
+  if config.debug_mode or force_print or debug_level >= vim.log.levels.WARN then -- 仅在debug_mode为true或must_print为true时输出
+    if config.log_notify or debug_level >= vim.log.levels.WARN then -- 如果启用vim.notify，使用notify输出
+      vim.notify(config.message_prefix .. msg, debug_level) -- 使用vim.notify显示消息
     else -- 否则使用print输出
-      print(msg) -- 直接在终端打印消息
+      print(config.message_prefix .. msg) -- 直接在终端打印消息
     end
   end
 end
@@ -75,6 +76,10 @@ function M.clear_ignore_file_type()
   config.ignore_file_types = {}
 end
 
+function M.set_debug_mode(new_mode)
+  new_mode = new_mode or false
+  config.debug_mode = new_mode
+end
 ---设置要忽略的文件名 (完整文件名，例如 "README.md")
 ---@param filename string|string[] 单个文件名或文件名列表
 function M.set_ignore_file_name(filename)
@@ -92,6 +97,30 @@ function M.clear_ignore_file_name()
   config.ignore_file_names = {}
 end
 
+local function process_line(line, i, pattern, prefix_pattern, current_time, updated_lines, timestamp_found)
+  -- 使用 string.format("%q", line) 打印行的精确内容，包括不可见字符
+  -- debug_print("Attempting match on line " .. i .. " (raw): " .. string.format("%q", line), vim.log.levels.DEBUG)
+  debug_print("Attempting match on line " .. i .. " (raw): " .. string.format("%q", line) .. pattern,
+              vim.log.levels.DEBUG)
+  if line:match(pattern) then
+    debug_print("Found match in line " .. i .. ": '" .. line .. "'", vim.log.levels.INFO)
+    -- 替换匹配到的时间戳
+    -- function(match) 用于在替换时保留 "Modified: " 或 "Last Modified: " 前缀
+    line = line:gsub(pattern, function(match)
+      -- 提取前缀部分 (例如 "Modified: " 或 "Last Modified : ")
+      local actual_prefix = match:match(prefix_pattern)
+      return actual_prefix .. current_time -- 将前缀与新时间戳拼接
+    end)
+    timestamp_found = true -- 标记已找到并更新
+    updated_lines[i] = line
+    debug_print("updated line " .. i .. ": '" .. line .. "'", vim.log.levels.INFO, true)
+  else
+    -- 即使没有匹配，也显示该行的精确内容
+    debug_print("No pattern match in line " .. i .. " (raw): " .. string.format("%q", line), vim.log.levels.INFO)
+  end
+  return line, timestamp_found, updated_lines
+end
+
 ---核心功能：更新文件中的时间戳
 local function update_timestamp()
   local current_buf = vim.api.nvim_get_current_buf()
@@ -99,11 +128,11 @@ local function update_timestamp()
   -- 获取当前缓冲区的完整文件名，然后只取文件名部分 (例如 "README.md")
   local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(current_buf), ":t")
 
-  debug_print("Auto-Update Timestamp: update_timestamp called for file: " .. filename, vim.log.levels.INFO)
+  debug_print("update_timestamp called for file: " .. filename, vim.log.levels.INFO)
 
   -- 检查当前文件类型或文件名是否在忽略列表中
   if config.ignore_file_types[filetype] or config.ignore_file_names[filename] then
-    debug_print("Auto-Update Timestamp: Ignoring file '" .. filename .. "' (filetype: " .. filetype .. ")")
+    debug_print("Ignoring file '" .. filename .. "' (filetype: " .. filetype .. ")")
     return -- 如果需要忽略，则直接返回，不执行更新
   end
 
@@ -118,12 +147,17 @@ local function update_timestamp()
 
   -- 获取当前日期时间，格式为 YYYY-MM-DD HH:MM:SS
   local current_time = os.date("%Y-%m-%d %H:%M:%S")
-  debug_print("Auto-Update Timestamp: Current time: " .. current_time, vim.log.levels.INFO)
+  -- debug_print("Current time: " .. current_time, vim.log.levels.INFO)
 
-  local pattern = [[[mM]odified%s*[:%s]*%d%d%d%d%-%d%d%-%d%d%s*%d%d:%d%d:%d%d]]
-  debug_print("Auto-Update Timestamp: Regex pattern: " .. pattern, vim.log.levels.DEBUG)
+  local pattern = [[[mM]odified%s*[:]+%s*%d%d%d%d%-%d%d%-%d%d%s*%d%d:%d%d:%d%d]]
+  debug_print("Regex pattern: " .. pattern, vim.log.levels.DEBUG)
+  local pattern_timestamp = "[mM]odified%s*[:]+%s*TIMESTAMP"
+  local prefix_pattern = [[[mM]odified%s*[:]+%s*]]
+  local pattern_create_timestamp = "[cC]reated%s*[:]+%s*TIMESTAMP"
+  local prefix_create_pattern = [[[cC]reated%s*[:]+%s*]]
   local datetime_only_pattern = [[%d%d%d%d%-%d%d%-%d%d%s+%d%d%:%d%d%:%d%d]]
-  debug_print("Auto-Update Timestamp: Datetime only pattern: " .. datetime_only_pattern, vim.log.levels.DEBUG)
+  debug_print("Datetime only pattern: " .. datetime_only_pattern, vim.log.levels.DEBUG)
+  -- local prefix_pattern = [[[mM]odified%s*[:%s]*]]
 
   -- 遍历所有行，并只在指定范围内进行查找和替换
   debug_print(
@@ -131,35 +165,26 @@ local function update_timestamp()
       config.search_lines .. " lines).", vim.log.levels.INFO)
   for i = 1, num_lines do
     -- 判断当前行是否在前 N 行或后 N 行的范围内
-    local is_in_search_range = (i <= config.search_lines) or (i > num_lines - config.search_lines)
+    -- local is_in_search_range = (i <= config.search_lines) or (i > num_lines - config.search_lines)
 
+    local is_in_search_range = (i <= config.search_lines) or (i > num_lines - math.min(config.search_lines, num_lines))
     if is_in_search_range then
       local line = lines[i]
-      -- 使用 string.format("%q", line) 打印行的精确内容，包括不可见字符
-      debug_print("Auto-Update Timestamp: Attempting match on line " .. i .. " (raw): " .. string.format("%q", line),
-                  vim.log.levels.DEBUG)
-      if line:match(pattern) then
-        debug_print("Auto-Update Timestamp: Found match in line " .. i .. ": '" .. line .. "'", vim.log.levels.INFO)
-        -- 替换匹配到的时间戳
-        -- function(match) 用于在替换时保留 "Modified: " 或 "Last Modified: " 前缀
-        line = line:gsub(pattern, function(match)
-          -- 提取前缀部分 (例如 "Modified: " 或 "Last Modified : ")
-          local prefix_pattern = [[[mM]odified%s*[:%s]*]]
-          local actual_prefix = match:match(prefix_pattern)
-          return actual_prefix .. current_time -- 将前缀与新时间戳拼接
-        end)
-        timestamp_found = true -- 标记已找到并更新
-        updated_lines[i] = line
-        debug_print("Auto-Update Timestamp: updated line " .. i .. ": '" .. line .. "'", vim.log.levels.INFO, true)
-      else
-        -- 即使没有匹配，也显示该行的精确内容
-        debug_print("Auto-Update Timestamp: No pattern match in line " .. i .. " (raw): " .. string.format("%q", line),
-                    vim.log.levels.INFO)
-      end
+      local line_original = line
 
+      line, timestamp_found, updated_lines = process_line(line, i, pattern, prefix_pattern, current_time, updated_lines,
+                                                          timestamp_found)
+      if line_original == line then
+        line, timestamp_found, updated_lines = process_line(line, i, pattern_timestamp, prefix_pattern, current_time,
+                                                            updated_lines, timestamp_found)
+        line, timestamp_found, updated_lines = process_line(line, i, pattern_create_timestamp, prefix_create_pattern,
+                                                            current_time, updated_lines, timestamp_found)
+      else
+        debug_print(line_original .. " -> " .. line, vim.log.levels.DEBUG)
+      end
     else
       -- 如果不在搜索范围内，可以跳过或进行其他处理
-      debug_print("Auto-Update Timestamp: Skipping line " .. i .. " (outside search range).", vim.log.levels.WARN)
+      -- debug_print("Skipping line " .. i .. " (outside search range).", vim.log.levels.INFO)
     end
   end
 
@@ -167,9 +192,9 @@ local function update_timestamp()
   if timestamp_found then
     -- 使用 nvim_buf_set_lines 更新整个缓冲区的内容
     vim.api.nvim_buf_set_lines(current_buf, 0, num_lines, false, updated_lines)
-    debug_print("Auto-Update Timestamp: Successfully updated timestamp for file: " .. filename, vim.log.levels.INFO)
+    debug_print("Successfully updated timestamp for file: " .. filename, vim.log.levels.INFO)
   else
-    debug_print("Auto-Update Timestamp: No timestamp pattern found in file: " .. filename, vim.log.levels.INFO)
+    debug_print("No timestamp pattern found in file: " .. filename, vim.log.levels.INFO)
   end
 end
 
@@ -272,7 +297,7 @@ function M.config()
         -- autotimestamp.set_ignore_file_name("README.md")
         -- debug_print("init.lua: Ignored file names set.", vim.log.levels.INFO)
 
-        debug_print("Auto-Update Timestamp: Plugin configuration applied.", vim.log.levels.INFO)
+        debug_print("Plugin configuration applied.", vim.log.levels.INFO)
       else
         -- 调试信息：插件模块加载失败
         debug_print("init.lua: Failed to load plugin module 'user.plugins.auto-update-timestamp': " .. autotimestamp,
@@ -288,7 +313,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("AutoUpdateTimestamp", { clear = true }),
   callback = update_timestamp, -- 调用核心更新函数
   pattern = "*", -- 针对所有文件
-  debug_print("Auto-Update Timestamp: Plugin loaded", vim.log.levels.INFO),
+  debug_print("Plugin loaded", vim.log.levels.INFO),
 })
 
 -- 将模块暴露为全局变量，方便在命令行直接调用

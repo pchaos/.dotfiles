@@ -1,4 +1,4 @@
--- Modified: 2025-07-20 21:49:18
+-- Modified: 2025-07-21 21:04:07
 local M = {}
 local luasnip = require('luasnip')
 -- local vscode_loader = require('luasnip.loaders.from_vscode')
@@ -17,7 +17,7 @@ function M.setup()
         print("DEBUG: Expected custom snippets path: " .. custom_snippets_path)
 
         local success, err = pcall(function()
-          vscode_loader.load({ paths = custom_snippets_path })
+          vscode_loader.load({ paths = { custom_snippets_path } })
         end)
         -- luasnip.snippets = luasnip.loaders.from_vscode().load({ paths= custom_snippets_path })
         if success then
