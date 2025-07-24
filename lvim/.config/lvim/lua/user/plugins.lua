@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-07-20 12:44:01
+  -- Last modified:   2025-07-24 14:04:23
 
   -- {
   --   "felipec/vim-sanegx",
@@ -436,6 +436,31 @@ let test#python#runner = 'pytest'
     config = function()
       require("todo-comments").setup()
     end,
+  },
+  {
+    'crispgm/nvim-tabline',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- optional
+    config = function()
+      require('tabline').setup({
+        show_index = true, -- show tab index
+        show_modify = true, -- show buffer modification indicator
+        show_icon = true, -- show file extension icon
+        fnamemodify = ':t', -- file name modifier
+        modify_indicator = '[+]', -- modify indicator
+        no_name = 'No name', -- no name buffer name
+        brackets = { '[', ']' }, -- file name brackets surrounding
+        inactive_tab_max_length = 0, -- max length of inactive tab titles, 0 to ignore
+        showtabline = 2, -- 0: never show, 1: only if tabs are present, 2: always show
+      })
+    end,
+  },
+  {
+    --- https://github.com/danymat/neogen
+    "danymat/neogen",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = true,
+    -- Uncomment next line if you want to follow only stable versions
+    version = "*",
   },
   -- {
   --   "pchaos/timestamp.vim",
