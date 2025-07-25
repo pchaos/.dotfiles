@@ -1,4 +1,4 @@
--- Modified: 2025-07-11 20:07:45
+-- Modified: 2025-07-25 12:26:21
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -59,8 +59,11 @@ cmd('noremap <C-b> :noh<cr>:call clearmatches()<cr>') -- clear matches Ctrl+b
 -- tab move
 -- nmap('S-h', ':bnext<cr>')
 -- nmap('S-l', ':bprev<cr>')
-lvim.keys.normal_mode["<A-l>"] = ":bnext<cr>" -- alt+l move to next tab
-lvim.keys.normal_mode["<A-h>"] = ":bprev<cr>" -- alt+h move to prev tab
+lvim.keys.normal_mode["<A-l>"] = ":bnext<cr>" -- alt+l move to next buffer
+lvim.keys.normal_mode["<A-h>"] = ":bprevious<cr>" -- alt+h move to prev buffer
+
+lvim.keys.normal_mode["gt"] = ":bnext<cr>" -- gt move to next buffer
+lvim.keys.normal_mode["gT"] = ":BufferLineCyclePrev<cr>" -- gT move to prev buffer
 
 -- <C--> 快捷键来触发 pydocstring 插件
 lvim.keys.normal_mode["<C-->"] = { "<Plug>(pydocstring)", { silent = true } }
@@ -111,4 +114,11 @@ end
 local status_ok, bk = pcall(require, "user.keymaps.files-keymaps")
 if status_ok then
   bk.setup()
+end
+
+local status_ok, bk = pcall(require, "user.keymaps.harpoon-keymaps")
+if status_ok then
+  bk.config()
+else
+  vim.notify("harpoon-keymaps not found", vim.log.levels.WARN)
 end

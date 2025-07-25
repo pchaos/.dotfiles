@@ -1,6 +1,6 @@
 -- encoding=utf-8
 -- ~/.config/nvim/lua/auto-update-timestamp.lua
--- Modified: 2025-07-23 19:17:51
+-- Modified: 2025-07-24 23:57:58
 --[[ 这个 Lua 插件（auto-update-timestamp.lua）的主要作用是为 Neovim 提供一个自动更新文件时间戳的功能。
 
 具体来说，它的核心功能是在您保存文件之前（通过 BufWritePre 自动命令），自动查找文件中的特定时间戳字符串（如 "Modified: YYYY-MM-DD HH:MM:SS" 或 "Last Modified: YYYY-MM-DD HH:MM:SS"），并将其更新为当前的日期和时间。
@@ -25,7 +25,11 @@
 使用 Neovim API 中更底层的缓冲区操作，直接修改特定行的内容，而不是操作整个行列表。
 
 但这些替代方案会大大增加插件的复杂性。对于当前插件的“在文件头尾查找并更新时间戳”的场景，目前的实现是合理的折衷。
- ]] local M = {}
+ ]] if vim.g.AutoUpdateTimestamp then
+  -- 如果已经赋值，则返回 vim.g.AutoUpdateTimestamp
+  return vim.g.AutoUpdateTimestamp
+end
+local M = {}
 
 -- 默认配置
 local config = {
@@ -92,6 +96,14 @@ function M.set_ignore_file_name(filename)
   end
 end
 
+function M.get_ignore_file_name()
+  -- 确保 config.ignored_file_names 被初始化为表
+  if not config.ignore_file_names then
+    config.ignore_file_names = {}
+  end
+  print(vim.inspect(config)) -- 这个可以打印 config 的内容来检查其是否已初始化
+end
+
 ---清空所有忽略的文件名
 function M.clear_ignore_file_name()
   config.ignore_file_names = {}
@@ -132,7 +144,8 @@ local function update_timestamp()
 
   -- 检查当前文件类型或文件名是否在忽略列表中
   if config.ignore_file_types[filetype] or config.ignore_file_names[filename] then
-    debug_print("Ignoring file '" .. filename .. "' (filetype: " .. filetype .. ")")
+    debug_print("Ignoring file '" .. filename .. "' (filetype: " .. filetype .. ")" .. "filename:  " .. filename,
+                vim.log.levels.INFO, true)
     return -- 如果需要忽略，则直接返回，不执行更新
   end
 
@@ -317,6 +330,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- 将模块暴露为全局变量，方便在命令行直接调用
-_G.AutoUpdateTimestamp = M
+vim.g.AutoUpdateTimestamp = M
 
 return M

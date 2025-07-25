@@ -1,10 +1,10 @@
 -- 用户自定义设置
--- Last Modified: 2025-07-22 18:10:49
+-- Last Modified: 2025-07-25 00:29:11
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
 local cmd = vim.cmd -- execute Vim commands
-local exec = vim.api.nvim_exec -- execute Vimscript
+-- local exec = vim.api.nvim_exec -- execute Vimscript
 local fn = vim.fn -- call Vim functions
 local g = vim.g -- global variables
 local opt = vim.opt -- global/buffer/windows-scoped options
@@ -186,7 +186,15 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = {
   ".vale/",
 }
 
-require("user.plugins.auto-update-timestamp").config()
+-- require("user.plugins.auto-update-timestamp").config()
+-- require("user.plugins.auto-update-timestamp").set_ignore_file_name("tmp.txt")
+local ok, auto_update_timestamp = pcall(require, "user.plugins.auto-update-timestamp")
+if ok then
+  auto_update_timestamp.config()
+  auto_update_timestamp.set_ignore_file_name("tnp.txt")
+else
+  vim.notify("Failed to load plugin module auto-update-timestamp", vim.log.levels.WARN)
+end
 
 -- require('user.plugins.luasnip_config').setup()
 -- require("user.plugins.friendly-snippets").setup()

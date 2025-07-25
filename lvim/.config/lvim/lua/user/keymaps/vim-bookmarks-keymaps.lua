@@ -17,19 +17,15 @@ local m_opts = {
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
-  desc = "Bookmarks",
+  desc = "+Bookmarks",
 }
 
 local m_mappings = {
   a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
   c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
   b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
-  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
-  ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
-  [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
   l = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
   j = { "<cmd>silent BookmarkNext<cr>", "Next" },
-  s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
   k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
   S = { "<cmd>silent BookmarkShowAll<cr>", "Show all" },
   -- s = {
@@ -37,11 +33,13 @@ local m_mappings = {
   --   "Show",
   -- },
   x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
-  [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
+  -- [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }
+
 function M.setup()
   -- vim.g.bookmark_no_default_key_mappings = 1
   which_key.register(m_mappings, m_opts)
+  which_key.register(m1_mappings, m_opts)
 end
 
 return M

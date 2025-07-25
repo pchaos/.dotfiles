@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-07-24 14:04:23
+  -- Last modified:   2025-07-25 18:06:18
 
   -- {
   --   "felipec/vim-sanegx",
@@ -462,6 +462,95 @@ let test#python#runner = 'pytest'
     -- Uncomment next line if you want to follow only stable versions
     version = "*",
   },
+  {
+    --- https://github.com/MeanderingProgrammer/render-markdown.nvim
+    --- https://github.com/MeanderingProgrammer/render-markdown.nvim/wiki
+    --- Plugin to improve viewing Markdown files in Neovim
+    'MeanderingProgrammer/render-markdown.nvim',
+    enabled = false,
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    -- config = function()
+    --   local harpoon = require("harpoon")
+
+    --   -- REQUIRED
+    --   harpoon:setup()
+    --   -- REQUIRED
+    --   vim.keymap.set("n", "<leader>a", function()
+    --     harpoon:list():add()
+    --   end)
+    --   vim.keymap.set("n", "<C-e>", function()
+    --     harpoon.ui:toggle_quick_menu(harpoon:list())
+    --   end)
+
+    --   vim.keymap.set("n", "<C-h>", function()
+    --     harpoon:list():select(1)
+    --   end)
+    --   vim.keymap.set("n", "<C-t>", function()
+    --     harpoon:list():select(2)
+    --   end)
+    --   vim.keymap.set("n", "<C-n>", function()
+    --     harpoon:list():select(3)
+    --   end)
+    --   vim.keymap.set("n", "<C-s>", function()
+    --     harpoon:list():select(4)
+    --   end)
+
+    --   -- Toggle previous & next buffers stored within Harpoon list
+    --   vim.keymap.set("n", "<C-S-P>", function()
+    --     harpoon:list():prev()
+    --   end)
+    --   vim.keymap.set("n", "<C-S-N>", function()
+    --     harpoon:list():next()
+    --   end)
+    -- end,
+  },
+  {
+    --- https://github.com/nguyenvukhang/nvim-toggler
+    --- Invert text in vim
+    --- the default binding is <leader>i
+    'nguyenvukhang/nvim-toggler',
+    config = function()
+      require('nvim-toggler').setup()
+    end,
+  },
+  {
+    --- https://github.com/jbyuki/venn.nvim
+    -- Draw ASCII diagrams in Neovim.
+    -- Usage
+    -- set virtualedit=all or set ve=all. This will allow you to freely move the cursor in the buffer. (see help virtualedit).
+    -- Enter in Visual Block mode using <C-v> or <C-q>. Select the region where the box should be.
+    -- Invoke :VBox. This will draw a rectangle. In case, it has a width or a height of 1, it will draw a line.
+    "jbyuki/venn.nvim",
+    enabled = false,
+  },
+  {
+    'code-biscuits/nvim-biscuits',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('nvim-treesitter.install').update({ with_sync = true })
+      require('nvim-biscuits').setup({
+        default_config = { max_length = 12, min_distance = 5, prefix_string = " 📎 " },
+        language_config = {
+          html = { prefix_string = " 🌐 " },
+          javascript = { prefix_string = " ✨ ", max_length = 80 },
+          python = { prefix_string = " 🐍 ", max_length = 120 },
+          bash = { enabled = false },
+        },
+      })
+    end,
+  },
+  --
+  -- my plugins,
+  --
   -- {
   --   "pchaos/timestamp.vim",
   --   -- branch = "master",
