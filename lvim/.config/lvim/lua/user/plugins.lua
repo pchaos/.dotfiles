@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-07-25 18:06:18
+  -- Last modified:   2025-07-28 17:57:26
 
   -- {
   --   "felipec/vim-sanegx",
@@ -386,15 +386,20 @@ let test#python#runner = 'pytest'
   -- },
   {
     --[[ https://github.com/Exafunction/codeium.vim
-| Action | Function | Default Binding |
-| --- | --- | --- |
-| Clear current suggestion | `codeium#Clear()` | `<C-]>` |
-| Next suggestion | `codeium#CycleCompletions(1)` | `<M-]>` |
-| Previous suggestion | `codeium#CycleCompletions(-1)` | `<M-[>` |
-| Insert suggestion | `codeium#Accept()` | `<Tab>` |
-| Manually trigger suggestion | `codeium#Complete()` | `<M-Bslash>` |
+    --[[ https://github.com/Exafunction/codeium.vim
+    --codeium.vim改名为windsurf.vim
+
+| Action                      | Function                       | Default Binding |
+| ---                         | ---                            | ---             |
+| Clear current suggestion    | `codeium#Clear()`              | `<C-]>`         |
+| Next suggestion             | `codeium#CycleCompletions(1)`  | `<M-]>`         |
+| Previous suggestion         | `codeium#CycleCompletions(-1)` | `<M-[>`         |
+| Insert suggestion           | `codeium#Accept()`             | `<Tab>`         |
+| Manually trigger suggestion | `codeium#Complete()`           | `<M-Bslash>`    |
       --]]
-    'Exafunction/codeium.vim',
+    -- 'Exafunction/codeium.vim',
+    'Exafunction/windsurf.vim',
+    enabled = false,
     event = 'BufEnter',
     config = function()
       -- Change '<C-g>' here to any keycode you like.
@@ -533,6 +538,8 @@ let test#python#runner = 'pytest'
     enabled = false,
   },
   {
+    --- https://github.com/code-biscuits/nvim-biscuits
+    --- Code Biscuits are in-editor annotations usually at the end of a closing tag/bracket/parenthesis/etc. They help you get the context of the end of that AST node so you don't have to navigate to find it.
     'code-biscuits/nvim-biscuits',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
@@ -545,6 +552,72 @@ let test#python#runner = 'pytest'
           python = { prefix_string = " 🐍 ", max_length = 120 },
           bash = { enabled = false },
         },
+        max_file_size = '100kb',
+        on_events = { 'InsertLeave', 'CursorHoldI' },
+        cursor_line_only = true,
+      })
+    end,
+  },
+  {
+    --- https://github.com/kiddos/gemini.nvim
+    --- 需要环境变量设置 GOOGLE_API_KEY
+    --- 去 [Google AI Studio](https://aistudio.google.com/app/apikey) 创建一个免费的 API 密钥
+    'kiddos/gemini.nvim',
+    opts = {},
+    enabled = false,
+  },
+  {
+    -- https://
+    -- 加载copilot后，vim比较卡
+    "github/copilot.vim",
+    enabled = true,
+    ft = {
+      "python",
+      "lua",
+      "c",
+      "cpp",
+      "bash",
+      "zsh",
+      "markdown",
+      "vim",
+      "yaml",
+      "toml",
+      "json",
+      "javascript",
+      "typescript",
+      "html",
+      "css",
+    },
+    lazy = true,
+    event = { "InsertEnter" },
+    config = function()
+      -- 需要设置环境变量GITHUB_TOKEN
+      -- vim.g.copilot_filetypes = { ["*"] = false, python = true, lua = true, markdown = true }
+      -- vim.g.copilot_no_tab_map = true
+      -- vim.keymap.set("i", "<M-g>", 'copilot#Accept()', { silent = true, expr = true })
+      vim.keymap.set('i', '<M-.>', 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
+    end,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken",
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+    config = function()
+      vim.api.nvim_create_autocmd('BufEnter', {
+        pattern = 'copilot-*',
+        callback = function()
+          -- Set buffer-local options
+          vim.opt_local.relativenumber = false
+          vim.opt_local.number = false
+          vim.opt_local.conceallevel = 0
+        end,
       })
     end,
   },
@@ -581,12 +654,7 @@ let test#python#runner = 'pytest'
   -- {
   --   "pchaos/select2snippet"
   -- },
-  -- {
-  --   -- 加载copilot后，vim比较卡
-  --   "github/copilot.vim",
-  --   ft = { "python", "lua" },
-  --   lazy = true,
-  -- },
+
   -- {
   --   "nvim-neotest/neotest",
   --   ft = { "python", "c", "lua" },
