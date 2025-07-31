@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-07-28 17:57:26
+  -- Last modified:   2025-07-31 20:59:08
 
   -- {
   --   "felipec/vim-sanegx",
@@ -563,8 +563,9 @@ let test#python#runner = 'pytest'
     --- 需要环境变量设置 GOOGLE_API_KEY
     --- 去 [Google AI Studio](https://aistudio.google.com/app/apikey) 创建一个免费的 API 密钥
     'kiddos/gemini.nvim',
-    opts = {},
     enabled = false,
+    lazy = false,
+    opts = {},
   },
   {
     -- https://
@@ -600,14 +601,22 @@ let test#python#runner = 'pytest'
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = true,
     dependencies = {
       { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
     build = "make tiktoken",
-    opts = {
-      -- See Configuration section for options
-    },
+    opts = function()
+      local user = vim.env.USER or "User"
+      user = user:sub(1, 1):upper() .. user:sub(2)
+      return {
+        auto_insert_mode = true,
+        question_header = "  " .. user .. " ",
+        answer_header = "  Copilot ",
+        window = { width = 0.4 },
+      }
+    end,
     -- See Commands section for default commands if you want to lazy load on them
     config = function()
       vim.api.nvim_create_autocmd('BufEnter', {
@@ -619,6 +628,7 @@ let test#python#runner = 'pytest'
           vim.opt_local.conceallevel = 0
         end,
       })
+      -- vim.g.copilot_proxy = 'socks5://127.0.0.1:1081'
     end,
   },
   --
