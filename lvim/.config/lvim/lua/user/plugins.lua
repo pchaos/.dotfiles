@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-07-31 20:59:08
+  -- Last modified:   2025-08-02 22:31:53
 
   -- {
   --   "felipec/vim-sanegx",
@@ -664,11 +664,44 @@ let test#python#runner = 'pytest'
   -- {
   --   "pchaos/select2snippet"
   -- },
+  {
+    'puremourning/vimspector',
+    config = function()
+      -- vimspector setup
+      -- -- 设置 vimspector 代码窗口最小宽度
+      vim.g.vimspector_code_minwidth = 90
 
+      -- 设置 vimspector 终端最大宽度
+      vim.g.vimspector_terminal_maxwidth = 75
+
+      -- 设置 vimspector 终端最小宽度
+      vim.g.vimspector_terminal_minwidth = 20
+
+      -- -- 启用 Visual Studio 风格的映射
+      vim.g.vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+      -- vim.g.vimspector_enable_mappings = 'HUMAN'
+      vim.g.vimspector_install_gadgets = { 'debugpy', 'local-lua-debugger-vscodev', 'CodeLLDB' }
+      -- for normal mode - the word under the cursor
+      vim.api.nvim_set_keymap('n', '<Leader>di', '<Plug>VimspectorBalloonEval', { noremap = true, silent = true })
+
+      -- for visual mode, the visually selected text
+      vim.api.nvim_set_keymap('x', '<Leader>di', '<Plug>VimspectorBalloonEval', { noremap = true, silent = true })
+
+      -- vim.cmd [[
+      --   let g:vimspector_enable_mappings = 'HUMAN'
+      -- ]]
+    end,
+  },
   -- {
   --   "nvim-neotest/neotest",
   --   ft = { "python", "c", "lua" },
-  --   dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "antoinemadec/FixCursorHold.nvim" },
+  --   dependencies = {
+  --     "nvim-neotest/nvim-nio",
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "antoinemadec/FixCursorHold.nvim",
+  --   },
   -- },
   -- {
   --   "nvim-neotest/neotest-python",
@@ -696,6 +729,7 @@ let test#python#runner = 'pytest'
   --           --       -- NB: This function is called a lot so don't perform any heavy tasks within it.
   --           --       -- is_test_file = function(file_path)
   --           --       -- end,
+  --           pytest_discover_instances = true,
   --         }),
   --       },
   --     })
