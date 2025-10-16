@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2025-07-25 00:29:11
+-- Last Modified: 2025-10-10 12:25:55
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -66,9 +66,11 @@ formatters.setup({
     filetypes = { "latex", "typescriptreact", "css", "javascript", "markdown" },
   }, --
   {
+    -- https://github.com/lovesegfault/beautysh
     -- bash csh zsh
     command = "beautysh",
-    filetypes = { "sh", "csh", "zsh" },
+    -- command = "/usr/local/bin/beautysh",
+    filetypes = { "bash", "sh", "csh", "zsh" },
     args = { "--indent-size", "2" },
   },
   {

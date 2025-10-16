@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-08-02 22:31:53
+  -- Last modified:   2025-10-02 21:53:55
 
   -- {
   --   "felipec/vim-sanegx",
@@ -103,6 +103,7 @@ lvim.plugins = {
   -- },
 
   {
+    -- 如果preview有问题,检查: /home/user/.local/share/lvim/mason/packages/beautysh/venv/bin
     "iamcco/markdown-preview.nvim",
     event = { "BufRead" },
     ft = { "markdown" },

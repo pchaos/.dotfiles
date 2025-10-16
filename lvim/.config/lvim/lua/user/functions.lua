@@ -30,6 +30,7 @@ end
 
 -- 设置全局变量的路径
 function M.setGlobalVarPath(shellCommand, varName, commandFunc)
+  -- todo 增加几个例子
   -- 默认使用 m.findCommandPath 函数查找命令路径
   commandFunc = commandFunc or M.findCommandPath
   if M.isempty(varName) then
