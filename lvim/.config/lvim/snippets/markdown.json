@@ -44,6 +44,13 @@
       "\\end{prop}"
     ]
   },
+  "tags": {
+    "prefix": "tags",
+    "description": "Tags environment",
+    "body": [
+      "tags: #\t${0:${TM_SELECTED_TEXT}}"
+    ]
+  },
   "thrm": {
     "prefix": "thrm",
     "description": "Theorem",
