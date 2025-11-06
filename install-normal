@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2025-07-06 20:24:15
+# Last Modified: 2025-11-06 12:04:26
 
 # stow (GNU Stow) version 2.3.1
 
@@ -121,7 +121,7 @@ if [[ -n "$XDG_CURRENT_DESKTOP" && "$XDG_CURRENT_DESKTOP" =~ "KDE" ]]; then
 
           # 执行回收站操作
           kioclient move "$absolute_path" trash:/ && \
-            print -P "%F{green}♻️ 已移至回收站: $absolute_path%f" || \
+            print -P "%F{green}♻️ 已移至回收站: $absolute_path to trash:/%f" || \
             print -P "%F{red}✗ 删除失败: $absolute_path%f" >&2
         done
       done
