@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-Last modified:   2025-07-23 19:12:40
+Last modified:   2025-11-12 18:30:52
 
 Linters should be
 filled in as strings with either
@@ -31,6 +31,9 @@ lvim.format_on_save.timeout = 3000
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
+-- lvim.localleader = ","
+vim.g.maplocalleader = ","
+
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-n>"] = ":NvimTreeToggle<CR>"
