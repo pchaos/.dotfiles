@@ -1,5 +1,5 @@
 -- 用户自定义设置
--- Last Modified: 2025-10-10 12:25:55
+-- Last Modified: 2025-12-06 21:22:05
 -----------------------------------------------------------
 -- Neovim API aliases
 -----------------------------------------------------------
@@ -10,6 +10,8 @@ local g = vim.g -- global variables
 local opt = vim.opt -- global/buffer/windows-scoped options
 local api = vim.api
 
+-- opt.backup = true -- creates a backup file
+opt.swapfile = true -- creates a swapfile
 opt.encoding = "utf-8"
 opt.fileencodings = "ucs-bom,utf-8,chinese" -- 识别中文GB2312，UTF-8
 
