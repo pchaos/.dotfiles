@@ -50,6 +50,8 @@ echo $STOW_FOLDERS $DOTFILES
 # 调用同目录下的：install
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
 
+# sleep 10
+
 # 检查powerlevel10k主题
 THEME_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
