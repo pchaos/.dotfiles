@@ -132,3 +132,9 @@ dmypy.json
 lazy-lock.json
 
 bash/.gemini/tmp
+bash/.gemini/antigravity/conversations
+bash/.gemini/antigravity/brain
+bash/.gemini/antigravity/code_tracker
+**/.sisyphus/
+.aider*
+
