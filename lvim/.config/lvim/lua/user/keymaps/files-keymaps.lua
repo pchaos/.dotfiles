@@ -1,4 +1,4 @@
--- Modified: 2025-11-01 00:11:02
+-- Modified: 2026-04-17 16:43:41
 ---- Description: This module sets up key mappings for copying file paths and names
 -- using the <leader>b prefix in normal mode. It integrates with
 local M = {}
@@ -10,6 +10,11 @@ function M.setup()
     a = { "<cmd>let @+ = expand('%:p')<cr>", "Copy full File Path" },
     -- 快捷键复制当前文件的路径（不包含文件名）
     p = { "<cmd>let @+ = expand('%:p:h')<cr>", "Copy File Path (Without File Name)" },
+    -- 行尾两个参数互换位置的通用方法
+    s = {
+      "<cmd>silent! s/\\(\"\\(.\\{-}\\)\"\\|''\\(.\\{-}\\)''\\|\\S\\+\\)\\s\\+\\(\"\\(.\\{-}\\)\"\\|''\\(.\\{-}\\)''\\|\\S\\+\\)$/\\4 \\1/<CR><cmd>nohlsearch<CR>",
+      "Swap last two arguments on current line",
+    },
     y = { "<cmd>let @+ = expand('%:t')<cr>", "Copy File Name" },
   }
 
@@ -54,6 +59,11 @@ function M.setup()
   local new_v_mappings = {
     -- 在visual模式下，将选中的文本和系统剪贴板中的URL生成Markdown链接
     l = { make_md_link, 'Wrap selection with Markdown link' },
+    -- 选择多行尾两个参数互换位置的通用方法
+    s = {
+      ":s/\\(\"\\(.\\{-}\\)\"\\|''\\(.\\{-}\\)''\\|\\S\\+\\)\\s\\+\\(\"\\(.\\{-}\\)\"\\|''\\(.\\{-}\\)''\\|\\S\\+\\)$/\\4 \\1/<CR>:nohlsearch<CR>",
+      "Swap last two arguments (Selected Lines)",
+    },
   }
 
   local status_ok, which_key = pcall(require, "which-key")

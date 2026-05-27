@@ -1,6 +1,6 @@
 -- Install your plugins here
 lvim.plugins = {
-  -- Last modified:   2025-10-02 21:53:55
+  -- Last modified:   2026-02-25 19:00:00
 
   -- {
   --   "felipec/vim-sanegx",
@@ -630,6 +630,201 @@ let test#python#runner = 'pytest'
         end,
       })
       -- vim.g.copilot_proxy = 'socks5://127.0.0.1:1081'
+    end,
+  },
+  {
+    "yetone/avante.nvim",
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    -- ⚠️ must add this setting! ! !
+    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or
+      "make",
+    event = "VeryLazy",
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      -- 默认使用 opencode ACP
+      provider = "opencode",
+
+      -- ACP providers 配置
+      acp_providers = {
+        ["gemini-cli"] = {
+          command = "gemini",
+          args = { "--experimental-acp" },
+          env = { NODE_NO_WARNINGS = "1", GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") },
+          auth_method = "gemini-api-key",
+        },
+        ["opencode"] = {
+          command = "opencode",
+          args = {
+            "acp",
+            "--cwd",
+            vim.fn.getcwd(), -- 关键：设置正确的工作目录
+            "--port",
+            "0", -- 自动分配端口
+            "--mdns",
+            "true",
+            "--log-level ",
+            "DEBUG",
+          },
+          env = { OPENCODE_API_KEY = os.getenv("OPENCODE_API_KEY") or os.getenv("GLMKEY") },
+        },
+      },
+
+      -- 保留原来的 providers 配置
+      providers = {
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "claude-sonnet-4-20250514",
+          timeout = 30000, -- Timeout in milliseconds
+          extra_request_body = { temperature = 0.75, max_tokens = 20480 },
+        },
+        moonshot = {
+          endpoint = "https://api.moonshot.ai/v1",
+          model = "kimi-k2-0711-preview",
+          timeout = 30000, -- Timeout in milliseconds
+          extra_request_body = { temperature = 0.75, max_tokens = 32768 },
+        },
+      },
+
+      -- 其他配置
+      instructions_file = "avante.md",
+      -- mode = "agentic",
+      mode = "legacy",
+      -- auto_suggestions_provider = nil,
+      auto_suggestions_provider = "opencode",
+      tokenizer = "tiktoken",
+
+      behaviour = {
+        auto_focus_sidebar = true,
+        auto_suggestions = false,
+        auto_set_highlight_group = true,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = false,
+        support_paste_from_clipboard = false,
+        minimize_diff = true,
+        enable_token_counting = true,
+        auto_add_current_file = true,
+      },
+      prompt_logger = { -- logs prompts to disk (timestamped, for replay/debugging)
+        enabled = true, -- toggle logging entirely
+        log_dir = vim.fn.stdpath("cache") .. "/avante_prompts", -- directory where logs are saved
+        fortune_cookie_on_success = false, -- shows a random fortune after each logged prompt (requires `fortune` installed)
+        next_prompt = {
+          normal = "<C-n>", -- load the next (newer) prompt log in normal mode
+          insert = "<C-n>",
+        },
+        prev_prompt = {
+          normal = "<C-p>", -- load the previous (older) prompt log in normal mode
+          insert = "<C-p>",
+        },
+      },
+
+      -- 将所有快捷键从 <leader>a 改为 <leader>A
+      mappings = {
+        ask = "<leader>Aa", -- 询问 AI
+        new_ask = "<leader>An", -- 新建询问
+        zen_mode = "<leader>Az", -- 禅模式
+        edit = "<leader>Ae", -- 编辑
+        refresh = "<leader>Ar", -- 刷新
+        focus = "<leader>Af", -- 聚焦
+        stop = "<leader>AS", -- 停止
+        toggle = {
+          default = "<leader>At", -- 切换默认
+          debug = "<leader>Ad", -- 切换调试
+          selection = "<leader>AC", -- 切换选择
+          suggestion = "<leader>As", -- 切换建议
+          repomap = "<leader>AR", -- 切换 repo map
+        },
+        select_model = "<leader>A?", -- 选择模型
+        sidebar = {
+          expand_tool_use = "<S-Tab>",
+          next_prompt = "]p",
+          prev_prompt = "[p",
+          apply_all = "A",
+          apply_cursor = "a",
+          retry_user_request = "r",
+          edit_user_request = "e",
+          switch_windows = "<Tab>",
+          reverse_switch_windows = "<S-Tab>",
+          toggle_code_window = "x",
+          remove_file = "d",
+          add_file = "@",
+          close = { "q" },
+        },
+        files = {
+          add_current = "<leader>Ac", -- 添加当前文件
+          add_all_buffers = "<leader>AB", -- 添加所有缓冲区
+        },
+        diff = { ours = "co", theirs = "ct", all_theirs = "ca", both = "cb", cursor = "cc", next = "]x", prev = "[x" },
+        suggestion = { accept = "<M-l>", next = "<M-]>", prev = "<M-[>", dismiss = "<C-]>" },
+        jump = { next = "]]", prev = "[[" },
+        submit = { normal = "<CR>", insert = "<C-s>" },
+        cancel = { normal = { "<C-c>", "<Esc>", "q" }, insert = { "<C-c>" } },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-mini/mini.pick", -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "stevearc/dressing.nvim", -- for input provider dressing
+      "folke/snacks.nvim", -- for input provider snacks
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = { insert_mode = true },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = { file_types = { "markdown", "Avante" } },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
+
+  {
+    --     # | 按键    | 效果                                |
+    -- | ----- | --------------------------------- |
+    -- | `vaf` | **选中整个函数**（Visual 模式）             |
+    -- | `vif` | **选中函数内部**（不包括 `def` 和 `end`/`}`） |
+    -- | `daf` | **删除整个函数**                        |
+    -- | `dif` | **删除函数体内容**（保留函数定义外壳）             |
+
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              -- 你可以在这里定义，也可以用你原来的 vim.keymap.set 方式
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+            },
+          },
+        },
+      })
     end,
   },
   --

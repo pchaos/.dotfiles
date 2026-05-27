@@ -52,29 +52,73 @@ STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
 
 # sleep 10
 
-# 检查powerlevel10k主题
-THEME_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+# 安装 powerlevel10k 主题
+install_powerlevel10k() {
+  local theme_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+  local url="https://github.com/romkatv/powerlevel10k/archive/refs/heads/master.zip"
 
-# 检查主题目录是否存在
-if [ ! -d "$THEME_DIR" ]; then
-  echo "⏳ 正在克隆powerlevel10k主题..."
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-  # 验证克隆结果
-  if [ $? -eq 0 ]; then
-    echo "✅ 主题安装成功！"
-    ls -la "$THEME_DIR" | head -5  # 显示前5个文件验证
-  else
-    echo "❌ 克隆失败，请检查网络连接和git配置"
-    exit 1
+  # 检查是否已存在
+  if [ -d "$theme_dir" ]; then
+    echo "ℹ️ 主题已存在，目录内容："
+    ls -la "$theme_dir" | head -5
+    return 0
   fi
-else
-  echo "ℹ️ 主题已存在，目录内容："
-  ls -la "$THEME_DIR" | head -5
-fi
+
+  echo "⏳ 正在安装 powerlevel10k 主题..."
+
+  # 尝试 git clone
+  if command -v git &>/dev/null; then
+    echo "⏳ 尝试 git clone..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$theme_dir" 2>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "✅ 主题通过 git clone 安装成功！"
+      ls -la "$theme_dir" | head -5
+      return 0
+    fi
+  fi
+
+  # git clone 失败，尝试通过下载 ZIP 包安装
+  echo "⚠️ git clone 失败，尝试通过下载 ZIP 包安装..."
+  local zip_file
+  zip_file=$(mktemp /tmp/powerlevel10k-XXXXXX.zip)
+
+  if command -v curl &>/dev/null; then
+    curl -L -o "$zip_file" "$url"
+  elif command -v wget &>/dev/null; then
+    wget -q -O "$zip_file" "$url"
+  else
+    echo "❌ 下载失败，且未找到 curl 或 wget"
+    rm -f "$zip_file"
+    return 1
+  fi
+
+  if [ $? -eq 0 ] && [ -f "$zip_file" ] && [ -s "$zip_file" ]; then
+    echo "⏳ 解压主题文件..."
+    unzip -q "$zip_file" -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/"
+    local extracted_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k-master"
+    if [ -d "$extracted_dir" ]; then
+      mv "$extracted_dir" "$theme_dir"
+      echo "✅ 主题通过下载 ZIP 安装成功！"
+    else
+      echo "❌ 解压后未找到预期目录"
+      rm -f "$zip_file"
+      return 1
+    fi
+    rm -f "$zip_file"
+  else
+    echo "❌ 下载失败，请检查网络连接"
+    rm -f "$zip_file"
+    return 1
+  fi
+
+  return 0
+}
+
+# 执行安装
+install_powerlevel10k
 
 # 检查关键文件
-THEME_FILE="$THEME_DIR/powerlevel10k.zsh-theme"
+THEME_FILE="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/powerlevel10k.zsh-theme"
 [ -f "$THEME_FILE" ] && echo "🔍 找到主题文件: $THEME_FILE" || echo "⚠️ 缺少主题文件"
 
 # fcitx5 输入法切换,第一次使用需要执行
