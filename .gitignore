@@ -139,4 +139,5 @@ bash/.gemini/antigravity/code_tracker
 **/node_modules/
 
 .aider*
+**/nvim-pack-lock.json
 
