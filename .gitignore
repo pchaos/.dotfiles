@@ -137,6 +137,7 @@ bash/.gemini/antigravity/brain
 bash/.gemini/antigravity/code_tracker
 **/.sisyphus/
 **/node_modules/
+**/.omo/
 
 .aider*
 **/nvim-pack-lock.json
