@@ -142,3 +142,57 @@ bash/.gemini/antigravity/code_tracker
 .aider*
 **/nvim-pack-lock.json
 
+# OpenCode
+bash/.config/opencode/context-mode/
+bash/.config/opencode/backups/
+bash/.config/opencode/workspace/
+bash/.config/opencode/*.backup*
+bash/.config/opencode/*.bak*
+bash/.config/opencode/package-lock.json
+
+# Codegraph
+**/.codegraph
+
+# OpenCode skills installed from ~/.agents/ — symlinks to external path, not repo content
+# Each entry is a symlink (<40B) pointing to ~/.agents/skills/<name>, installed by skill-manager
+bash/.config/opencode/skills/ask-matt
+bash/.config/opencode/skills/codebase-design
+bash/.config/opencode/skills/decision-mapping
+bash/.config/opencode/skills/design-an-interface
+bash/.config/opencode/skills/diagnosing-bugs
+bash/.config/opencode/skills/domain-modeling
+bash/.config/opencode/skills/edit-article
+bash/.config/opencode/skills/git-guardrails-claude-code
+bash/.config/opencode/skills/grill-me
+bash/.config/opencode/skills/grill-with-docs
+bash/.config/opencode/skills/grilling
+bash/.config/opencode/skills/handoff
+bash/.config/opencode/skills/implement
+bash/.config/opencode/skills/improve-codebase-architecture
+bash/.config/opencode/skills/migrate-to-shoehorn
+bash/.config/opencode/skills/obsidian-vault
+bash/.config/opencode/skills/prototype
+bash/.config/opencode/skills/qa
+bash/.config/opencode/skills/request-refactor-plan
+bash/.config/opencode/skills/resolving-merge-conflicts
+bash/.config/opencode/skills/review
+bash/.config/opencode/skills/scaffold-exercises
+bash/.config/opencode/skills/setup-matt-pocock-skills
+bash/.config/opencode/skills/setup-pre-commit
+bash/.config/opencode/skills/tdd
+bash/.config/opencode/skills/teach
+bash/.config/opencode/skills/to-issues
+bash/.config/opencode/skills/to-prd
+bash/.config/opencode/skills/triage
+bash/.config/opencode/skills/ubiquitous-language
+bash/.config/opencode/skills/writing-beats
+bash/.config/opencode/skills/writing-fragments
+bash/.config/opencode/skills/writing-great-skills
+bash/.config/opencode/skills/writing-shape
+
+# Fish Shell
+bash/.config/fish/fish_variables.*
+
+# Valgrind
+massif.out.*
+
