@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# Last Modified: 2025-11-06 12:04:26
+# Last Modified: 2026-07-18 01:45:36
 
 # stow (GNU Stow) version 2.3.1
 
@@ -36,6 +36,13 @@
 # General help using GNU software: <http://www.gnu.org/gethelp/>
 
 echo "Stowing Dotfiles...";
+
+echo "stow prepare ..."
+mv $HOME/.hermes/SOUL.md $HOME/.dotfiles/bash/.hermes/SOUL.md
+mv $HOME/.hermes/config.yaml $HOME/.dotfiles/bash/.hermes/config.yaml 
+rm $HOME/.dotfiles/bash/.hermes/.hermes_history
+rm $HOME/.dotfiles/bash/.hermes/skills/.usage.json
+rm $HOME/.dotfiles/bash/.hermes/skills/.usage.json.lock 
 
 if [[ -z $STOW_FOLDERS ]]; then
   # STOW_FOLDERS="bash,conda,git,htinsight,lvim,tmux"

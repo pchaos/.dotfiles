@@ -43,6 +43,11 @@ bash/.local/bin/.omo/
 bash/.local/bin/.sisyphus/
 bash/.local/share/remmina/
 
+# Hermes 运行态缓存（会话历史 / 使用统计）
+bash/.hermes/.hermes_history
+bash/.hermes/skills/.usage.json
+bash/.hermes/skills/.usage.json.lock
+
 # 各 agent 会话 / cache
 bash/.config/opencode/context-mode/
 bash/.config/opencode/workspace/
