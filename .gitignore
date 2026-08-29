@@ -21,6 +21,10 @@ massif.out.*
 # ── SQLite 临时文件 ──
 *.db-wal
 *.db-shm
+*.sqlite-wal
+*.sqlite-shm
+# opencode 会话上下文数据库 (运行时动态写入)
+context-mode/sessions/*.db
 
 # ── Python 编译缓存 ──
 __pycache__/
