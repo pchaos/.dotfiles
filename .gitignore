@@ -53,6 +53,8 @@ bash/.hermes/skills/.usage.json
 bash/.hermes/skills/.usage.json.lock
 
 # 各 agent 会话 / cache
+# codegraph 代码知识图谱缓存 (通用, 各 agent 均会生成)
+.codegraph
 bash/.config/opencode/context-mode/
 bash/.config/opencode/workspace/
 bash/.config/opencode/backups/
