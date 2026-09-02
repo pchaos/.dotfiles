@@ -83,6 +83,12 @@ bash/.gemini/antigravity-browser-profile/
 bash/.gemini/tmp/
 bash/.gemini/projects.json
 
+# Hermes 运行态缓存 / 锁文件 (运行时动态生成，不应提交)
+bash/.hermes/context_length_cache.yaml
+bash/.hermes/*.lock
+bash/.hermes/memories/*.lock
+bash/.hermes/shared/*.lock
+
 # 远程主机目录
 others/zhitaiSSD/hyper-v/ubuntu22.04/.hermes/
 others/zhitaiSSD/hyper-v/ubuntu22.04/.ssh/
