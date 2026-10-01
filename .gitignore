@@ -175,3 +175,6 @@ bash/.config/opencode/skills/writing-great-skills
 bash/.config/opencode/skills/writing-shape
 # Hermes 模型源数据缓存 (运行态动态生成)
 bash/.hermes/models_dev_cache.json
+
+# Neo 抓包时序快照 (运行时生成)
+bash/.neo/schemas/.history/
