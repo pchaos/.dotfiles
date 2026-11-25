@@ -1,5 +1,7 @@
 # ── 备份文件 ──
 *.bak
+# 程序自动备份：config.yaml.bak.20260514_013649 这类带时间戳后缀的
+*.bak.[0-9]*
 *.old
 *.backup
 *.backup-*
