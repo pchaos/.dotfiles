@@ -1,0 +1,13 @@
+abs-symlink: .codegraph
+conflict: .codex/auth.json
+conflict: .codex/config.toml
+conflict: .config/github-copilot/auth.db
+conflict: .config/github-copilot/auth.db-shm
+conflict: .config/github-copilot/auth.db-wal
+conflict: .hermes/config.yaml
+conflict: .omp/agent/config.yml
+conflict: .omp/agent/mcp.json
+conflict: .omp/agent/models.yml
+conflict: .omp/config.yml
+not-owned: .local/bin/agentrouter-gh-cookie-refresh.js
+not-owned: .local/bin/agentrouter-oauth-checkin.js
