@@ -43,6 +43,8 @@ bash/.hermes/scripts/__pycache__/
 bash/.hermes/skills/devops/neo-schema-capture/scripts/__pycache__/
 bash/.local/bin/__pycache__/
 bash/.local/bin/.codegraph
+# export_split_tunnel.py 的输出（Cloudflare 分流规则快照，重新运行即重新生成）
+bash/.local/bin/split_tunnel_export_*
 bash/.local/bin/.omo/
 bash/.local/bin/.sisyphus/
 bash/.local/share/remmina/
